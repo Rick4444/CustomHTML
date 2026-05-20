@@ -1,0 +1,301 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>CleverTap · InApp HTML Templates</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="ct-styles.css">
+</head>
+<body>
+
+<!-- ── TOP NAV ────────────────────────────────────────── -->
+<div id="nav">
+  <div class="logo">
+    <div class="logo-mark">⚡</div>
+    InApp Templates
+    <span class="logo-sub">by CleverTap</span>
+  </div>
+  <span class="nav-chip" id="nav-count">18 Templates</span>
+  <div class="spc"></div>
+  <button class="nav-btn" onclick="toggleTheme()">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+      <circle cx="12" cy="12" r="5"/>
+      <line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/>
+      <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/>
+      <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/>
+      <line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/>
+    </svg>
+    <span id="thlbl">Light</span>
+  </button>
+</div>
+
+<!-- ── 3-COLUMN LAYOUT ────────────────────────────────── -->
+<div id="layout">
+
+  <!-- ── SIDEBAR (template list) ───────────────────────── -->
+  <div id="sb"></div>
+
+  <!-- ── DEVICE CENTER COLUMN ──────────────────────────── -->
+  <div id="devcol">
+    <div id="dev-topbar">
+      <div class="pvdots">
+        <span class="r"></span><span class="y"></span><span class="g"></span>
+      </div>
+      <div id="pv-label">web · preview</div>
+      <div class="dev-pills">
+        <button class="dpill on" id="dpill-web" onclick="setDev('web')">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <rect x="2" y="3" width="20" height="14" rx="2"/>
+            <line x1="8" y1="21" x2="16" y2="21"/>
+            <line x1="12" y1="17" x2="12" y2="21"/>
+          </svg>Web
+        </button>
+        <button class="dpill" id="dpill-ios" onclick="setDev('ios')">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <rect x="5" y="2" width="14" height="20" rx="2"/><circle cx="12" cy="18" r="1"/>
+          </svg>iOS
+        </button>
+        <button class="dpill" id="dpill-and" onclick="setDev('android')">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M6 18V7a6 6 0 0 1 12 0v11"/>
+            <rect x="4" y="18" width="16" height="3" rx="1"/>
+          </svg>Android
+        </button>
+      </div>
+    </div>
+
+    <div id="pv-stage">
+      <!-- Loading spinner -->
+      <div id="ldr"><div class="spin"></div><p>Rendering…</p></div>
+
+      <!-- Web preview frame -->
+      <div id="dev-web">
+        <div class="dev-inner">
+          <iframe id="ifr-web" frameborder="0" style="width:100%;display:block;border:none"></iframe>
+        </div>
+      </div>
+
+      <!-- ── Device Frames (iPhone 17 Pro Max + Pixel 8 Pro) ── -->
+<!-- ═══ iPHONE 17 PRO MAX — Black Titanium ═══ -->
+        <div id="dev-ios">
+          <!-- Titanium hardware buttons (action, vol up/dn on left, power on right) -->
+          <div class="ios-action-btn"></div>
+          <div class="ios-vol-up"></div>
+          <div class="ios-vol-dn"></div>
+          <div class="ios-pwr"></div>
+          <!-- Status bar + Dynamic Island -->
+          <div class="ios-statusbar">
+            <div class="ios-time">9:41</div>
+            <div class="ios-di">
+              <div class="ios-di-face"></div>
+              <div class="ios-di-cam"></div>
+            </div>
+            <div class="ios-sb-right">
+              <div class="ios-cell"><span></span><span></span><span></span><span></span></div>
+              <div class="ios-wf"><div class="ios-wf-dot"></div></div>
+              <div class="ios-battery">
+                <div class="ios-bat-body"><div class="ios-bat-fill"></div></div>
+                <div class="ios-bat-nub"></div>
+              </div>
+            </div>
+          </div>
+          <!-- App content area -->
+          <div class="dev-inner">
+            <iframe id="ifr-ios" frameborder="0" scrolling="auto" style="width:100%;display:block;border:none;background:#09090f"></iframe>
+          </div>
+          <!-- Home indicator pill -->
+          <div class="ios-home"><div class="ios-pill"></div></div>
+        </div>
+
+        <!-- ═══ GOOGLE PIXEL 8 PRO — Obsidian ═══ -->
+        <div id="dev-android">
+          <!-- Pixel side buttons (vol+pwr on right) -->
+          <div class="pxl-vol"></div>
+          <div class="pxl-pwr"></div>
+          <!-- Top camera visor bar hint -->
+          <div class="pxl-visor"></div>
+          <!-- Status bar + punch-hole camera -->
+          <div class="pxl-statusbar">
+            <div class="pxl-time">9:41</div>
+            <div class="pxl-cam"></div>
+            <div class="pxl-sb-right">
+              <div class="pxl-signal"><span></span><span></span><span></span><span></span></div>
+              <div class="pxl-wifi"><div class="pxl-wifi-dot"></div></div>
+              <div class="pxl-battery">
+                <div class="pxl-bat-body"><div class="pxl-bat-fill"></div></div>
+                <div class="pxl-bat-nub"></div>
+              </div>
+            </div>
+          </div>
+          <!-- App content area -->
+          <div class="dev-inner">
+            <iframe id="ifr-android" frameborder="0" scrolling="auto" style="width:100%;display:block;border:none;background:#09090f"></iframe>
+          </div>
+          <!-- Pixel gesture nav pill -->
+          <div class="pxl-navbar"><div class="pxl-pill"></div></div>
+        </div>
+    <div id="ag">
+      <div class="ag-card">
+        <div style="font-size:28px;margin-bottom:10px">🎬</div>
+        <h3>How CleverTap Renders This</h3>
+        <p class="sub">Every HTML InApp follows this lifecycle — from trigger to dismissal — with full analytics at each step.</p>
+        <div class="ag-steps">
+          <div class="ag-step"><div class="ag-num">1</div><span>User event triggers the InApp campaign</span></div>
+          <div class="ag-step"><div class="ag-num">2</div><span>SDK fetches HTML/CSS payload from CleverTap</span></div>
+          <div class="ag-step"><div class="ag-num">3</div><span>Template renders in native WebView with JS bridge</span></div>
+          <div class="ag-step"><div class="ag-num">4</div><span>CSS entry animation plays automatically</span></div>
+          <div class="ag-step"><div class="ag-num">5</div><span><code style="font-family:var(--fm);font-size:10px;color:var(--ac2)">window.CleverTap</code> / <code style="font-family:var(--fm);font-size:10px;color:var(--ac2)">webkit.messageHandlers</code> fires on tap</span></div>
+          <div class="ag-step"><div class="ag-num">6</div><span>Notification Clicked + properties logged to dashboard</span></div>
+          <div class="ag-step"><div class="ag-num">7</div><span>Exit animation → WebView dismissed</span></div>
+        </div>
+        <button class="ag-close" onclick="closeGuide()">Got it</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div id="rp">
+  <div id="rp-info">
+    <div id="hdr-title">OTT PiP Banner</div>
+    <div id="hdr-desc">Picture-in-Picture overlay for streaming apps.</div>
+    <div class="tags" id="hdr-tags">
+      <span class="htag ct">CleverTap InApp</span>
+      <span class="htag grn">JS Bridge</span>
+      <span class="htag amb">Animated</span>
+    </div>
+  </div>
+  <div id="rp-tabs">
+    <button class="rtab on" id="rtab-code"   onclick="setRTab('code')">Code</button>
+    <button class="rtab"    id="rtab-events" onclick="setRTab('events')">CT Events</button>
+    <button class="rtab"    id="rtab-howto"  onclick="setRTab('howto')">How it Renders</button>
+  </div>
+  <div id="lang-row" class="show">
+    <button class="lang-btn on" id="ct-html" onclick="setTab('html')">HTML</button>
+    <button class="lang-btn"    id="ct-css"  onclick="setTab('css')">CSS</button>
+    <button class="lang-btn"    id="ct-js"   onclick="setTab('js')">JS</button>
+    <button class="lang-btn"    id="ct-ios"  onclick="setTab('ios')">iOS</button>
+    <button class="lang-btn"    id="ct-and"  onclick="setTab('and')">Android</button>
+    <button id="copy-btn" onclick="doCopy()">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="width:11px;height:11px"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>Copy
+    </button>
+  </div>
+  <div id="rp-body">
+    <div class="rp-pane show" id="code-pane"><pre id="cpre"></pre></div>
+    <div class="rp-pane" id="event-pane"></div>
+    <div class="rp-pane" id="howto-pane">
+      <div class="howto-sect">Render Lifecycle</div>
+      <div class="howto-step"><div class="howto-num">1</div><div class="howto-txt">A qualifying event (e.g. <code>App Launched</code>) triggers the InApp campaign in CleverTap.</div></div>
+      <div class="howto-step"><div class="howto-num">2</div><div class="howto-txt">SDK downloads the HTML/CSS/JS payload. Enable the <code>Enable JavaScript</code> checkbox in the dashboard campaign.</div></div>
+      <div class="howto-step"><div class="howto-num">3</div><div class="howto-txt">Template renders inside a native WebView — <code>WebView</code> on Android, <code>WKWebView</code> on iOS.</div></div>
+      <div class="howto-step"><div class="howto-num">4</div><div class="howto-txt">CSS <code>@keyframes</code> animation plays automatically on load. No extra SDK config needed.</div></div>
+      <div class="howto-step"><div class="howto-num">5</div><div class="howto-txt">Button tap → JS bridge fires. Android: <code>window.CleverTap.pushEvent()</code>. iOS: <code>webkit.messageHandlers.clevertap.postMessage()</code>.</div></div>
+      <div class="howto-step"><div class="howto-num">6</div><div class="howto-txt">CleverTap logs <strong>Notification Clicked</strong> with <code>wzrk_c2a</code> property — visible in campaign analytics.</div></div>
+      <div class="howto-step"><div class="howto-num">7</div><div class="howto-txt">Dismiss: Android calls <code>dismissInAppNotification()</code>; iOS handled automatically by the SDK.</div></div>
+      <div class="howto-sect">Dashboard Setup</div>
+      <div class="howto-step"><div class="howto-num">✓</div><div class="howto-txt">Campaigns → InApp → Custom HTML → paste template → check <strong>Enable JavaScript</strong> → set trigger → publish.</div></div>
+      <div class="howto-step"><div class="howto-num">✓</div><div class="howto-txt">Use <code>{{variable}}</code> in HTML — CleverTap substitutes user profile / event properties at render time.</div></div>
+    </div>
+  </div>
+</div>
+
+</div
+
+      <!-- ── How-it-renders overlay ── -->
+      <div id="ag">
+        <div class="ag-card">
+          <div style="font-size:28px;margin-bottom:10px">🎬</div>
+          <h3>How CleverTap Renders This</h3>
+          <p class="sub">Every HTML InApp follows this lifecycle — from trigger to dismissal — with full analytics at each step.</p>
+          <div class="ag-steps">
+            <div class="ag-step"><div class="ag-num">1</div><span>User event triggers the InApp campaign</span></div>
+            <div class="ag-step"><div class="ag-num">2</div><span>SDK fetches HTML/CSS payload from CleverTap</span></div>
+            <div class="ag-step"><div class="ag-num">3</div><span>Template renders in native WebView with JS bridge</span></div>
+            <div class="ag-step"><div class="ag-num">4</div><span>CSS entry animation plays automatically</span></div>
+            <div class="ag-step"><div class="ag-num">5</div><span><code>window.CleverTap</code> / <code>webkit.messageHandlers</code> fires on tap</span></div>
+            <div class="ag-step"><div class="ag-num">6</div><span>Notification Clicked + properties logged to dashboard</span></div>
+            <div class="ag-step"><div class="ag-num">7</div><span>Exit animation → WebView dismissed</span></div>
+          </div>
+          <button class="ag-close" onclick="closeGuide()">Got it</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ── RIGHT PANEL (info + code + events) ────────────── -->
+  <div id="rp">
+    <div id="rp-info">
+      <div id="hdr-title">OTT PiP Banner</div>
+      <div id="hdr-desc">Picture-in-Picture overlay for streaming apps.</div>
+      <div class="tags" id="hdr-tags">
+        <span class="htag ct">CleverTap InApp</span>
+        <span class="htag grn">JS Bridge</span>
+        <span class="htag amb">Animated</span>
+      </div>
+    </div>
+
+    <div id="rp-tabs">
+      <button class="rtab on" id="rtab-code"   onclick="setRTab('code')">Code</button>
+      <button class="rtab"    id="rtab-events" onclick="setRTab('events')">CT Events</button>
+      <button class="rtab"    id="rtab-howto"  onclick="setRTab('howto')">How it Renders</button>
+    </div>
+
+    <div id="lang-row" class="show">
+      <button class="lang-btn on" id="ct-html" onclick="setTab('html')">HTML</button>
+      <button class="lang-btn"    id="ct-css"  onclick="setTab('css')">CSS</button>
+      <button class="lang-btn"    id="ct-js"   onclick="setTab('js')">JS</button>
+      <button class="lang-btn"    id="ct-ios"  onclick="setTab('ios')">iOS</button>
+      <button class="lang-btn"    id="ct-and"  onclick="setTab('and')">Android</button>
+      <button id="copy-btn" onclick="doCopy()">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="width:11px;height:11px">
+          <rect x="9" y="9" width="13" height="13" rx="2"/>
+          <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/>
+        </svg>Copy
+      </button>
+    </div>
+
+    <div id="rp-body">
+      <!-- Code view -->
+      <div class="rp-pane show" id="code-pane"><pre id="cpre"></pre></div>
+
+      <!-- CT Events view -->
+      <div class="rp-pane" id="event-pane"></div>
+
+      <!-- How it Renders view -->
+      <div class="rp-pane" id="howto-pane">
+        <div class="howto-sect">Render Lifecycle</div>
+        <div class="howto-step"><div class="howto-num">1</div><div class="howto-txt">A qualifying event (e.g. <code>App Launched</code>) triggers the InApp campaign in CleverTap.</div></div>
+        <div class="howto-step"><div class="howto-num">2</div><div class="howto-txt">SDK downloads the HTML/CSS/JS payload. Enable the <code>Enable JavaScript</code> checkbox in the dashboard campaign.</div></div>
+        <div class="howto-step"><div class="howto-num">3</div><div class="howto-txt">Template renders inside a native WebView — <code>WebView</code> on Android, <code>WKWebView</code> on iOS.</div></div>
+        <div class="howto-step"><div class="howto-num">4</div><div class="howto-txt">CSS <code>@keyframes</code> animation plays automatically on load. No extra SDK config needed.</div></div>
+        <div class="howto-step"><div class="howto-num">5</div><div class="howto-txt">Button tap → JS bridge fires. Android: <code>window.CleverTap.pushEvent()</code>. iOS: <code>webkit.messageHandlers.clevertap.postMessage()</code>.</div></div>
+        <div class="howto-step"><div class="howto-num">6</div><div class="howto-txt">CleverTap logs <strong>Notification Clicked</strong> with <code>wzrk_c2a</code> property — visible in campaign analytics.</div></div>
+        <div class="howto-step"><div class="howto-num">7</div><div class="howto-txt">Dismiss: Android calls <code>dismissInAppNotification()</code>; iOS handled automatically by the SDK.</div></div>
+        <div class="howto-sect">Dashboard Setup</div>
+        <div class="howto-step"><div class="howto-num">✓</div><div class="howto-txt">Campaigns → InApp → Custom HTML → paste template → check <strong>Enable JavaScript</strong> → set trigger → publish.</div></div>
+        <div class="howto-step"><div class="howto-num">✓</div><div class="howto-txt">Use <code>{{variable}}</code> in HTML — CleverTap substitutes user profile/event properties at render time.</div></div>
+      </div>
+    </div>
+  </div>
+
+</div><!-- #layout -->
+
+<!-- ── SCRIPTS ─────────────────────────────────────────── -->
+<!-- Bridge helpers & native code generators -->
+<script src="ct-bridge.js"></script>
+
+<!-- Template data — one file per category.
+     To add a new category: create ct-templates-<name>.js
+     then add a <script> tag here and update CATS in ct-app.js -->
+<script src="ct-templates-ott.js"></script>
+<script src="ct-templates-qc.js"></script>
+<script src="ct-templates-gift.js"></script>
+<script src="ct-templates-auto.js"></script>
+<script src="ct-templates-ecomm.js"></script>
+<script src="ct-templates-engage.js"></script>
+
+<!-- App logic — state, render functions, controls, init -->
+<script src="ct-app.js"></script>
+
+</body>
+</html>

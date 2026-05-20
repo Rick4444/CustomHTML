@@ -1,0 +1,461 @@
+/* ============================================================
+   CleverTap InApp Templates — Styles
+   Edit this file to change the showcase UI appearance.
+   ============================================================ */
+
+*{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --bg:#090b12;--s1:#0f1120;--s2:#161928;--s3:#1d2235;--s4:#242840;
+  --b1:rgba(255,255,255,.06);--b2:rgba(255,255,255,.11);
+  --t1:#e4e8f5;--t2:#8b92b0;--t3:#4e5470;
+  --ac:#635bff;--ac2:#8a84ff;--acb:rgba(99,91,255,.15);
+  --gr:#22c87a;--grb:rgba(34,200,122,.12);
+  --am:#f59e0b;--amb:rgba(245,158,11,.12);
+  --fn:'Inter',sans-serif;--fm:'JetBrains Mono',monospace;
+  --r:8px;--r2:14px;--r3:20px;
+}
+body.light{
+  --bg:#f2f4fb;--s1:#fff;--s2:#edf0fa;--s3:#e4e8f5;--s4:#d8ddf0;
+  --b1:rgba(0,0,0,.06);--b2:rgba(0,0,0,.1);
+  --t1:#111827;--t2:#4b5563;--t3:#9ca3af;--acb:rgba(99,91,255,.1);
+}
+html,body{height:100%;overflow:hidden}
+body{background:var(--bg);color:var(--t1);font-family:var(--fn);font-size:14px}
+
+/* NAV */
+#nav{height:52px;background:var(--s1);border-bottom:1px solid var(--b1);display:flex;align-items:center;padding:0 20px;gap:14px;flex-shrink:0;z-index:100}
+.logo{display:flex;align-items:center;gap:9px;font-weight:700;font-size:15px;letter-spacing:-.02em;color:var(--t1)}
+.logo-mark{width:26px;height:26px;background:linear-gradient(135deg,#635bff,#8a84ff);border-radius:7px;display:flex;align-items:center;justify-content:center;font-size:13px}
+.logo-sub{font-size:11px;color:var(--t3);font-weight:400}
+.nav-chip{font-size:11px;font-weight:600;background:var(--acb);color:var(--ac2);padding:2px 9px;border-radius:20px;border:1px solid rgba(99,91,255,.25)}
+#nav .spc{flex:1}
+.nav-btn{background:var(--s2);border:1px solid var(--b1);color:var(--t2);padding:5px 12px;border-radius:var(--r);cursor:pointer;font-size:12px;font-family:var(--fn);font-weight:500;transition:.2s;display:flex;align-items:center;gap:5px}
+.nav-btn:hover{border-color:var(--ac);color:var(--ac)}
+.nav-btn svg{width:12px;height:12px}
+
+/* 3-COLUMN: sidebar | device | right */
+#layout{display:grid;grid-template-columns:210px 1fr 340px;height:calc(100vh - 52px);overflow:hidden}
+
+/* SIDEBAR */
+#sb{background:var(--s1);border-right:1px solid var(--b1);overflow-y:auto;padding:8px 0 20px}
+#sb::-webkit-scrollbar{width:3px}
+#sb::-webkit-scrollbar-thumb{background:var(--s4);border-radius:2px}
+.sb-sec{padding:0 8px 4px}
+.sb-head{font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.12em;color:var(--t3);padding:10px 8px 5px;display:flex;align-items:center;gap:5px}
+.sb-item{display:flex;align-items:center;gap:8px;padding:7px 8px;border-radius:var(--r);cursor:pointer;color:var(--t2);border:1px solid transparent;margin-bottom:1px;transition:.12s;user-select:none}
+.sb-item:hover{background:var(--s2);color:var(--t1)}
+.sb-item.on{background:var(--acb);color:var(--ac2);border-color:rgba(99,91,255,.28)}
+.sb-ico{font-size:13px;flex-shrink:0;width:18px;text-align:center}
+.sb-lbl{flex:1;font-size:12px;font-weight:500;line-height:1.3}
+.sb-tag{font-size:9px;background:var(--s3);color:var(--t3);padding:1px 5px;border-radius:4px;font-weight:600;flex-shrink:0}
+.sb-item.on .sb-tag{background:rgba(99,91,255,.2);color:var(--ac2)}
+.sb-div{height:1px;background:var(--b1);margin:4px 8px 8px}
+
+/* DEVICE COLUMN */
+#devcol{display:flex;flex-direction:column;overflow:hidden;border-right:1px solid var(--b1)}
+#dev-topbar{height:38px;background:var(--s1);border-bottom:1px solid var(--b1);display:flex;align-items:center;padding:0 12px;gap:8px;flex-shrink:0}
+.pvdots{display:flex;gap:4px}
+.pvdots span{width:8px;height:8px;border-radius:50%}
+.pvdots .r{background:#ef4444}.pvdots .y{background:#f59e0b}.pvdots .g{background:#22c87a}
+#pv-label{font-size:10.5px;color:var(--t3);font-family:var(--fm);flex:1;text-align:center}
+.dev-pills{display:flex;gap:3px}
+.dpill{padding:3px 10px;font-size:11px;font-weight:600;border-radius:20px;cursor:pointer;border:1px solid var(--b2);background:transparent;color:var(--t2);font-family:var(--fn);transition:.15s;display:flex;align-items:center;gap:4px}
+.dpill:hover{border-color:var(--ac);color:var(--ac)}
+.dpill.on{background:var(--ac);color:#fff;border-color:var(--ac)}
+.dpill svg{width:10px;height:10px}
+#pv-stage{flex:1;overflow:hidden;display:flex;justify-content:center;align-items:center;position:relative;transition:background .3s;background:var(--bg)}
+#ldr{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:12px;background:var(--bg);z-index:10;transition:opacity .3s}
+#ldr.gone{opacity:0;pointer-events:none}
+.spin{width:30px;height:30px;border:2.5px solid var(--b2);border-top-color:var(--ac);border-radius:50%;animation:spin .7s linear infinite}
+@keyframes spin{to{transform:rotate(360deg)}}
+#ldr p{font-size:11px;color:var(--t3)}
+
+/* DEVICE FRAMES */
+#dev-web{width:100%;height:100%;background:#fff;overflow:hidden;display:flex;flex-direction:column;animation:devIn .25s ease}
+#dev-web .dev-inner{flex:1}
+#dev-web .dev-inner iframe{width:100%;height:100%;display:block;border:none}
+@keyframes devIn{from{opacity:0;transform:scale(.97)}to{opacity:1;transform:none}}
+.dev-inner{overflow:hidden;flex:1;display:flex;flex-direction:column;min-height:0}
+.dev-inner iframe{width:100%;display:block;border:none;flex:1;min-height:0}
+#dev-ios,#dev-android{transform-origin:center center;transition:transform .35s cubic-bezier(.4,0,.2,1);flex-shrink:0}
+/* ═══════════════════════════════════════════════
+   iPHONE 17 PRO MAX  —  Black Titanium
+   393 × 852px portrait  |  Dynamic Island  |  iOS 17
+   ═══════════════════════════════════════════════ */
+#dev-ios{
+  width:393px;max-width:393px;height:852px;
+  flex-shrink:0;display:none;flex-direction:column;
+  align-self:flex-start;
+  /* Black Titanium body */
+  background:#1c1c1e;
+  border-radius:55px;
+  /* Multi-layer titanium frame */
+  box-shadow:
+    /* outer dark ring */
+    0 0 0 1px #0a0a0b,
+    /* titanium frame band */
+    0 0 0 9px #2c2c2e,
+    /* frame highlight top */
+    0 0 0 10px #3a3a3c,
+    /* frame outer edge */
+    0 0 0 11px #1c1c1e,
+    /* drop shadow */
+    0 40px 100px rgba(0,0,0,.85),
+    0 16px 40px rgba(0,0,0,.5);
+  animation:fi .4s cubic-bezier(.34,1.4,.64,1);
+  position:relative;overflow:hidden;
+}
+/* Glass screen surface gloss */
+#dev-ios::after{
+  content:'';position:absolute;inset:0;border-radius:55px;pointer-events:none;z-index:200;
+  background:linear-gradient(
+    148deg,
+    rgba(255,255,255,.09) 0%,
+    rgba(255,255,255,.03) 25%,
+    transparent 50%,
+    rgba(255,255,255,.02) 80%,
+    rgba(255,255,255,.06) 100%
+  );
+}
+/* ── Hardware side buttons (titanium) ── */
+.ios-action-btn{
+  position:absolute;left:-12px;top:126px;
+  width:5px;height:28px;
+  background:linear-gradient(180deg,#4a4a4c,#38383a,#4a4a4c);
+  border-radius:3px 0 0 3px;
+  box-shadow:-1px 0 2px rgba(0,0,0,.4);
+}
+.ios-vol-up{
+  position:absolute;left:-12px;top:174px;
+  width:5px;height:48px;
+  background:linear-gradient(180deg,#4a4a4c,#38383a,#4a4a4c);
+  border-radius:3px 0 0 3px;
+  box-shadow:-1px 0 2px rgba(0,0,0,.4);
+}
+.ios-vol-dn{
+  position:absolute;left:-12px;top:234px;
+  width:5px;height:48px;
+  background:linear-gradient(180deg,#4a4a4c,#38383a,#4a4a4c);
+  border-radius:3px 0 0 3px;
+  box-shadow:-1px 0 2px rgba(0,0,0,.4);
+}
+.ios-pwr{
+  position:absolute;right:-12px;top:188px;
+  width:5px;height:80px;
+  background:linear-gradient(180deg,#4a4a4c,#38383a,#4a4a4c);
+  border-radius:0 3px 3px 0;
+  box-shadow:1px 0 2px rgba(0,0,0,.4);
+}
+/* ── Status Bar ── */
+.ios-statusbar{
+  height:59px;background:#1c1c1e;
+  display:flex;align-items:flex-end;justify-content:space-between;
+  padding:0 28px 10px;flex-shrink:0;position:relative;z-index:10;
+}
+/* ── Dynamic Island ── */
+.ios-di{
+  position:absolute;
+  top:12px;left:50%;transform:translateX(-50%);
+  width:126px;height:37px;
+  background:#000;
+  border-radius:20px;
+  display:flex;align-items:center;justify-content:center;gap:10px;
+  box-shadow:0 0 0 1px rgba(255,255,255,.04),inset 0 0 8px rgba(0,0,0,.6);
+  z-index:20;
+}
+.ios-di-face{
+  width:19px;height:19px;
+  background:radial-gradient(circle at 40% 35%,#1a2a1a,#080808);
+  border-radius:50%;
+  border:1px solid rgba(255,255,255,.05);
+  position:relative;
+}
+.ios-di-face::after{
+  content:'';position:absolute;top:3px;left:3px;
+  width:5px;height:5px;border-radius:50%;
+  background:rgba(255,255,255,.12);
+}
+.ios-di-cam{
+  width:13px;height:13px;border-radius:50%;
+  background:radial-gradient(circle at 35% 35%,#1a2a3a,#040608);
+  border:1.5px solid rgba(255,255,255,.06);
+  position:relative;
+}
+/* camera lens reflection */
+.ios-di-cam::after{
+  content:'';position:absolute;top:2px;left:2px;
+  width:4px;height:4px;border-radius:50%;
+  background:rgba(120,180,255,.18);
+}
+/* ── Status bar icons ── */
+.ios-time{
+  font-size:15px;font-weight:600;color:#fff;
+  font-family:-apple-system,'SF Pro Display',sans-serif;
+  letter-spacing:-.02em;line-height:1;
+}
+.ios-sb-right{display:flex;align-items:center;gap:6px}
+/* Cellular bars */
+.ios-cell{display:flex;align-items:flex-end;gap:1.5px;height:12px}
+.ios-cell span{border-radius:1.5px;width:3.5px;background:#fff}
+.ios-cell span:nth-child(1){height:4px}
+.ios-cell span:nth-child(2){height:6px}
+.ios-cell span:nth-child(3){height:8px}
+.ios-cell span:nth-child(4){height:12px}
+/* WiFi */
+.ios-wf{
+  width:16px;height:12px;position:relative;
+  display:flex;align-items:flex-end;justify-content:center;
+}
+.ios-wf::before,.ios-wf::after,.ios-wf-dot{
+  content:'';position:absolute;
+  border:2px solid #fff;border-bottom:none;
+  border-radius:50% 50% 0 0;bottom:2px;
+}
+.ios-wf::before{width:16px;height:8px}
+.ios-wf::after{width:10px;height:5px}
+.ios-wf-dot{
+  border:none;background:#fff;
+  width:3px;height:3px;border-radius:50%;bottom:0;
+}
+/* Battery */
+.ios-battery{
+  display:flex;align-items:center;gap:1px;
+  width:27px;height:13px;position:relative;
+}
+.ios-bat-body{
+  width:24px;height:13px;
+  border:1.5px solid rgba(255,255,255,.65);
+  border-radius:3.5px;position:relative;overflow:hidden;
+}
+.ios-bat-fill{
+  position:absolute;left:2px;top:2px;bottom:2px;
+  width:65%;background:#fff;border-radius:1.5px;
+}
+.ios-bat-nub{
+  width:2px;height:5px;
+  background:rgba(255,255,255,.65);
+  border-radius:0 1.5px 1.5px 0;flex-shrink:0;
+}
+/* ── Home Indicator ── */
+.ios-home{
+  height:34px;background:#1c1c1e;
+  display:flex;align-items:center;justify-content:center;flex-shrink:0;
+}
+.ios-pill{
+  width:134px;height:5px;
+  background:rgba(255,255,255,.3);
+  border-radius:3px;
+}
+
+/* ═══════════════════════════════════════════════
+   GOOGLE PIXEL 8 PRO  —  Obsidian Black
+   393 × 896px portrait  |  Punch-hole  |  Android 14
+   Signature: camera visor bar on back (shown as
+   top camera-bar strip on the front face)
+   ═══════════════════════════════════════════════ */
+#dev-android{
+  width:393px;max-width:393px;height:896px;
+  flex-shrink:0;display:none;flex-direction:column;
+  align-self:flex-start;
+  background:#0e0e10;
+  /* Pixel's flat polished-matte sides */
+  border-radius:42px;
+  box-shadow:
+    /* inner screen bevel */
+    inset 0 0 0 1px rgba(255,255,255,.05),
+    /* polished matte frame */
+    0 0 0 8px #1a1a1c,
+    0 0 0 9px #2a2a2d,
+    0 0 0 10px #111113,
+    /* drop shadow */
+    0 36px 90px rgba(0,0,0,.8),
+    0 14px 36px rgba(0,0,0,.5);
+  animation:fi .4s cubic-bezier(.34,1.4,.64,1);
+  position:relative;overflow:hidden;
+}
+/* Pixel screen glass gloss */
+#dev-android::after{
+  content:'';position:absolute;inset:0;border-radius:42px;pointer-events:none;z-index:200;
+  background:linear-gradient(
+    125deg,
+    rgba(255,255,255,.07) 0%,
+    rgba(255,255,255,.02) 30%,
+    transparent 55%,
+    rgba(255,255,255,.01) 100%
+  );
+}
+/* ── Pixel camera visor — the signature horizontal bar ── */
+.pxl-visor{
+  position:absolute;top:0;left:0;right:0;
+  height:10px;
+  background:linear-gradient(180deg,#1e1e22 0%,#141416 100%);
+  border-radius:42px 42px 0 0;
+  z-index:5;
+}
+.pxl-visor::after{
+  content:'';position:absolute;bottom:0;left:0;right:0;height:1px;
+  background:linear-gradient(90deg,transparent,rgba(255,255,255,.08) 30%,rgba(255,255,255,.08) 70%,transparent);
+}
+/* ── Hardware buttons ── */
+.pxl-vol{
+  position:absolute;right:-10px;top:130px;
+  width:4px;height:74px;
+  background:linear-gradient(180deg,#2a2a2d,#1e1e21,#2a2a2d);
+  border-radius:0 2.5px 2.5px 0;
+  box-shadow:1px 0 3px rgba(0,0,0,.5);
+}
+.pxl-pwr{
+  position:absolute;right:-10px;top:250px;
+  width:4px;height:44px;
+  background:linear-gradient(180deg,#2a2a2d,#1e1e21,#2a2a2d);
+  border-radius:0 2.5px 2.5px 0;
+  box-shadow:1px 0 3px rgba(0,0,0,.5);
+}
+/* ── Pixel Status Bar (taller, Android 14 style) ── */
+.pxl-statusbar{
+  height:48px;background:#0e0e10;
+  display:flex;align-items:center;justify-content:space-between;
+  padding:0 22px;flex-shrink:0;position:relative;z-index:10;
+}
+/* Pixel punch-hole — centered */
+.pxl-cam{
+  position:absolute;top:10px;left:50%;transform:translateX(-50%);
+  width:13px;height:13px;border-radius:50%;
+  background:radial-gradient(circle at 38% 38%,#0d1624,#060608);
+  box-shadow:
+    0 0 0 2px #0e0e10,
+    0 0 0 3px rgba(255,255,255,.04),
+    inset 0 0 4px rgba(0,0,0,.8);
+  z-index:15;
+}
+/* green camera indicator dot */
+.pxl-cam::after{
+  content:'';position:absolute;top:2.5px;right:2px;
+  width:3px;height:3px;border-radius:50%;
+  background:rgba(100,200,100,.15);
+}
+.pxl-time{
+  font-size:13px;font-weight:500;color:#e8eaf0;
+  font-family:'Google Sans','Roboto',sans-serif;
+  letter-spacing:.01em;
+}
+.pxl-sb-right{display:flex;align-items:center;gap:5px}
+/* Android signal (4 bars) */
+.pxl-signal{display:flex;align-items:flex-end;gap:1.5px;height:11px}
+.pxl-signal span{border-radius:1px;width:3px}
+.pxl-signal span:nth-child(1){height:3px;background:rgba(232,234,240,.35)}
+.pxl-signal span:nth-child(2){height:5px;background:rgba(232,234,240,.55)}
+.pxl-signal span:nth-child(3){height:8px;background:rgba(232,234,240,.8)}
+.pxl-signal span:nth-child(4){height:11px;background:#e8eaf0}
+/* Pixel WiFi icon */
+.pxl-wifi{
+  width:15px;height:11px;position:relative;
+  display:flex;align-items:flex-end;justify-content:center;
+}
+.pxl-wifi::before,.pxl-wifi::after,.pxl-wifi-dot{
+  content:'';position:absolute;
+  border:2px solid #e8eaf0;border-bottom:none;
+  border-radius:50% 50% 0 0;
+}
+.pxl-wifi::before{width:15px;height:8px;bottom:2px}
+.pxl-wifi::after{width:9px;height:5px;bottom:2px}
+.pxl-wifi-dot{
+  border:none;background:#e8eaf0;
+  width:3px;height:3px;border-radius:50%;bottom:0;
+}
+/* Pixel battery */
+.pxl-battery{display:flex;align-items:center;gap:1px}
+.pxl-bat-body{
+  width:22px;height:11px;
+  border:1.5px solid rgba(232,234,240,.55);
+  border-radius:3px;position:relative;overflow:hidden;
+}
+.pxl-bat-fill{
+  position:absolute;left:2px;top:1.5px;bottom:1.5px;
+  width:55%;
+  background:linear-gradient(90deg,#22c87a,#1aad6a);
+  border-radius:1px;
+}
+.pxl-bat-nub{width:2px;height:5px;background:rgba(232,234,240,.55);border-radius:0 1.5px 1.5px 0;flex-shrink:0}
+/* Pixel network text label */
+.pxl-carrier{font-size:10px;font-weight:500;color:rgba(232,234,240,.65);font-family:'Google Sans','Roboto',sans-serif;letter-spacing:.02em}
+/* ── Pixel gesture nav bar ── */
+.pxl-navbar{
+  height:28px;background:#0e0e10;
+  display:flex;align-items:center;justify-content:center;
+  flex-shrink:0;
+}
+.pxl-pill{
+  width:140px;height:5px;
+  background:rgba(232,234,240,.25);
+  border-radius:3px;
+}
+
+/* RIGHT PANEL */
+#rp{display:flex;flex-direction:column;overflow:hidden;background:var(--s1)}
+#rp-info{padding:14px 16px 12px;border-bottom:1px solid var(--b1);flex-shrink:0}
+#hdr-title{font-size:14px;font-weight:700;letter-spacing:-.02em;margin-bottom:3px}
+#hdr-desc{font-size:11.5px;color:var(--t2);line-height:1.5}
+.tags{display:flex;gap:5px;margin-top:8px;flex-wrap:wrap}
+.htag{font-size:10px;font-weight:600;padding:2px 8px;border-radius:20px;border:1px solid}
+.htag.ct{background:var(--acb);color:var(--ac2);border-color:rgba(99,91,255,.25)}
+.htag.grn{background:var(--grb);color:var(--gr);border-color:rgba(34,200,122,.25)}
+.htag.amb{background:var(--amb);color:var(--am);border-color:rgba(245,158,11,.25)}
+#rp-tabs{display:flex;border-bottom:1px solid var(--b1);flex-shrink:0}
+.rtab{flex:1;padding:9px 4px;font-size:11.5px;font-weight:600;border:none;background:transparent;color:var(--t3);cursor:pointer;font-family:var(--fn);transition:.15s;border-bottom:2px solid transparent;text-align:center}
+.rtab:hover{color:var(--t2)}
+.rtab.on{color:var(--ac2);border-bottom-color:var(--ac)}
+#lang-row{display:none;align-items:center;padding:6px 10px;gap:3px;border-bottom:1px solid var(--b1);flex-shrink:0;background:var(--s2)}
+#lang-row.show{display:flex}
+.lang-btn{padding:4px 9px;font-size:11px;font-weight:600;border-radius:6px;cursor:pointer;border:none;background:transparent;color:var(--t3);font-family:var(--fn);transition:.15s}
+.lang-btn.on{background:var(--s4);color:var(--t1)}
+.lang-btn:hover{color:var(--t2)}
+#copy-btn{margin-left:auto;background:var(--s3);border:1px solid var(--b1);color:var(--t2);padding:4px 10px;border-radius:var(--r);cursor:pointer;font-size:11px;font-family:var(--fn);font-weight:500;transition:.2s;display:flex;align-items:center;gap:4px}
+#copy-btn:hover{border-color:var(--ac);color:var(--ac)}
+#copy-btn.ok{border-color:var(--gr);color:var(--gr)}
+#rp-body{flex:1;overflow:hidden;display:flex;flex-direction:column}
+.rp-pane{flex:1;overflow-y:auto;display:none}
+.rp-pane.show{display:block}
+.rp-pane::-webkit-scrollbar{width:4px}
+.rp-pane::-webkit-scrollbar-thumb{background:var(--s4);border-radius:3px}
+#code-pane{background:var(--bg)}
+body.light #code-pane{background:var(--s2)}
+pre#cpre{padding:14px 16px;font-family:var(--fm);font-size:11.5px;line-height:1.85;color:var(--t1);white-space:pre-wrap;word-break:break-word}
+#howto-pane,#event-pane{padding:14px 16px}
+.howto-step{display:flex;align-items:flex-start;gap:10px;padding:9px 12px;background:var(--s2);border-radius:var(--r);margin-bottom:7px}
+.howto-num{width:20px;height:20px;border-radius:50%;background:var(--acb);color:var(--ac2);font-size:10px;font-weight:700;display:flex;align-items:center;justify-content:center;flex-shrink:0;margin-top:1px}
+.howto-txt{font-size:12px;color:var(--t2);line-height:1.5}
+.howto-txt code{font-family:var(--fm);font-size:10px;color:var(--ac2);background:var(--acb);padding:1px 4px;border-radius:3px}
+.howto-sect{font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.1em;color:var(--t3);margin:12px 0 6px}
+.ev-label{font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.1em;color:var(--t3);margin-bottom:8px}
+.ev-card{background:var(--s2);border-radius:var(--r);padding:12px 14px;border:1px solid var(--b1);margin-bottom:14px}
+.ev-name{font-size:12px;font-weight:700;color:var(--ac2);font-family:var(--fm);margin-bottom:8px}
+.ev-props{display:flex;flex-direction:column;gap:5px}
+.ev-row{display:flex;align-items:flex-start;gap:8px;font-size:11px}
+.ev-key{color:var(--gr);font-family:var(--fm);flex-shrink:0;min-width:80px}
+.ev-val{color:var(--am);font-family:var(--fm);word-break:break-all}
+.ev-trigger{display:flex;align-items:center;gap:7px;padding:9px 12px;background:var(--s2);border:1px solid var(--b1);border-radius:var(--r);font-size:12px;color:var(--t2);margin-bottom:14px}
+.ev-trigger strong{color:var(--t1);font-family:var(--fm);font-size:11px}
+
+/* Syntax tokens */
+.tk{color:#8a84ff}.ta{color:#22d3ee}.tv{color:#f59e0b}.ts{color:#f59e0b}
+.tc{color:#4e5470;font-style:italic}.tp{color:#22c87a}.tn{color:#f59e0b}
+body.light .tk{color:#5046e5}body.light .ta{color:#0369a1}
+body.light .tv,body.light .ts{color:#c2410c}body.light .tp{color:#16a34a}
+body.light .tc{color:#94a3b8}body.light .tn{color:#c2410c}
+
+/* Anim overlay */
+#ag{position:absolute;inset:0;z-index:30;display:none;align-items:center;justify-content:center;background:rgba(9,11,18,.88);backdrop-filter:blur(8px)}
+#ag.show{display:flex}
+.ag-card{background:var(--s1);border:1px solid var(--b2);border-radius:var(--r3);padding:22px;max-width:340px;width:90%;animation:zIn .35s cubic-bezier(.34,1.4,.64,1)}
+@keyframes zIn{from{opacity:0;transform:scale(.85)}to{opacity:1;transform:none}}
+.ag-card h3{font-size:14px;font-weight:700;margin-bottom:6px}
+.ag-card .sub{font-size:12px;color:var(--t2);line-height:1.6;margin-bottom:16px}
+.ag-steps{display:flex;flex-direction:column;gap:6px;margin-bottom:18px}
+.ag-step{display:flex;align-items:center;gap:9px;padding:8px 11px;background:var(--s2);border-radius:var(--r);font-size:11.5px;color:var(--t2)}
+.ag-num{width:20px;height:20px;border-radius:50%;background:var(--acb);color:var(--ac2);font-size:10px;font-weight:700;display:flex;align-items:center;justify-content:center;flex-shrink:0}
+.ag-close{width:100%;background:var(--ac);color:#fff;border:none;border-radius:var(--r);padding:9px;font-size:13px;font-weight:600;cursor:pointer;font-family:var(--fn)}
+
+@media(max-width:1100px){#layout{grid-template-columns:200px 1fr 300px}}
+@media(max-width:860px){#layout{grid-template-columns:1fr 280px}#sb{display:none}}
+@media(max-width:620px){#layout{grid-template-columns:1fr}#rp{display:none}}
