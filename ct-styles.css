@@ -459,3 +459,60 @@ body.light .tc{color:#94a3b8}body.light .tn{color:#c2410c}
 @media(max-width:1100px){#layout{grid-template-columns:200px 1fr 300px}}
 @media(max-width:860px){#layout{grid-template-columns:1fr 280px}#sb{display:none}}
 @media(max-width:620px){#layout{grid-template-columns:1fr}#rp{display:none}}
+
+/* ── CATEGORY PILLS (sidebar) ─────────────────────────────── */
+#cat-pills {
+  padding: 8px 8px 4px;
+}
+.cat-pill-label {
+  font-size: 10px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: .12em;
+  color: var(--t3);
+  padding: 0 4px 6px;
+}
+.cat-pills-wrap {
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+}
+.cat-pill {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  width: 100%;
+  padding: 7px 10px;
+  border-radius: var(--r);
+  cursor: pointer;
+  border: 1px solid transparent;
+  background: transparent;
+  color: var(--t2);
+  font-family: var(--fn);
+  font-size: 12px;
+  font-weight: 500;
+  text-align: left;
+  transition: .15s;
+  user-select: none;
+}
+.cat-pill:hover { background: var(--s2); color: var(--t1); }
+.cat-pill.on {
+  background: var(--acb);
+  color: var(--ac2);
+  border-color: rgba(99,91,255,.28);
+}
+.cat-pill-count {
+  margin-left: auto;
+  font-size: 10px;
+  font-weight: 700;
+  background: var(--s3);
+  color: var(--t3);
+  padding: 1px 6px;
+  border-radius: 10px;
+  min-width: 20px;
+  text-align: center;
+}
+.cat-pill.on .cat-pill-count {
+  background: rgba(99,91,255,.2);
+  color: var(--ac2);
+}
