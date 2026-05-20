@@ -1,0 +1,2829 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>CleverTap · InApp HTML Templates</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --bg:#090b12;--s1:#0f1120;--s2:#161928;--s3:#1d2235;--s4:#242840;
+  --b1:rgba(255,255,255,.06);--b2:rgba(255,255,255,.11);
+  --t1:#e4e8f5;--t2:#8b92b0;--t3:#4e5470;
+  --ac:#635bff;--ac2:#8a84ff;--acb:rgba(99,91,255,.15);
+  --gr:#22c87a;--grb:rgba(34,200,122,.12);
+  --am:#f59e0b;--amb:rgba(245,158,11,.12);
+  --fn:'Inter',sans-serif;--fm:'JetBrains Mono',monospace;
+  --r:8px;--r2:14px;--r3:20px;
+}
+body.light{
+  --bg:#f2f4fb;--s1:#fff;--s2:#edf0fa;--s3:#e4e8f5;--s4:#d8ddf0;
+  --b1:rgba(0,0,0,.06);--b2:rgba(0,0,0,.1);
+  --t1:#111827;--t2:#4b5563;--t3:#9ca3af;--acb:rgba(99,91,255,.1);
+}
+html,body{height:100%;overflow:hidden}
+body{background:var(--bg);color:var(--t1);font-family:var(--fn);font-size:14px}
+
+/* NAV */
+#nav{height:52px;background:var(--s1);border-bottom:1px solid var(--b1);display:flex;align-items:center;padding:0 20px;gap:14px;flex-shrink:0;z-index:100}
+.logo{display:flex;align-items:center;gap:9px;font-weight:700;font-size:15px;letter-spacing:-.02em;color:var(--t1)}
+.logo-mark{width:26px;height:26px;background:linear-gradient(135deg,#635bff,#8a84ff);border-radius:7px;display:flex;align-items:center;justify-content:center;font-size:13px}
+.logo-sub{font-size:11px;color:var(--t3);font-weight:400}
+.nav-chip{font-size:11px;font-weight:600;background:var(--acb);color:var(--ac2);padding:2px 9px;border-radius:20px;border:1px solid rgba(99,91,255,.25)}
+#nav .spc{flex:1}
+.nav-btn{background:var(--s2);border:1px solid var(--b1);color:var(--t2);padding:5px 12px;border-radius:var(--r);cursor:pointer;font-size:12px;font-family:var(--fn);font-weight:500;transition:.2s;display:flex;align-items:center;gap:5px}
+.nav-btn:hover{border-color:var(--ac);color:var(--ac)}
+.nav-btn svg{width:12px;height:12px}
+
+/* 3-COLUMN: sidebar | device | right */
+#layout{display:grid;grid-template-columns:210px 1fr 340px;height:calc(100vh - 52px);overflow:hidden}
+
+/* SIDEBAR */
+#sb{background:var(--s1);border-right:1px solid var(--b1);overflow-y:auto;padding:8px 0 20px}
+#sb::-webkit-scrollbar{width:3px}
+#sb::-webkit-scrollbar-thumb{background:var(--s4);border-radius:2px}
+.sb-sec{padding:0 8px 4px}
+.sb-head{font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.12em;color:var(--t3);padding:10px 8px 5px;display:flex;align-items:center;gap:5px}
+.sb-item{display:flex;align-items:center;gap:8px;padding:7px 8px;border-radius:var(--r);cursor:pointer;color:var(--t2);border:1px solid transparent;margin-bottom:1px;transition:.12s;user-select:none}
+.sb-item:hover{background:var(--s2);color:var(--t1)}
+.sb-item.on{background:var(--acb);color:var(--ac2);border-color:rgba(99,91,255,.28)}
+.sb-ico{font-size:13px;flex-shrink:0;width:18px;text-align:center}
+.sb-lbl{flex:1;font-size:12px;font-weight:500;line-height:1.3}
+.sb-tag{font-size:9px;background:var(--s3);color:var(--t3);padding:1px 5px;border-radius:4px;font-weight:600;flex-shrink:0}
+.sb-item.on .sb-tag{background:rgba(99,91,255,.2);color:var(--ac2)}
+.sb-div{height:1px;background:var(--b1);margin:4px 8px 8px}
+
+/* DEVICE COLUMN */
+#devcol{display:flex;flex-direction:column;overflow:hidden;border-right:1px solid var(--b1)}
+#dev-topbar{height:38px;background:var(--s1);border-bottom:1px solid var(--b1);display:flex;align-items:center;padding:0 12px;gap:8px;flex-shrink:0}
+.pvdots{display:flex;gap:4px}
+.pvdots span{width:8px;height:8px;border-radius:50%}
+.pvdots .r{background:#ef4444}.pvdots .y{background:#f59e0b}.pvdots .g{background:#22c87a}
+#pv-label{font-size:10.5px;color:var(--t3);font-family:var(--fm);flex:1;text-align:center}
+.dev-pills{display:flex;gap:3px}
+.dpill{padding:3px 10px;font-size:11px;font-weight:600;border-radius:20px;cursor:pointer;border:1px solid var(--b2);background:transparent;color:var(--t2);font-family:var(--fn);transition:.15s;display:flex;align-items:center;gap:4px}
+.dpill:hover{border-color:var(--ac);color:var(--ac)}
+.dpill.on{background:var(--ac);color:#fff;border-color:var(--ac)}
+.dpill svg{width:10px;height:10px}
+#pv-stage{flex:1;overflow:hidden;display:flex;justify-content:center;align-items:center;position:relative;transition:background .3s;background:var(--bg)}
+#ldr{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:12px;background:var(--bg);z-index:10;transition:opacity .3s}
+#ldr.gone{opacity:0;pointer-events:none}
+.spin{width:30px;height:30px;border:2.5px solid var(--b2);border-top-color:var(--ac);border-radius:50%;animation:spin .7s linear infinite}
+@keyframes spin{to{transform:rotate(360deg)}}
+#ldr p{font-size:11px;color:var(--t3)}
+
+/* DEVICE FRAMES */
+#dev-web{width:100%;height:100%;background:#fff;overflow:hidden;display:flex;flex-direction:column;animation:devIn .25s ease}
+#dev-web .dev-inner{flex:1}
+#dev-web .dev-inner iframe{width:100%;height:100%;display:block;border:none}
+@keyframes devIn{from{opacity:0;transform:scale(.97)}to{opacity:1;transform:none}}
+.dev-inner{overflow:hidden;flex:1;display:flex;flex-direction:column;min-height:0}
+.dev-inner iframe{width:100%;display:block;border:none;flex:1;min-height:0}
+#dev-ios,#dev-android{transform-origin:center center;transition:transform .35s cubic-bezier(.4,0,.2,1);flex-shrink:0}
+/* ═══════════════════════════════════════════════
+   iPHONE 17 PRO MAX  —  Black Titanium
+   393 × 852px portrait  |  Dynamic Island  |  iOS 17
+   ═══════════════════════════════════════════════ */
+#dev-ios{
+  width:393px;max-width:393px;height:852px;
+  flex-shrink:0;display:none;flex-direction:column;
+  align-self:flex-start;
+  /* Black Titanium body */
+  background:#1c1c1e;
+  border-radius:55px;
+  /* Multi-layer titanium frame */
+  box-shadow:
+    /* outer dark ring */
+    0 0 0 1px #0a0a0b,
+    /* titanium frame band */
+    0 0 0 9px #2c2c2e,
+    /* frame highlight top */
+    0 0 0 10px #3a3a3c,
+    /* frame outer edge */
+    0 0 0 11px #1c1c1e,
+    /* drop shadow */
+    0 40px 100px rgba(0,0,0,.85),
+    0 16px 40px rgba(0,0,0,.5);
+  animation:fi .4s cubic-bezier(.34,1.4,.64,1);
+  position:relative;overflow:hidden;
+}
+/* Glass screen surface gloss */
+#dev-ios::after{
+  content:'';position:absolute;inset:0;border-radius:55px;pointer-events:none;z-index:200;
+  background:linear-gradient(
+    148deg,
+    rgba(255,255,255,.09) 0%,
+    rgba(255,255,255,.03) 25%,
+    transparent 50%,
+    rgba(255,255,255,.02) 80%,
+    rgba(255,255,255,.06) 100%
+  );
+}
+/* ── Hardware side buttons (titanium) ── */
+.ios-action-btn{
+  position:absolute;left:-12px;top:126px;
+  width:5px;height:28px;
+  background:linear-gradient(180deg,#4a4a4c,#38383a,#4a4a4c);
+  border-radius:3px 0 0 3px;
+  box-shadow:-1px 0 2px rgba(0,0,0,.4);
+}
+.ios-vol-up{
+  position:absolute;left:-12px;top:174px;
+  width:5px;height:48px;
+  background:linear-gradient(180deg,#4a4a4c,#38383a,#4a4a4c);
+  border-radius:3px 0 0 3px;
+  box-shadow:-1px 0 2px rgba(0,0,0,.4);
+}
+.ios-vol-dn{
+  position:absolute;left:-12px;top:234px;
+  width:5px;height:48px;
+  background:linear-gradient(180deg,#4a4a4c,#38383a,#4a4a4c);
+  border-radius:3px 0 0 3px;
+  box-shadow:-1px 0 2px rgba(0,0,0,.4);
+}
+.ios-pwr{
+  position:absolute;right:-12px;top:188px;
+  width:5px;height:80px;
+  background:linear-gradient(180deg,#4a4a4c,#38383a,#4a4a4c);
+  border-radius:0 3px 3px 0;
+  box-shadow:1px 0 2px rgba(0,0,0,.4);
+}
+/* ── Status Bar ── */
+.ios-statusbar{
+  height:59px;background:#1c1c1e;
+  display:flex;align-items:flex-end;justify-content:space-between;
+  padding:0 28px 10px;flex-shrink:0;position:relative;z-index:10;
+}
+/* ── Dynamic Island ── */
+.ios-di{
+  position:absolute;
+  top:12px;left:50%;transform:translateX(-50%);
+  width:126px;height:37px;
+  background:#000;
+  border-radius:20px;
+  display:flex;align-items:center;justify-content:center;gap:10px;
+  box-shadow:0 0 0 1px rgba(255,255,255,.04),inset 0 0 8px rgba(0,0,0,.6);
+  z-index:20;
+}
+.ios-di-face{
+  width:19px;height:19px;
+  background:radial-gradient(circle at 40% 35%,#1a2a1a,#080808);
+  border-radius:50%;
+  border:1px solid rgba(255,255,255,.05);
+  position:relative;
+}
+.ios-di-face::after{
+  content:'';position:absolute;top:3px;left:3px;
+  width:5px;height:5px;border-radius:50%;
+  background:rgba(255,255,255,.12);
+}
+.ios-di-cam{
+  width:13px;height:13px;border-radius:50%;
+  background:radial-gradient(circle at 35% 35%,#1a2a3a,#040608);
+  border:1.5px solid rgba(255,255,255,.06);
+  position:relative;
+}
+/* camera lens reflection */
+.ios-di-cam::after{
+  content:'';position:absolute;top:2px;left:2px;
+  width:4px;height:4px;border-radius:50%;
+  background:rgba(120,180,255,.18);
+}
+/* ── Status bar icons ── */
+.ios-time{
+  font-size:15px;font-weight:600;color:#fff;
+  font-family:-apple-system,'SF Pro Display',sans-serif;
+  letter-spacing:-.02em;line-height:1;
+}
+.ios-sb-right{display:flex;align-items:center;gap:6px}
+/* Cellular bars */
+.ios-cell{display:flex;align-items:flex-end;gap:1.5px;height:12px}
+.ios-cell span{border-radius:1.5px;width:3.5px;background:#fff}
+.ios-cell span:nth-child(1){height:4px}
+.ios-cell span:nth-child(2){height:6px}
+.ios-cell span:nth-child(3){height:8px}
+.ios-cell span:nth-child(4){height:12px}
+/* WiFi */
+.ios-wf{
+  width:16px;height:12px;position:relative;
+  display:flex;align-items:flex-end;justify-content:center;
+}
+.ios-wf::before,.ios-wf::after,.ios-wf-dot{
+  content:'';position:absolute;
+  border:2px solid #fff;border-bottom:none;
+  border-radius:50% 50% 0 0;bottom:2px;
+}
+.ios-wf::before{width:16px;height:8px}
+.ios-wf::after{width:10px;height:5px}
+.ios-wf-dot{
+  border:none;background:#fff;
+  width:3px;height:3px;border-radius:50%;bottom:0;
+}
+/* Battery */
+.ios-battery{
+  display:flex;align-items:center;gap:1px;
+  width:27px;height:13px;position:relative;
+}
+.ios-bat-body{
+  width:24px;height:13px;
+  border:1.5px solid rgba(255,255,255,.65);
+  border-radius:3.5px;position:relative;overflow:hidden;
+}
+.ios-bat-fill{
+  position:absolute;left:2px;top:2px;bottom:2px;
+  width:65%;background:#fff;border-radius:1.5px;
+}
+.ios-bat-nub{
+  width:2px;height:5px;
+  background:rgba(255,255,255,.65);
+  border-radius:0 1.5px 1.5px 0;flex-shrink:0;
+}
+/* ── Home Indicator ── */
+.ios-home{
+  height:34px;background:#1c1c1e;
+  display:flex;align-items:center;justify-content:center;flex-shrink:0;
+}
+.ios-pill{
+  width:134px;height:5px;
+  background:rgba(255,255,255,.3);
+  border-radius:3px;
+}
+
+/* ═══════════════════════════════════════════════
+   GOOGLE PIXEL 8 PRO  —  Obsidian Black
+   393 × 896px portrait  |  Punch-hole  |  Android 14
+   Signature: camera visor bar on back (shown as
+   top camera-bar strip on the front face)
+   ═══════════════════════════════════════════════ */
+#dev-android{
+  width:393px;max-width:393px;height:896px;
+  flex-shrink:0;display:none;flex-direction:column;
+  align-self:flex-start;
+  background:#0e0e10;
+  /* Pixel's flat polished-matte sides */
+  border-radius:42px;
+  box-shadow:
+    /* inner screen bevel */
+    inset 0 0 0 1px rgba(255,255,255,.05),
+    /* polished matte frame */
+    0 0 0 8px #1a1a1c,
+    0 0 0 9px #2a2a2d,
+    0 0 0 10px #111113,
+    /* drop shadow */
+    0 36px 90px rgba(0,0,0,.8),
+    0 14px 36px rgba(0,0,0,.5);
+  animation:fi .4s cubic-bezier(.34,1.4,.64,1);
+  position:relative;overflow:hidden;
+}
+/* Pixel screen glass gloss */
+#dev-android::after{
+  content:'';position:absolute;inset:0;border-radius:42px;pointer-events:none;z-index:200;
+  background:linear-gradient(
+    125deg,
+    rgba(255,255,255,.07) 0%,
+    rgba(255,255,255,.02) 30%,
+    transparent 55%,
+    rgba(255,255,255,.01) 100%
+  );
+}
+/* ── Pixel camera visor — the signature horizontal bar ── */
+.pxl-visor{
+  position:absolute;top:0;left:0;right:0;
+  height:10px;
+  background:linear-gradient(180deg,#1e1e22 0%,#141416 100%);
+  border-radius:42px 42px 0 0;
+  z-index:5;
+}
+.pxl-visor::after{
+  content:'';position:absolute;bottom:0;left:0;right:0;height:1px;
+  background:linear-gradient(90deg,transparent,rgba(255,255,255,.08) 30%,rgba(255,255,255,.08) 70%,transparent);
+}
+/* ── Hardware buttons ── */
+.pxl-vol{
+  position:absolute;right:-10px;top:130px;
+  width:4px;height:74px;
+  background:linear-gradient(180deg,#2a2a2d,#1e1e21,#2a2a2d);
+  border-radius:0 2.5px 2.5px 0;
+  box-shadow:1px 0 3px rgba(0,0,0,.5);
+}
+.pxl-pwr{
+  position:absolute;right:-10px;top:250px;
+  width:4px;height:44px;
+  background:linear-gradient(180deg,#2a2a2d,#1e1e21,#2a2a2d);
+  border-radius:0 2.5px 2.5px 0;
+  box-shadow:1px 0 3px rgba(0,0,0,.5);
+}
+/* ── Pixel Status Bar (taller, Android 14 style) ── */
+.pxl-statusbar{
+  height:48px;background:#0e0e10;
+  display:flex;align-items:center;justify-content:space-between;
+  padding:0 22px;flex-shrink:0;position:relative;z-index:10;
+}
+/* Pixel punch-hole — centered */
+.pxl-cam{
+  position:absolute;top:10px;left:50%;transform:translateX(-50%);
+  width:13px;height:13px;border-radius:50%;
+  background:radial-gradient(circle at 38% 38%,#0d1624,#060608);
+  box-shadow:
+    0 0 0 2px #0e0e10,
+    0 0 0 3px rgba(255,255,255,.04),
+    inset 0 0 4px rgba(0,0,0,.8);
+  z-index:15;
+}
+/* green camera indicator dot */
+.pxl-cam::after{
+  content:'';position:absolute;top:2.5px;right:2px;
+  width:3px;height:3px;border-radius:50%;
+  background:rgba(100,200,100,.15);
+}
+.pxl-time{
+  font-size:13px;font-weight:500;color:#e8eaf0;
+  font-family:'Google Sans','Roboto',sans-serif;
+  letter-spacing:.01em;
+}
+.pxl-sb-right{display:flex;align-items:center;gap:5px}
+/* Android signal (4 bars) */
+.pxl-signal{display:flex;align-items:flex-end;gap:1.5px;height:11px}
+.pxl-signal span{border-radius:1px;width:3px}
+.pxl-signal span:nth-child(1){height:3px;background:rgba(232,234,240,.35)}
+.pxl-signal span:nth-child(2){height:5px;background:rgba(232,234,240,.55)}
+.pxl-signal span:nth-child(3){height:8px;background:rgba(232,234,240,.8)}
+.pxl-signal span:nth-child(4){height:11px;background:#e8eaf0}
+/* Pixel WiFi icon */
+.pxl-wifi{
+  width:15px;height:11px;position:relative;
+  display:flex;align-items:flex-end;justify-content:center;
+}
+.pxl-wifi::before,.pxl-wifi::after,.pxl-wifi-dot{
+  content:'';position:absolute;
+  border:2px solid #e8eaf0;border-bottom:none;
+  border-radius:50% 50% 0 0;
+}
+.pxl-wifi::before{width:15px;height:8px;bottom:2px}
+.pxl-wifi::after{width:9px;height:5px;bottom:2px}
+.pxl-wifi-dot{
+  border:none;background:#e8eaf0;
+  width:3px;height:3px;border-radius:50%;bottom:0;
+}
+/* Pixel battery */
+.pxl-battery{display:flex;align-items:center;gap:1px}
+.pxl-bat-body{
+  width:22px;height:11px;
+  border:1.5px solid rgba(232,234,240,.55);
+  border-radius:3px;position:relative;overflow:hidden;
+}
+.pxl-bat-fill{
+  position:absolute;left:2px;top:1.5px;bottom:1.5px;
+  width:55%;
+  background:linear-gradient(90deg,#22c87a,#1aad6a);
+  border-radius:1px;
+}
+.pxl-bat-nub{width:2px;height:5px;background:rgba(232,234,240,.55);border-radius:0 1.5px 1.5px 0;flex-shrink:0}
+/* Pixel network text label */
+.pxl-carrier{font-size:10px;font-weight:500;color:rgba(232,234,240,.65);font-family:'Google Sans','Roboto',sans-serif;letter-spacing:.02em}
+/* ── Pixel gesture nav bar ── */
+.pxl-navbar{
+  height:28px;background:#0e0e10;
+  display:flex;align-items:center;justify-content:center;
+  flex-shrink:0;
+}
+.pxl-pill{
+  width:140px;height:5px;
+  background:rgba(232,234,240,.25);
+  border-radius:3px;
+}
+
+/* RIGHT PANEL */
+#rp{display:flex;flex-direction:column;overflow:hidden;background:var(--s1)}
+#rp-info{padding:14px 16px 12px;border-bottom:1px solid var(--b1);flex-shrink:0}
+#hdr-title{font-size:14px;font-weight:700;letter-spacing:-.02em;margin-bottom:3px}
+#hdr-desc{font-size:11.5px;color:var(--t2);line-height:1.5}
+.tags{display:flex;gap:5px;margin-top:8px;flex-wrap:wrap}
+.htag{font-size:10px;font-weight:600;padding:2px 8px;border-radius:20px;border:1px solid}
+.htag.ct{background:var(--acb);color:var(--ac2);border-color:rgba(99,91,255,.25)}
+.htag.grn{background:var(--grb);color:var(--gr);border-color:rgba(34,200,122,.25)}
+.htag.amb{background:var(--amb);color:var(--am);border-color:rgba(245,158,11,.25)}
+#rp-tabs{display:flex;border-bottom:1px solid var(--b1);flex-shrink:0}
+.rtab{flex:1;padding:9px 4px;font-size:11.5px;font-weight:600;border:none;background:transparent;color:var(--t3);cursor:pointer;font-family:var(--fn);transition:.15s;border-bottom:2px solid transparent;text-align:center}
+.rtab:hover{color:var(--t2)}
+.rtab.on{color:var(--ac2);border-bottom-color:var(--ac)}
+#lang-row{display:none;align-items:center;padding:6px 10px;gap:3px;border-bottom:1px solid var(--b1);flex-shrink:0;background:var(--s2)}
+#lang-row.show{display:flex}
+.lang-btn{padding:4px 9px;font-size:11px;font-weight:600;border-radius:6px;cursor:pointer;border:none;background:transparent;color:var(--t3);font-family:var(--fn);transition:.15s}
+.lang-btn.on{background:var(--s4);color:var(--t1)}
+.lang-btn:hover{color:var(--t2)}
+#copy-btn{margin-left:auto;background:var(--s3);border:1px solid var(--b1);color:var(--t2);padding:4px 10px;border-radius:var(--r);cursor:pointer;font-size:11px;font-family:var(--fn);font-weight:500;transition:.2s;display:flex;align-items:center;gap:4px}
+#copy-btn:hover{border-color:var(--ac);color:var(--ac)}
+#copy-btn.ok{border-color:var(--gr);color:var(--gr)}
+#rp-body{flex:1;overflow:hidden;display:flex;flex-direction:column}
+.rp-pane{flex:1;overflow-y:auto;display:none}
+.rp-pane.show{display:block}
+.rp-pane::-webkit-scrollbar{width:4px}
+.rp-pane::-webkit-scrollbar-thumb{background:var(--s4);border-radius:3px}
+#code-pane{background:var(--bg)}
+body.light #code-pane{background:var(--s2)}
+pre#cpre{padding:14px 16px;font-family:var(--fm);font-size:11.5px;line-height:1.85;color:var(--t1);white-space:pre-wrap;word-break:break-word}
+#howto-pane,#event-pane{padding:14px 16px}
+.howto-step{display:flex;align-items:flex-start;gap:10px;padding:9px 12px;background:var(--s2);border-radius:var(--r);margin-bottom:7px}
+.howto-num{width:20px;height:20px;border-radius:50%;background:var(--acb);color:var(--ac2);font-size:10px;font-weight:700;display:flex;align-items:center;justify-content:center;flex-shrink:0;margin-top:1px}
+.howto-txt{font-size:12px;color:var(--t2);line-height:1.5}
+.howto-txt code{font-family:var(--fm);font-size:10px;color:var(--ac2);background:var(--acb);padding:1px 4px;border-radius:3px}
+.howto-sect{font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.1em;color:var(--t3);margin:12px 0 6px}
+.ev-label{font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.1em;color:var(--t3);margin-bottom:8px}
+.ev-card{background:var(--s2);border-radius:var(--r);padding:12px 14px;border:1px solid var(--b1);margin-bottom:14px}
+.ev-name{font-size:12px;font-weight:700;color:var(--ac2);font-family:var(--fm);margin-bottom:8px}
+.ev-props{display:flex;flex-direction:column;gap:5px}
+.ev-row{display:flex;align-items:flex-start;gap:8px;font-size:11px}
+.ev-key{color:var(--gr);font-family:var(--fm);flex-shrink:0;min-width:80px}
+.ev-val{color:var(--am);font-family:var(--fm);word-break:break-all}
+.ev-trigger{display:flex;align-items:center;gap:7px;padding:9px 12px;background:var(--s2);border:1px solid var(--b1);border-radius:var(--r);font-size:12px;color:var(--t2);margin-bottom:14px}
+.ev-trigger strong{color:var(--t1);font-family:var(--fm);font-size:11px}
+
+/* Syntax tokens */
+.tk{color:#8a84ff}.ta{color:#22d3ee}.tv{color:#f59e0b}.ts{color:#f59e0b}
+.tc{color:#4e5470;font-style:italic}.tp{color:#22c87a}.tn{color:#f59e0b}
+body.light .tk{color:#5046e5}body.light .ta{color:#0369a1}
+body.light .tv,body.light .ts{color:#c2410c}body.light .tp{color:#16a34a}
+body.light .tc{color:#94a3b8}body.light .tn{color:#c2410c}
+
+/* Anim overlay */
+#ag{position:absolute;inset:0;z-index:30;display:none;align-items:center;justify-content:center;background:rgba(9,11,18,.88);backdrop-filter:blur(8px)}
+#ag.show{display:flex}
+.ag-card{background:var(--s1);border:1px solid var(--b2);border-radius:var(--r3);padding:22px;max-width:340px;width:90%;animation:zIn .35s cubic-bezier(.34,1.4,.64,1)}
+@keyframes zIn{from{opacity:0;transform:scale(.85)}to{opacity:1;transform:none}}
+.ag-card h3{font-size:14px;font-weight:700;margin-bottom:6px}
+.ag-card .sub{font-size:12px;color:var(--t2);line-height:1.6;margin-bottom:16px}
+.ag-steps{display:flex;flex-direction:column;gap:6px;margin-bottom:18px}
+.ag-step{display:flex;align-items:center;gap:9px;padding:8px 11px;background:var(--s2);border-radius:var(--r);font-size:11.5px;color:var(--t2)}
+.ag-num{width:20px;height:20px;border-radius:50%;background:var(--acb);color:var(--ac2);font-size:10px;font-weight:700;display:flex;align-items:center;justify-content:center;flex-shrink:0}
+.ag-close{width:100%;background:var(--ac);color:#fff;border:none;border-radius:var(--r);padding:9px;font-size:13px;font-weight:600;cursor:pointer;font-family:var(--fn)}
+
+@media(max-width:1100px){#layout{grid-template-columns:200px 1fr 300px}}
+@media(max-width:860px){#layout{grid-template-columns:1fr 280px}#sb{display:none}}
+@media(max-width:620px){#layout{grid-template-columns:1fr}#rp{display:none}}
+
+/* ── CATEGORY PILLS (sidebar) ─────────────────────────────── */
+#cat-pills {
+  padding: 8px 8px 4px;
+}
+.cat-pill-label {
+  font-size: 10px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: .12em;
+  color: var(--t3);
+  padding: 0 4px 6px;
+}
+.cat-pills-wrap {
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+}
+.cat-pill {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  width: 100%;
+  padding: 7px 10px;
+  border-radius: var(--r);
+  cursor: pointer;
+  border: 1px solid transparent;
+  background: transparent;
+  color: var(--t2);
+  font-family: var(--fn);
+  font-size: 12px;
+  font-weight: 500;
+  text-align: left;
+  transition: .15s;
+  user-select: none;
+}
+.cat-pill:hover { background: var(--s2); color: var(--t1); }
+.cat-pill.on {
+  background: var(--acb);
+  color: var(--ac2);
+  border-color: rgba(99,91,255,.28);
+}
+.cat-pill-count {
+  margin-left: auto;
+  font-size: 10px;
+  font-weight: 700;
+  background: var(--s3);
+  color: var(--t3);
+  padding: 1px 6px;
+  border-radius: 10px;
+  min-width: 20px;
+  text-align: center;
+}
+.cat-pill.on .cat-pill-count {
+  background: rgba(99,91,255,.2);
+  color: var(--ac2);
+}
+
+</style>
+</head>
+<body>
+
+<div id="nav">
+  <div class="logo"><div class="logo-mark">⚡</div>InApp Templates<span class="logo-sub">by CleverTap</span></div>
+  <span class="nav-chip" id="nav-count">24 Templates</span>
+  <div class="spc"></div>
+  <button class="nav-btn" onclick="toggleTheme()"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/></svg><span id="thlbl">Light</span></button>
+</div>
+
+<div id="layout">
+
+  <div id="sb"></div>
+
+  <div id="devcol">
+    <div id="dev-topbar">
+      <div class="pvdots"><span class="r"></span><span class="y"></span><span class="g"></span></div>
+      <div id="pv-label">web · preview</div>
+      <div class="dev-pills">
+        <button class="dpill on" id="dpill-web" onclick="setDev('web')"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="3" width="20" height="14" rx="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg>Web</button>
+        <button class="dpill" id="dpill-ios" onclick="setDev('ios')"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="5" y="2" width="14" height="20" rx="2"/><circle cx="12" cy="18" r="1"/></svg>iOS</button>
+        <button class="dpill" id="dpill-and" onclick="setDev('android')"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 18V7a6 6 0 0 1 12 0v11"/><rect x="4" y="18" width="16" height="3" rx="1"/></svg>Android</button>
+      </div>
+    </div>
+
+    <div id="pv-stage">
+      <div id="ldr"><div class="spin"></div><p>Rendering…</p></div>
+
+      <!-- Web preview frame -->
+      <div id="dev-web">
+        <div class="dev-inner">
+          <iframe id="ifr-web" frameborder="0" style="width:100%;display:block;border:none"></iframe>
+        </div>
+      </div>
+
+      <!-- iPhone 17 Pro Max -->
+      <div id="dev-ios">
+                <!-- Titanium hardware buttons (action, vol up/dn on left, power on right) -->
+                <div class="ios-action-btn"></div>
+                <div class="ios-vol-up"></div>
+                <div class="ios-vol-dn"></div>
+                <div class="ios-pwr"></div>
+                <!-- Status bar + Dynamic Island -->
+                <div class="ios-statusbar">
+                  <div class="ios-time">9:41</div>
+                  <div class="ios-di">
+                    <div class="ios-di-face"></div>
+                    <div class="ios-di-cam"></div>
+                  </div>
+                  <div class="ios-sb-right">
+                    <div class="ios-cell"><span></span><span></span><span></span><span></span></div>
+                    <div class="ios-wf"><div class="ios-wf-dot"></div></div>
+                    <div class="ios-battery">
+                      <div class="ios-bat-body"><div class="ios-bat-fill"></div></div>
+                      <div class="ios-bat-nub"></div>
+                    </div>
+                  </div>
+                </div>
+                <!-- App content area -->
+                <div class="dev-inner">
+                  <iframe id="ifr-ios" frameborder="0" scrolling="auto" style="width:100%;display:block;border:none;background:#09090f"></iframe>
+                </div>
+                <!-- Home indicator pill -->
+                <div class="ios-home"><div class="ios-pill"></div></div>
+              </div>
+
+      <!-- Google Pixel 8 Pro -->
+      <div id="dev-android">
+                <!-- Pixel side buttons (vol+pwr on right) -->
+                <div class="pxl-vol"></div>
+                <div class="pxl-pwr"></div>
+                <!-- Top camera visor bar hint -->
+                <div class="pxl-visor"></div>
+                <!-- Status bar + punch-hole camera -->
+                <div class="pxl-statusbar">
+                  <div class="pxl-time">9:41</div>
+                  <div class="pxl-cam"></div>
+                  <div class="pxl-sb-right">
+                    <div class="pxl-signal"><span></span><span></span><span></span><span></span></div>
+                    <div class="pxl-wifi"><div class="pxl-wifi-dot"></div></div>
+                    <div class="pxl-battery">
+                      <div class="pxl-bat-body"><div class="pxl-bat-fill"></div></div>
+                      <div class="pxl-bat-nub"></div>
+                    </div>
+                  </div>
+                </div>
+                <!-- App content area -->
+                <div class="dev-inner">
+                  <iframe id="ifr-android" frameborder="0" scrolling="auto" style="width:100%;display:block;border:none;background:#09090f"></iframe>
+                </div>
+                <!-- Pixel gesture nav pill -->
+                <div class="pxl-navbar"><div class="pxl-pill"></div></div>
+              </div>
+
+      <!-- How-it-renders overlay -->
+      <div id="ag">
+        <div class="ag-card">
+          <div style="font-size:28px;margin-bottom:10px">🎬</div>
+          <h3>How CleverTap Renders This</h3>
+          <p class="sub">Every HTML InApp follows this lifecycle from trigger to dismissal with full analytics at each step.</p>
+          <div class="ag-steps">
+            <div class="ag-step"><div class="ag-num">1</div><span>User event triggers the InApp campaign</span></div>
+            <div class="ag-step"><div class="ag-num">2</div><span>SDK fetches HTML/CSS payload from CleverTap</span></div>
+            <div class="ag-step"><div class="ag-num">3</div><span>Template renders in native WebView with JS bridge</span></div>
+            <div class="ag-step"><div class="ag-num">4</div><span>CSS entry animation plays automatically</span></div>
+            <div class="ag-step"><div class="ag-num">5</div><span>window.CleverTap / webkit.messageHandlers fires on tap</span></div>
+            <div class="ag-step"><div class="ag-num">6</div><span>Notification Clicked + properties logged to dashboard</span></div>
+            <div class="ag-step"><div class="ag-num">7</div><span>Exit animation, WebView dismissed</span></div>
+          </div>
+          <button class="ag-close" onclick="closeGuide()">Got it</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div id="rp">
+    <div id="rp-info">
+      <div id="hdr-title">OTT PiP Banner</div>
+      <div id="hdr-desc">Picture-in-Picture overlay for streaming apps.</div>
+      <div class="tags" id="hdr-tags">
+        <span class="htag ct">CleverTap InApp</span>
+        <span class="htag grn">JS Bridge</span>
+        <span class="htag amb">Animated</span>
+      </div>
+    </div>
+    <div id="rp-tabs">
+      <button class="rtab on" id="rtab-code" onclick="setRTab('code')">Code</button>
+      <button class="rtab" id="rtab-events" onclick="setRTab('events')">CT Events</button>
+      <button class="rtab" id="rtab-howto" onclick="setRTab('howto')">How it Renders</button>
+    </div>
+    <div id="lang-row" class="show">
+      <button class="lang-btn on" id="ct-html" onclick="setTab('html')">HTML</button>
+      <button class="lang-btn" id="ct-css" onclick="setTab('css')">CSS</button>
+      <button class="lang-btn" id="ct-js" onclick="setTab('js')">JS</button>
+      <button class="lang-btn" id="ct-ios" onclick="setTab('ios')">iOS</button>
+      <button class="lang-btn" id="ct-and" onclick="setTab('and')">Android</button>
+      <button id="copy-btn" onclick="doCopy()"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="width:11px;height:11px"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>Copy</button>
+    </div>
+    <div id="rp-body">
+      <div class="rp-pane show" id="code-pane"><pre id="cpre"></pre></div>
+      <div class="rp-pane" id="event-pane"></div>
+      <div class="rp-pane" id="howto-pane">
+        <div class="howto-sect">Render Lifecycle</div>
+        <div class="howto-step"><div class="howto-num">1</div><div class="howto-txt">A qualifying event triggers the InApp campaign in CleverTap.</div></div>
+        <div class="howto-step"><div class="howto-num">2</div><div class="howto-txt">SDK downloads HTML/CSS/JS payload. Enable <code>Enable JavaScript</code> in the dashboard campaign.</div></div>
+        <div class="howto-step"><div class="howto-num">3</div><div class="howto-txt">Template renders in native WebView — <code>WebView</code> on Android, <code>WKWebView</code> on iOS.</div></div>
+        <div class="howto-step"><div class="howto-num">4</div><div class="howto-txt">CSS <code>@keyframes</code> animation plays automatically. No extra SDK config needed.</div></div>
+        <div class="howto-step"><div class="howto-num">5</div><div class="howto-txt">Button tap fires JS bridge. Android: <code>window.CleverTap.pushEvent()</code>. iOS: <code>webkit.messageHandlers.clevertap.postMessage()</code>.</div></div>
+        <div class="howto-step"><div class="howto-num">6</div><div class="howto-txt">CleverTap logs <strong>Notification Clicked</strong> with <code>wzrk_c2a</code> visible in campaign analytics.</div></div>
+        <div class="howto-step"><div class="howto-num">7</div><div class="howto-txt">Dismiss: Android <code>dismissInAppNotification()</code>; iOS handled by the SDK automatically.</div></div>
+        <div class="howto-sect">Dashboard Setup</div>
+        <div class="howto-step"><div class="howto-num">✓</div><div class="howto-txt">Campaigns → InApp → Custom HTML → paste template → check <strong>Enable JavaScript</strong> → set trigger → publish.</div></div>
+        <div class="howto-step"><div class="howto-num">✓</div><div class="howto-txt">Use <code>{{variable}}</code> — CleverTap substitutes user profile / event properties at render time.</div></div>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<script>
+const T = {}; // template registry — populated below
+
+const BASE = `<meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:'Segoe UI',system-ui,sans-serif;display:flex;align-items:center;justify-content:center;min-height:100vh;padding:16px;background:#09090f}
+@keyframes fadeOut{to{opacity:0;transform:scale(.95)}}
+</style>`;
+
+/* -- CleverTap JS Bridge + iOS Swift + Android Kotlin generators -- */
+const CT_BRIDGE = `
+<script>
+// ── CleverTap Universal Bridge ──
+// Detects platform and routes events correctly
+window.CT = {
+  isAndroid: !!window.CleverTap,
+  isIOS: !!(window.webkit && window.webkit.messageHandlers && window.webkit.messageHandlers.clevertap),
+
+  pushEvent: function(name, props) {
+    if (this.isAndroid) {
+      if (props) {
+        window.CleverTap.pushEvent(name, JSON.stringify(props));
+      } else {
+        window.CleverTap.pushEvent(name);
+      }
+    } else if (this.isIOS) {
+      window.webkit.messageHandlers.clevertap.postMessage({
+        action: 'pushEvent', eventName: name, eventProps: props || {}
+      });
+    }
+    console.log('[CT] pushEvent:', name, props);
+  },
+
+  pushProfile: function(props) {
+    var p = JSON.stringify(props);
+    if (this.isAndroid) window.CleverTap.pushProfile(p);
+    else if (this.isIOS) window.webkit.messageHandlers.clevertap.postMessage({action:'pushProfile', profileProps: props});
+    console.log('[CT] pushProfile:', props);
+  },
+
+  dismiss: function() {
+    if (this.isAndroid) window.CleverTap.dismissInAppNotification();
+    else if (this.isIOS) window.webkit.messageHandlers.clevertap.postMessage({action:'dismiss'});
+    else document.querySelector('.inapp-root')&&(document.querySelector('.inapp-root').style.animation='fadeOut .3s ease forwards');
+    console.log('[CT] dismiss');
+  },
+
+  openURL: function(url) {
+    if (this.isAndroid) {
+      window.CleverTap.triggerInAppAction(JSON.stringify({type:'open-url',url:url}), 'CTA', 'btn1');
+    } else if (this.isIOS) {
+      window.webkit.messageHandlers.clevertap.postMessage({action:'openURL', url: url});
+    } else {
+      window.open(url, '_blank');
+    }
+    console.log('[CT] openURL:', url);
+  }
+};
+@READYSCRIPT@
+<\/script>`;
+
+/* ===================================================================
+   iOS SWIFT CODE (same for all templates, only event names differ)
+   =================================================================== */
+function iosCode(tpl) {
+return `// ── iOS (Swift) — CleverTap InApp Event Tracking ──
+// Minimum SDK: CleverTap iOS SDK v6.0+
+// Add to your WKWebView delegate or CTInAppNotificationDelegate
+
+import CleverTapSDK
+import WebKit
+
+// 1. Conform to InAppNotificationDelegate
+class YourViewController: UIViewController, CleverTapInAppNotificationDelegate {
+
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        CleverTap.sharedInstance()?.setInAppNotificationDelegate(self)
+    }
+
+    // 2. Callback — fires when any InApp button or link is tapped
+    func inAppNotificationDismissed(
+        withExtras extras: [AnyHashable: Any],
+        andButtonExtras buttonExtras: [AnyHashable: Any]?
+    ) {
+        print("[CT iOS] InApp dismissed, extras:", extras)
+        if let cta = buttonExtras?["wzrk_c2a"] as? String {
+            handleCTA(cta)
+        }
+    }
+
+    func inAppNotificationButtonTapped(
+        withCustomExtras customExtras: [AnyHashable: Any]?
+    ) {
+        print("[CT iOS] Button tapped:", customExtras ?? [:])
+    }
+}
+
+// 3. Handle webkit.messageHandlers.clevertap.postMessage from HTML
+// Register WKScriptMessageHandler named "clevertap"
+extension YourViewController: WKScriptMessageHandler {
+    func userContentController(
+        _ controller: WKUserContentController,
+        didReceive message: WKScriptMessage
+    ) {
+        guard message.name == "clevertap",
+              let body = message.body as? [String: Any],
+              let action = body["action"] as? String else { return }
+
+        switch action {
+        case "pushEvent":
+            let name = body["eventName"] as? String ?? ""
+            let props = body["eventProps"] as? [String: Any] ?? [:]
+            CleverTap.sharedInstance()?.recordEvent(name, withProps: props)
+            // For "${tpl.title}":
+            // CleverTap.sharedInstance()?.recordEvent("${tpl.ctEvent}", withProps: ${JSON.stringify(tpl.ctProps)})
+
+        case "pushProfile":
+            let props = body["profileProps"] as? [String: Any] ?? [:]
+            CleverTap.sharedInstance()?.profilePush(props)
+
+        case "dismiss":
+            CleverTap.sharedInstance()?.recordEvent("InApp Dismissed")
+            // dismiss logic handled by SDK automatically
+
+        case "openURL":
+            if let urlStr = body["url"] as? String,
+               let url = URL(string: urlStr) {
+                UIApplication.shared.open(url)
+            }
+
+        default:
+            break
+        }
+    }
+}
+
+// 4. Trigger this InApp campaign from code (optional)
+// CleverTap.sharedInstance()?.recordEvent("${tpl.trigger}", withProps: ["source": "home_screen"])
+`;
+}
+
+/* ===================================================================
+   ANDROID KOTLIN CODE
+   =================================================================== */
+function androidCode(tpl) {
+return `// ── Android (Kotlin) — CleverTap InApp Event Tracking ──
+// Minimum SDK: CleverTap Android SDK v5.0+
+// Enable JS in dashboard: InApp > Custom HTML > "Enable JavaScript" checkbox
+
+import com.clevertap.android.sdk.CleverTapAPI
+import com.clevertap.android.sdk.inapp.CTInAppNotification
+import com.clevertap.android.sdk.listeners.InAppNotificationListener
+
+class MainActivity : AppCompatActivity(), InAppNotificationListener {
+
+    private lateinit var cleverTap: CleverTapAPI
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        cleverTap = CleverTapAPI.getDefaultInstance(this)!!
+        cleverTap.setInAppNotificationListener(this)
+    }
+
+    // ── Fires before InApp is shown (return false to suppress) ──
+    override fun beforeShow(extras: Map<String, Any>): Boolean {
+        println("[CT Android] beforeShow: \$extras")
+        return true // return false to block display
+    }
+
+    // ── Fires when InApp is visible ──
+    override fun onShow(ctInAppNotification: CTInAppNotification) {
+        println("[CT Android] InApp shown: \${ctInAppNotification.campaignId}")
+        cleverTap.pushEvent("InApp Viewed", mapOf(
+            "template" to "${tpl.title}",
+            "campaign_id" to ctInAppNotification.campaignId
+        ))
+    }
+
+    // ── Fires on dismiss — read CTA from actionExtras ──
+    override fun onDismissed(
+        extras: Map<String, Any>,
+        actionExtras: Map<String, Any>?
+    ) {
+        val cta = actionExtras?.get("wzrk_c2a") as? String
+        println("[CT Android] Dismissed, CTA: \$cta")
+        when (cta) {
+            "${tpl.ctEvent}" -> {
+                // Handle primary CTA
+                cleverTap.pushEvent("${tpl.ctEvent}", ${JSON.stringify(tpl.ctProps)}.toCleverTapProps())
+            }
+            "Dismiss" -> cleverTap.pushEvent("InApp Dismissed")
+        }
+    }
+}
+
+// ── JavaScript Interface — window.CleverTap is auto-provided by SDK ──
+// These are available inside your HTML via: if (window.CleverTap) { ... }
+//
+//   window.CleverTap.pushEvent("${tpl.ctEvent}", JSON.stringify(${JSON.stringify(tpl.ctProps)}))
+//   window.CleverTap.pushProfile(JSON.stringify({"Last InApp": "${tpl.title}"}))
+//   window.CleverTap.dismissInAppNotification()
+//   window.CleverTap.promptPushPermission(true) // For push opt-in templates
+
+// ── Trigger this campaign (raise event that matches campaign trigger) ──
+// cleverTap.pushEvent("${tpl.trigger}", mapOf("source" to "home_screen"))
+
+// ── Helper extension ──
+fun Map<String, Any>.toCleverTapProps(): String = this.entries.joinToString(",","{"  ,"}"){
+    "\\"${"\$"}{it.key}\\": \\"${"\$"}{it.value}\\""
+}
+`;
+}
+
+/* ===================================================================
+   TEMPLATES
+   =================================================================== */
+
+/* -- Templates: OTT & Streaming -- */
+T['ott-pip'] = {
+  title:'PiP Continue Watching',
+  desc:'Picture-in-picture style overlay that nudges users to resume a title they were watching.',
+  tags:['OTT','Animated','Video'],
+  trigger:'Screen Viewed',
+  ctEvent:'Resume Watching',
+  ctProps:{content_id:'{{content_id}}',content_type:'Series',resume_at:'42:18'},
+  h:420, mh:520,
+  html: BASE + CT_BRIDGE.replace('@READYSCRIPT@','') + `
+<style>
+.pip{background:linear-gradient(135deg,#14142a,#1a1a35);border:1px solid rgba(255,255,255,.09);border-radius:18px;padding:14px;display:flex;gap:13px;align-items:center;max-width:400px;width:100%;position:relative;animation:pipIn .5s cubic-bezier(.34,1.5,.64,1)}
+@keyframes pipIn{from{opacity:0;transform:translateY(60px) scale(.9)}to{opacity:1;transform:none}}
+.thumb{width:100px;height:62px;border-radius:10px;flex-shrink:0;position:relative;overflow:hidden;cursor:pointer}
+.thumb video{width:100%;height:100%;object-fit:cover}
+.thumb::after{content:'';position:absolute;inset:0;background:rgba(0,0,0,.25)}
+.play-btn{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;z-index:1}
+.play-btn span{width:28px;height:28px;background:rgba(255,255,255,.92);border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:10px;color:#14142a;padding-left:2px}
+.info{flex:1;min-width:0}
+.tag{display:inline-flex;align-items:center;gap:4px;background:rgba(239,68,68,.14);color:#ef4444;font-size:9px;font-weight:700;text-transform:uppercase;letter-spacing:.08em;padding:2px 7px;border-radius:20px;margin-bottom:5px;border:1px solid rgba(239,68,68,.28)}
+.tag::before{content:'';width:5px;height:5px;border-radius:50%;background:#ef4444;animation:blink 1.2s infinite}
+@keyframes blink{0%,100%{opacity:1}50%{opacity:.25}}
+.name{font-size:13px;font-weight:600;color:#e4e8f5;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;margin-bottom:2px}
+.meta{font-size:10px;color:#4e5470;margin-bottom:8px}
+.bar{height:3px;background:rgba(255,255,255,.09);border-radius:3px;margin-bottom:9px}
+.bar-fill{height:100%;width:0;background:linear-gradient(90deg,#635bff,#8a84ff);border-radius:3px;animation:bFill .9s ease .4s forwards}
+@keyframes bFill{to{width:42%}}
+.acts{display:flex;gap:7px}
+.btn-r{flex:1;background:#635bff;color:#fff;border:none;border-radius:8px;padding:8px;font-size:12px;font-weight:600;cursor:pointer;font-family:inherit;transition:.2s}
+.btn-r:hover{background:#5046e5;transform:translateY(-1px)}
+.btn-d{background:transparent;border:1px solid rgba(255,255,255,.12);color:#8b92b0;border-radius:8px;padding:8px 10px;font-size:12px;cursor:pointer;font-family:inherit;transition:.2s}
+.btn-d:hover{border-color:rgba(255,255,255,.28)}
+.x{position:absolute;top:8px;right:8px;background:rgba(255,255,255,.06);border:none;color:#4e5470;width:20px;height:20px;border-radius:50%;cursor:pointer;font-size:11px;display:flex;align-items:center;justify-content:center;transition:.2s}
+.x:hover{background:rgba(255,255,255,.14);color:#e4e8f5}
+</style>
+<div class="pip inapp-root">
+  <button class="x" onclick="CT.dismiss()">✕</button>
+  <div class="thumb" onclick="CT.pushEvent('Resume Watching',{content_id:'s01e03',resume_at:'42:18'});CT.dismiss()">
+    <video autoplay muted loop playsinline style="width:100%;height:100%;object-fit:cover">
+      <source src="https://www.w3schools.com/html/mov_bbb.mp4" type="video/mp4">
+    </video>
+    <div class="play-btn"><span>▶</span></div>
+  </div>
+  <div class="info">
+    <div class="tag">Watching</div>
+    <div class="name">The Adventures — S1·E3</div>
+    <div class="meta">42 min remaining</div>
+    <div class="bar"><div class="bar-fill"></div></div>
+    <div class="acts">
+      <button class="btn-r" onclick="CT.pushEvent('Resume Watching',{content_id:'s01e03'});CT.dismiss()">▶ Resume</button>
+      <button class="btn-d" onclick="CT.dismiss()">Dismiss</button>
+    </div>
+  </div>
+</div>`,
+  css:`.pip { animation: pipIn .5s cubic-bezier(.34,1.5,.64,1); }\n@keyframes pipIn {\n  from { opacity:0; transform: translateY(60px) scale(.9); }\n  to   { opacity:1; transform: none; }\n}`,
+  js:`// Primary CTA\ndocument.querySelector('.btn-r').addEventListener('click', () => {\n  CT.pushEvent('Resume Watching', {\n    content_id: '{{content_id}}',\n    content_type: 'Series',\n    resume_at: '42:18'\n  });\n  CT.dismiss();\n});\n\n// Dismiss\ndocument.querySelector('.x').addEventListener('click', () => {\n  CT.pushEvent('InApp Dismissed', { template: 'pip_banner' });\n  CT.dismiss();\n});`
+};
+
+/* ====================================================
+   2. OTT CONTENT UNLOCK
+   ==================================================== */
+T['ott-unlock'] = {
+  title:'Content Unlock Gate',
+  desc:'Premium paywall shown over locked content. Drives subscription upgrades with value-first messaging.',
+  tags:['OTT','Paywall','Subscription'],
+  trigger:'Content Locked Viewed',
+  ctEvent:'Upgrade Plan Clicked',
+  ctProps:{plan:'premium',source:'content_gate',content_id:'{{content_id}}'},
+  h:520, mh:700,
+  html: BASE + CT_BRIDGE.replace('@READYSCRIPT@','') + `
+<style>
+.modal{background:#13161e;border:1px solid rgba(255,255,255,.08);border-radius:22px;max-width:360px;width:100%;overflow:hidden;animation:zoomIn .45s cubic-bezier(.34,1.4,.64,1)}
+@keyframes zoomIn{from{opacity:0;transform:scale(.8) translateY(30px)}to{opacity:1;transform:none}}
+.hero{height:130px;background:linear-gradient(135deg,#1a1240,#2d1a5e);position:relative;display:flex;align-items:center;justify-content:center;overflow:hidden}
+.hero-bg{position:absolute;inset:0;background:radial-gradient(ellipse at 50% 0%,rgba(99,91,255,.3),transparent 60%)}
+.lock-wrap{width:56px;height:56px;background:linear-gradient(135deg,#635bff,#8a84ff);border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:22px;z-index:1;box-shadow:0 0 28px rgba(99,91,255,.5);animation:lockPop .6s cubic-bezier(.34,1.8,.64,1) .15s both}
+@keyframes lockPop{from{transform:scale(0) rotate(-20deg)}to{transform:none}}
+.body{padding:22px}
+.plan-tag{display:inline-flex;align-items:center;gap:5px;background:rgba(245,158,11,.12);color:#f59e0b;font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.1em;padding:3px 10px;border-radius:20px;border:1px solid rgba(245,158,11,.25);margin-bottom:13px}
+h2{font-size:17px;font-weight:700;color:#e4e8f5;margin-bottom:7px}
+p.desc{font-size:12px;color:#4e5470;line-height:1.6;margin-bottom:16px}
+.perks{display:flex;flex-direction:column;gap:7px;margin-bottom:18px}
+.perk{display:flex;align-items:center;gap:8px;font-size:12px;color:#8b92b0}
+.ck{width:16px;height:16px;background:rgba(34,200,122,.12);border-radius:50%;display:flex;align-items:center;justify-content:center;color:#22c87a;font-size:9px;flex-shrink:0}
+.price-row{display:flex;align-items:baseline;gap:7px;margin-bottom:18px}
+.pnew{font-size:26px;font-weight:700;color:#e4e8f5}
+.pold{font-size:13px;color:#4e5470;text-decoration:line-through}
+.pmo{font-size:11px;color:#4e5470}
+.btn-up{width:100%;background:linear-gradient(135deg,#635bff,#8a84ff);color:#fff;border:none;border-radius:12px;padding:13px;font-size:13px;font-weight:700;cursor:pointer;font-family:inherit;margin-bottom:9px;transition:.2s;letter-spacing:.01em}
+.btn-up:hover{transform:translateY(-1px);box-shadow:0 8px 20px rgba(99,91,255,.4)}
+.btn-skip{width:100%;background:transparent;color:#4e5470;border:none;padding:7px;font-size:12px;cursor:pointer;font-family:inherit}
+.btn-skip:hover{color:#8b92b0}
+</style>
+<div class="modal inapp-root">
+  <div class="hero"><div class="hero-bg"></div><div class="lock-wrap">🔒</div></div>
+  <div class="body">
+    <div class="plan-tag">★ Premium Only</div>
+    <h2>Unlock Full Access</h2>
+    <p class="desc">Watch this and thousands of titles in HD &amp; 4K with no ads. Download and watch offline. Cancel anytime.</p>
+    <div class="perks">
+      <div class="perk"><span class="ck">✓</span>Unlimited HD &amp; 4K streaming</div>
+      <div class="perk"><span class="ck">✓</span>Download up to 100 titles offline</div>
+      <div class="perk"><span class="ck">✓</span>Watch on 4 screens simultaneously</div>
+    </div>
+    <div class="price-row"><span class="pold">₹599</span><span class="pnew">₹299</span><span class="pmo">/month</span></div>
+    <button class="btn-up" onclick="CT.pushEvent('Upgrade Plan Clicked',{plan:'premium',source:'content_gate'});CT.dismiss()">🔓 Unlock Premium</button>
+    <button class="btn-skip" onclick="CT.pushEvent('InApp Dismissed',{template:'content_gate'});CT.dismiss()">Maybe later</button>
+  </div>
+</div>`,
+  css:`@keyframes zoomIn {\n  from { opacity:0; transform: scale(.8) translateY(30px); }\n  to   { opacity:1; transform: none; }\n}`,
+  js:`document.querySelector('.btn-up').onclick = () => {\n  CT.pushEvent('Upgrade Plan Clicked', {\n    plan: 'premium',\n    source: 'content_gate',\n    content_id: '{{content_id}}'\n  });\n  CT.dismiss();\n};`
+};
+
+/* ====================================================
+   3. OTT LIVE EVENT
+   ==================================================== */
+T['ott-live'] = {
+  title:'Live Event Alert',
+  desc:'Real-time broadcast notification with viewer count, pulse animation, and one-tap join.',
+  tags:['OTT','Live','Animated'],
+  trigger:'App Launched',
+  ctEvent:'Live Stream Joined',
+  ctProps:{event_name:'WWDC Keynote',channel:'TechChannel',event_id:'ev_001'},
+  h:460, mh:620,
+  html: BASE + CT_BRIDGE.replace('@READYSCRIPT@','') + `
+<style>
+.card{background:#13161e;border-radius:20px;max-width:380px;width:100%;overflow:hidden;border:1px solid rgba(255,255,255,.07);animation:slideDown .5s cubic-bezier(.34,1.4,.64,1)}
+@keyframes slideDown{from{opacity:0;transform:translateY(-40px)}to{opacity:1;transform:none}}
+.hero{height:150px;background:linear-gradient(135deg,#1a0608,#2e0a0a);position:relative;display:flex;align-items:center;justify-content:center;overflow:hidden}
+.hero::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse at 50% 0%,rgba(239,68,68,.3),transparent 55%)}
+.pulse{width:72px;height:72px;border-radius:50%;background:rgba(239,68,68,.1);border:2px solid rgba(239,68,68,.2);display:flex;align-items:center;justify-content:center;position:relative}
+.pulse::before,.pulse::after{content:'';position:absolute;border-radius:50%;border:2px solid rgba(239,68,68,.15);animation:ripple 2.2s infinite}
+.pulse::before{inset:-12px;animation-delay:.3s}
+.pulse::after{inset:-24px}
+@keyframes ripple{0%{opacity:.8;transform:scale(.85)}100%{opacity:0;transform:scale(1.3)}}
+.pulse-ico{font-size:28px;position:relative;z-index:1}
+.live-tag{position:absolute;top:12px;left:12px;background:#ef4444;color:#fff;font-size:9px;font-weight:800;text-transform:uppercase;letter-spacing:.1em;padding:3px 8px;border-radius:5px;display:flex;align-items:center;gap:4px}
+.ldot{width:5px;height:5px;border-radius:50%;background:#fff;animation:blink 1s infinite}
+@keyframes blink{0%,100%{opacity:1}50%{opacity:.25}}
+.vcnt{position:absolute;top:12px;right:12px;background:rgba(0,0,0,.5);color:#8b92b0;font-size:10px;padding:3px 9px;border-radius:20px;display:flex;align-items:center;gap:4px;backdrop-filter:blur(6px)}
+.vdot{width:5px;height:5px;border-radius:50%;background:#22c87a;animation:blink 1.5s infinite}
+.content{padding:18px}
+.ch-row{display:flex;align-items:center;gap:10px;margin-bottom:11px}
+.av{width:34px;height:34px;border-radius:50%;background:linear-gradient(135deg,#ef4444,#dc2626);display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:700;color:#fff;flex-shrink:0}
+.cn{font-size:12px;font-weight:600;color:#e4e8f5}
+.cm{font-size:10px;color:#4e5470}
+h3{font-size:14px;font-weight:600;color:#e4e8f5;line-height:1.4;margin-bottom:8px}
+.tags{display:flex;gap:5px;margin-bottom:14px;flex-wrap:wrap}
+.tg{font-size:10px;color:#8b92b0;background:rgba(255,255,255,.06);padding:2px 7px;border-radius:20px}
+.acts{display:grid;grid-template-columns:1fr auto;gap:7px}
+.btn-w{background:#ef4444;color:#fff;border:none;border-radius:9px;padding:11px;font-size:12px;font-weight:700;cursor:pointer;font-family:inherit;transition:.2s}
+.btn-w:hover{background:#dc2626}
+.btn-rm{background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.08);color:#8b92b0;border-radius:9px;padding:11px 13px;font-size:14px;cursor:pointer;font-family:inherit}
+</style>
+<div class="card inapp-root">
+  <div class="hero">
+    <div class="live-tag"><span class="ldot"></span>LIVE</div>
+    <div class="vcnt"><span class="vdot"></span>14.2K watching</div>
+    <div class="pulse"><span class="pulse-ico">🎙</span></div>
+  </div>
+  <div class="content">
+    <div class="ch-row">
+      <div class="av">TC</div>
+      <div><div class="cn">TechChannel Live ✓</div><div class="cm">Started 23 min ago</div></div>
+    </div>
+    <h3>Annual Developer Keynote — New Platform Features Reveal</h3>
+    <div class="tags"><span class="tg">#Tech</span><span class="tg">#Keynote</span><span class="tg">#Developer</span></div>
+    <div class="acts">
+      <button class="btn-w" onclick="CT.pushEvent('Live Stream Joined',{event_id:'ev_001',source:'inapp'});CT.dismiss()">▶ Watch Live Now</button>
+      <button class="btn-rm" onclick="CT.pushEvent('Live Reminder Set',{event_id:'ev_001'});CT.dismiss()">🔔</button>
+    </div>
+  </div>
+</div>`,
+  css:`@keyframes ripple {\n  0%   { opacity:.8; transform: scale(.85); }\n  100% { opacity:0;  transform: scale(1.3); }\n}`,
+  js:`document.querySelector('.btn-w').onclick = () => {\n  CT.pushEvent('Live Stream Joined', {\n    event_id: '{{event_id}}',\n    source: 'inapp_banner'\n  });\n  CT.dismiss();\n};`
+};
+
+/* ====================================================
+   4. QUICK COMMERCE — LIVE ORDER TRACKING
+   ==================================================== */
+
+/* -- Templates: Quick Commerce -- */
+T['qc-track'] = {
+  title:'Live Order Tracking',
+  desc:'Real-time delivery progress shown inside the app while order is in-transit. Rider animation on map strip.',
+  tags:['Quick Commerce','Animated','Tracking'],
+  trigger:'Order Placed',
+  ctEvent:'Track Order Opened',
+  ctProps:{order_id:'{{order_id}}',eta_minutes:'{{eta}}'},
+  h:480, mh:640,
+  html: BASE + CT_BRIDGE.replace('@READYSCRIPT@','') + `
+<style>
+.track{background:#13161e;border-radius:20px;max-width:370px;width:100%;padding:18px;border:1px solid rgba(255,255,255,.07);animation:slideUp .5s cubic-bezier(.34,1.4,.64,1)}
+@keyframes slideUp{from{opacity:0;transform:translateY(40px)}to{opacity:1;transform:none}}
+.top-row{display:flex;align-items:center;gap:12px;margin-bottom:16px}
+.or-ico{width:44px;height:44px;background:linear-gradient(135deg,rgba(34,200,122,.18),rgba(34,200,122,.06));border-radius:12px;display:flex;align-items:center;justify-content:center;font-size:20px;border:1px solid rgba(34,200,122,.2);flex-shrink:0}
+.or-name{font-size:14px;font-weight:700;color:#e4e8f5}
+.or-sub{font-size:11px;color:#4e5470;margin-top:2px}
+.eta-box{margin-left:auto;background:rgba(34,200,122,.1);color:#22c87a;border:1px solid rgba(34,200,122,.25);font-size:11px;font-weight:700;padding:5px 10px;border-radius:20px;text-align:center;flex-shrink:0}
+.eta-n{font-size:20px;font-weight:800;display:block;line-height:1}
+.eta-l{font-size:9px;opacity:.8}
+.map-strip{height:72px;background:linear-gradient(135deg,#0d1f18,#0a2410);border-radius:12px;margin-bottom:16px;border:1px solid rgba(34,200,122,.12);position:relative;overflow:hidden;display:flex;align-items:center;padding:0 16px}
+.map-line-wrap{display:flex;align-items:center;width:100%;gap:8px}
+.map-dot{width:10px;height:10px;border-radius:50%}
+.map-dot.s{background:#22c87a;box-shadow:0 0 8px #22c87a;flex-shrink:0}
+.map-dot.e{background:#ef4444;box-shadow:0 0 8px #ef4444;flex-shrink:0}
+.map-road{flex:1;height:2px;background:linear-gradient(90deg,#22c87a40,#635bff40,rgba(255,255,255,.06));border-radius:2px}
+.rider-anim{position:absolute;animation:ride 3.5s ease-in-out infinite alternate;font-size:18px}
+@keyframes ride{from{left:22%}to{left:62%}}
+.steps{position:relative;margin-bottom:16px}
+.steps::before{content:'';position:absolute;left:15px;top:15px;bottom:15px;width:2px;background:rgba(255,255,255,.06);z-index:0}
+.step{display:flex;align-items:flex-start;gap:12px;margin-bottom:12px;position:relative;z-index:1}
+.sc{width:30px;height:30px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:12px;flex-shrink:0}
+.step.done .sc{background:linear-gradient(135deg,#22c87a,#16a372);box-shadow:0 0 10px rgba(34,200,122,.3)}
+.step.now .sc{background:linear-gradient(135deg,#635bff,#8a84ff);box-shadow:0 0 10px rgba(99,91,255,.4);animation:pulse 1.5s infinite}
+@keyframes pulse{0%,100%{transform:scale(1)}50%{transform:scale(1.12)}}
+.step.pend .sc{background:rgba(255,255,255,.06);border:2px solid rgba(255,255,255,.09)}
+.sinfo{padding-top:5px}
+.sname{font-size:13px;font-weight:600;color:#e4e8f5;margin-bottom:1px}
+.step.pend .sname{color:#4e5470}
+.stime{font-size:10px;color:#4e5470}
+.btn-map{width:100%;background:linear-gradient(135deg,#22c87a,#16a372);color:#064e3b;border:none;border-radius:11px;padding:12px;font-size:13px;font-weight:700;cursor:pointer;font-family:inherit;transition:.2s}
+.btn-map:hover{transform:translateY(-1px);box-shadow:0 6px 18px rgba(34,200,122,.35)}
+</style>
+<div class="track inapp-root">
+  <div class="top-row">
+    <div class="or-ico">🛵</div>
+    <div><div class="or-name">Order #{{order_id}}</div><div class="or-sub">4 items · Grocery</div></div>
+    <div class="eta-box"><span class="eta-n">8</span><span class="eta-l">min ETA</span></div>
+  </div>
+  <div class="map-strip">
+    <div class="map-line-wrap">
+      <div class="map-dot s"></div>
+      <div class="map-road"></div>
+      <div class="map-dot e"></div>
+    </div>
+    <div class="rider-anim">🛵</div>
+  </div>
+  <div class="steps">
+    <div class="step done"><div class="sc">✓</div><div class="sinfo"><div class="sname">Order Confirmed</div><div class="stime">2:14 PM</div></div></div>
+    <div class="step done"><div class="sc">✓</div><div class="sinfo"><div class="sname">Packed &amp; Ready</div><div class="stime">2:19 PM</div></div></div>
+    <div class="step now"><div class="sc">🛵</div><div class="sinfo"><div class="sname">Out for Delivery</div><div class="stime">On the way · 8 min</div></div></div>
+    <div class="step pend"><div class="sc">🏠</div><div class="sinfo"><div class="sname">Delivered</div><div class="stime">Estimated ~8 min</div></div></div>
+  </div>
+  <button class="btn-map" onclick="CT.pushEvent('Track Order Opened',{order_id:'{{order_id}}'});CT.dismiss()">📍 Open Live Tracking</button>
+</div>`,
+  css:`@keyframes ride {\n  from { left: 22%; }\n  to   { left: 62%; }\n}`,
+  js:`document.querySelector('.btn-map').onclick = () => {\n  CT.pushEvent('Track Order Opened', {\n    order_id: '{{order_id}}',\n    source: 'inapp'\n  });\n  CT.dismiss();\n};`
+};
+
+/* ====================================================
+   5. QUICK COMMERCE — DELIVERY SLOT
+   ==================================================== */
+T['qc-slot'] = {
+  title:'Delivery Slot Reminder',
+  desc:'Urgency nudge to book or confirm a delivery slot before the window expires.',
+  tags:['Quick Commerce','Timer','Urgent'],
+  trigger:'Cart Viewed',
+  ctEvent:'Slot Booked',
+  ctProps:{slot_time:'Today 4–5 PM',slot_type:'scheduled'},
+  h:440, mh:620,
+  html: BASE + CT_BRIDGE.replace('@READYSCRIPT@','') + `
+<style>
+.card{background:#13161e;border-radius:20px;max-width:370px;width:100%;padding:20px;border:1px solid rgba(245,158,11,.15);animation:slideUp .45s ease}
+@keyframes slideUp{from{opacity:0;transform:translateY(28px)}to{opacity:1;transform:none}}
+.top-row{display:flex;align-items:center;gap:11px;margin-bottom:16px}
+.ico{width:42px;height:42px;background:rgba(245,158,11,.1);border-radius:12px;display:flex;align-items:center;justify-content:center;font-size:20px;border:1px solid rgba(245,158,11,.2)}
+.ttl{font-size:14px;font-weight:700;color:#e4e8f5}
+.sub{font-size:11px;color:#4e5470;margin-top:2px}
+.timer-box{background:rgba(245,158,11,.07);border:1px solid rgba(245,158,11,.2);border-radius:12px;padding:14px;margin-bottom:16px;display:flex;align-items:center;gap:14px}
+.countdown{display:flex;gap:8px}
+.cu{text-align:center}
+.cn{font-size:26px;font-weight:800;color:#fbbf24;font-family:monospace;line-height:1}
+.cl{font-size:9px;text-transform:uppercase;letter-spacing:.08em;color:#92400e;font-weight:700;margin-top:2px}
+.csep{font-size:22px;font-weight:700;color:#f59e0b;line-height:1.1;align-self:flex-start;margin-top:2px}
+.emsg{font-size:11px;color:#fbbf24;line-height:1.5;margin-left:auto;text-align:right}
+.slots{display:flex;flex-direction:column;gap:7px;margin-bottom:16px}
+.slot-row{display:flex;align-items:center;gap:10px;padding:10px 12px;background:rgba(255,255,255,.03);border:1px solid rgba(255,255,255,.06);border-radius:9px;cursor:pointer;transition:.15s}
+.slot-row:hover,.slot-row.sel{background:rgba(99,91,255,.08);border-color:rgba(99,91,255,.3)}
+.slot-row input{accent-color:#635bff;flex-shrink:0}
+.s-info{flex:1}
+.s-time{font-size:13px;font-weight:600;color:#e4e8f5}
+.s-av{font-size:10px;color:#22c87a}
+.s-price{font-size:12px;font-weight:700;color:#635bff}
+.btn-book{width:100%;background:#635bff;color:#fff;border:none;border-radius:10px;padding:12px;font-size:13px;font-weight:700;cursor:pointer;font-family:inherit;transition:.2s}
+.btn-book:hover{background:#5046e5;transform:translateY(-1px)}
+</style>
+<div class="card inapp-root">
+  <div class="top-row"><div class="ico">📅</div><div><div class="ttl">Book Delivery Slot</div><div class="sub">3 items · Slot expires soon</div></div></div>
+  <div class="timer-box">
+    <div class="countdown">
+      <div class="cu"><div class="cn" id="sm">23</div><div class="cl">Min</div></div>
+      <div class="csep">:</div>
+      <div class="cu"><div class="cn" id="ss">47</div><div class="cl">Sec</div></div>
+    </div>
+    <div class="emsg">⚠️ Preferred slot<br>expires in</div>
+  </div>
+  <div class="slots">
+    <label class="slot-row sel"><input type="radio" name="slot" checked><div class="s-info"><div class="s-time">Today, 4:00 – 5:00 PM</div><div class="s-av">✓ 12 slots left</div></div><div class="s-price">FREE</div></label>
+    <label class="slot-row"><input type="radio" name="slot"><div class="s-info"><div class="s-time">Today, 6:00 – 7:00 PM</div><div class="s-av">✓ 8 slots left</div></div><div class="s-price">FREE</div></label>
+    <label class="slot-row"><input type="radio" name="slot"><div class="s-info"><div class="s-time">Tomorrow, 10:00 – 11:00 AM</div><div class="s-av">✓ Many available</div></div><div class="s-price">FREE</div></label>
+  </div>
+  <button class="btn-book" onclick="CT.pushEvent('Slot Booked',{slot:'Today 4-5 PM'});CT.dismiss()">Confirm Slot</button>
+</div>
+<script>let t=23*60+47;setInterval(()=>{t--;if(t<0)t=0;document.getElementById('sm').textContent=String(Math.floor(t/60)).padStart(2,'0');document.getElementById('ss').textContent=String(t%60).padStart(2,'0');},1000);<\/script>`,
+  css:`/* Amber urgency palette + countdown animation */`,
+  js:`let t = 23*60+47;\nsetInterval(() => {\n  t--;\n  document.getElementById('sm').textContent = String(Math.floor(t/60)).padStart(2,'0');\n  document.getElementById('ss').textContent = String(t%60).padStart(2,'0');\n}, 1000);\n\ndocument.querySelector('.btn-book').onclick = () => {\n  const slot = document.querySelector('input[name=slot]:checked');\n  CT.pushEvent('Slot Booked', { slot_time: 'Today 4-5 PM' });\n  CT.dismiss();\n};`
+};
+
+/* ====================================================
+   6. QUICK COMMERCE — REORDER
+   ==================================================== */
+T['qc-reorder'] = {
+  title:'Smart Reorder Nudge',
+  desc:'Routine-based reorder prompt with live cart total and individual item add buttons.',
+  tags:['Quick Commerce','Reorder','Personalized'],
+  trigger:'App Launched',
+  ctEvent:'Reorder Initiated',
+  ctProps:{items_count:'3',total:'₹199',trigger:'routine'},
+  h:440, mh:620,
+  html: BASE + CT_BRIDGE.replace('@READYSCRIPT@','') + `
+<style>
+.card{background:#13161e;border-radius:20px;max-width:370px;width:100%;padding:18px;border:1px solid rgba(255,255,255,.07);animation:bounceIn .55s cubic-bezier(.34,1.6,.64,1)}
+@keyframes bounceIn{from{opacity:0;transform:scale(.88)}to{opacity:1;transform:none}}
+.chip{display:inline-flex;align-items:center;gap:5px;background:rgba(99,91,255,.12);color:#8a84ff;font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.08em;padding:3px 9px;border-radius:20px;border:1px solid rgba(99,91,255,.2);margin-bottom:12px}
+h3{font-size:15px;font-weight:700;color:#e4e8f5;margin-bottom:4px}
+.sub{font-size:12px;color:#4e5470;margin-bottom:16px}
+.items{display:flex;flex-direction:column;gap:8px;margin-bottom:16px}
+.ri{display:flex;align-items:center;gap:11px;padding:10px 12px;background:rgba(255,255,255,.03);border:1px solid rgba(255,255,255,.06);border-radius:10px}
+.ri-e{font-size:22px;flex-shrink:0}
+.ri-name{font-size:13px;font-weight:600;color:#e4e8f5;margin-bottom:1px}
+.ri-meta{font-size:10px;color:#4e5470}
+.ri-price{margin-left:auto;font-size:13px;font-weight:700;color:#e4e8f5}
+.ri-add{background:#635bff;border:none;color:#fff;width:26px;height:26px;border-radius:7px;cursor:pointer;font-size:16px;display:flex;align-items:center;justify-content:center;margin-left:7px;flex-shrink:0;transition:.2s}
+.ri-add:hover{background:#5046e5;transform:scale(1.1)}
+.total-row{display:flex;align-items:center;justify-content:space-between;background:rgba(255,255,255,.03);border:1px solid rgba(255,255,255,.06);border-radius:10px;padding:10px 14px;margin-bottom:14px}
+.tl{font-size:12px;color:#4e5470}
+.tv{font-size:15px;font-weight:700;color:#e4e8f5}
+.btn-ro{width:100%;background:linear-gradient(135deg,#635bff,#8a84ff);color:#fff;border:none;border-radius:10px;padding:12px;font-size:13px;font-weight:700;cursor:pointer;font-family:inherit;transition:.2s;display:flex;align-items:center;justify-content:center;gap:7px}
+.btn-ro:hover{transform:translateY(-1px);box-shadow:0 8px 18px rgba(99,91,255,.4)}
+</style>
+<div class="card inapp-root">
+  <div class="chip">🔄 Based on your routine</div>
+  <h3>Time to restock?</h3>
+  <p class="sub">You usually order these every 2 weeks</p>
+  <div class="items">
+    <div class="ri"><span class="ri-e">🥛</span><div><div class="ri-name">Full Cream Milk 1L</div><div class="ri-meta">Last ordered 13 days ago</div></div><span class="ri-price">₹68</span><button class="ri-add" onclick="CT.pushEvent('Item Added',{item:'Milk'})">+</button></div>
+    <div class="ri"><span class="ri-e">🍞</span><div><div class="ri-name">Brown Bread Loaf</div><div class="ri-meta">Last ordered 12 days ago</div></div><span class="ri-price">₹42</span><button class="ri-add" onclick="CT.pushEvent('Item Added',{item:'Bread'})">+</button></div>
+    <div class="ri"><span class="ri-e">🥚</span><div><div class="ri-name">Farm Fresh Eggs (12)</div><div class="ri-meta">Last ordered 14 days ago</div></div><span class="ri-price">₹89</span><button class="ri-add" onclick="CT.pushEvent('Item Added',{item:'Eggs'})">+</button></div>
+  </div>
+  <div class="total-row"><span class="tl">Cart Total</span><span class="tv">₹199</span></div>
+  <button class="btn-ro" onclick="CT.pushEvent('Reorder Initiated',{items:3,total:'₹199'});CT.dismiss()">⚡ Reorder All — ₹199</button>
+</div>`,
+  css:`@keyframes bounceIn {\n  from { opacity:0; transform: scale(.88); }\n  to   { opacity:1; transform: none; }\n}`,
+  js:`document.querySelector('.btn-ro').onclick = () => {\n  CT.pushEvent('Reorder Initiated', {\n    items_count: 3,\n    total: '₹199',\n    trigger: 'routine'\n  });\n  CT.dismiss();\n};`
+};
+
+/* ====================================================
+   7. GIFTING — OCCASION REMINDER
+   ==================================================== */
+
+/* -- Templates: Gifting & Occasions -- */
+T['gift-remind'] = {
+  title:'Occasion Reminder',
+  desc:'Personalized reminder for upcoming birthdays and anniversaries with curated gift picks.',
+  tags:['Gifting','Personalized','Animated'],
+  trigger:'App Launched',
+  ctEvent:'Gift Shop Opened',
+  ctProps:{occasion:'Birthday',person:'{{contact_name}}',days_to_event:'3'},
+  h:500, mh:680,
+  html: BASE + CT_BRIDGE.replace('@READYSCRIPT@','') + `
+<style>
+.card{background:#13161e;border-radius:22px;max-width:370px;width:100%;overflow:hidden;border:1px solid rgba(255,255,255,.07);animation:floatIn .55s cubic-bezier(.34,1.4,.64,1)}
+@keyframes floatIn{from{opacity:0;transform:translateY(40px) scale(.94)}to{opacity:1;transform:none}}
+.hero{background:linear-gradient(135deg,#2d1432,#3d1a3d,#2e1428);padding:22px;text-align:center;position:relative;overflow:hidden}
+.confetti{position:absolute;top:0;left:0;width:100%;height:100%;pointer-events:none;animation:confettiFloat 4s ease-in-out infinite}
+@keyframes confettiFloat{0%,100%{transform:translateY(0)}50%{transform:translateY(-6px)}}
+.av{width:62px;height:62px;border-radius:50%;background:linear-gradient(135deg,#ec4899,#f43f5e);display:flex;align-items:center;justify-content:center;font-size:26px;margin:0 auto 10px;border:3px solid rgba(255,255,255,.15);position:relative;z-index:1}
+.occ-type{font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.1em;color:#f9a8d4;margin-bottom:4px;position:relative;z-index:1}
+.person-name{font-size:18px;font-weight:700;color:#fce7f3;margin-bottom:4px;position:relative;z-index:1}
+.days-chip{display:inline-block;background:rgba(244,63,94,.15);color:#f87171;border:1px solid rgba(244,63,94,.3);font-size:11px;font-weight:700;padding:3px 10px;border-radius:20px;position:relative;z-index:1}
+.body{padding:18px}
+.gifts-lbl{font-size:11px;font-weight:600;text-transform:uppercase;letter-spacing:.08em;color:#4e5470;margin-bottom:10px}
+.gift-grid{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-bottom:14px}
+.gc{background:rgba(255,255,255,.03);border:1px solid rgba(255,255,255,.07);border-radius:10px;padding:10px;cursor:pointer;transition:.15s;text-align:center}
+.gc:hover{border-color:rgba(244,63,94,.4);background:rgba(244,63,94,.06)}
+.gc-emo{font-size:24px;display:block;margin-bottom:5px}
+.gc-name{font-size:11px;font-weight:600;color:#e4e8f5;margin-bottom:2px}
+.gc-price{font-size:10px;color:#ec4899}
+.btn-shop{width:100%;background:linear-gradient(135deg,#ec4899,#f43f5e);color:#fff;border:none;border-radius:12px;padding:13px;font-size:13px;font-weight:700;cursor:pointer;font-family:inherit;margin-bottom:9px;transition:.2s}
+.btn-shop:hover{transform:translateY(-1px);box-shadow:0 8px 20px rgba(244,63,94,.4)}
+.btn-later{width:100%;background:transparent;color:#4e5470;border:none;font-size:12px;cursor:pointer;font-family:inherit}
+</style>
+<div class="card inapp-root">
+  <div class="hero">
+    <div class="av">👩</div>
+    <div class="occ-type">🎂 Birthday Reminder</div>
+    <div class="person-name">{{contact_name}}'s Birthday</div>
+    <div class="days-chip">in 3 days — May 23</div>
+  </div>
+  <div class="body">
+    <div class="gifts-lbl">Popular gifts for her</div>
+    <div class="gift-grid">
+      <div class="gc" onclick="CT.pushEvent('Gift Category Selected',{category:'Flowers'})"><span class="gc-emo">💐</span><div class="gc-name">Flowers</div><div class="gc-price">from ₹499</div></div>
+      <div class="gc" onclick="CT.pushEvent('Gift Category Selected',{category:'Cake'})"><span class="gc-emo">🎂</span><div class="gc-name">Custom Cake</div><div class="gc-price">from ₹699</div></div>
+      <div class="gc" onclick="CT.pushEvent('Gift Category Selected',{category:'Toy'})"><span class="gc-emo">🧸</span><div class="gc-name">Soft Toy</div><div class="gc-price">from ₹299</div></div>
+      <div class="gc" onclick="CT.pushEvent('Gift Category Selected',{category:'Chocolate'})"><span class="gc-emo">🍫</span><div class="gc-name">Chocolates</div><div class="gc-price">from ₹399</div></div>
+    </div>
+    <button class="btn-shop" onclick="CT.pushEvent('Gift Shop Opened',{occasion:'Birthday',person:'{{contact_name}}'});CT.dismiss()">🎁 Shop Gifts Now</button>
+    <button class="btn-later" onclick="CT.pushEvent('Occasion Reminder Snoozed');CT.dismiss()">Remind me tomorrow</button>
+  </div>
+</div>`,
+  css:`@keyframes floatIn {\n  from { opacity:0; transform: translateY(40px) scale(.94); }\n  to   { opacity:1; transform: none; }\n}`,
+  js:`document.querySelector('.btn-shop').onclick = () => {\n  CT.pushEvent('Gift Shop Opened', {\n    occasion: 'Birthday',\n    person: '{{contact_name}}',\n    days_to_event: 3\n  });\n  CT.dismiss();\n};`
+};
+
+/* ====================================================
+   8. GIFTING — SAME DAY DELIVERY
+   ==================================================== */
+T['gift-sameday'] = {
+  title:'Same-Day Delivery Banner',
+  desc:'Urgency banner showing same-day cutoff time for floral and gift deliveries.',
+  tags:['Gifting','Timer','Animated'],
+  trigger:'Product Viewed',
+  ctEvent:'Same Day Order Initiated',
+  ctProps:{delivery_type:'same_day',cutoff:'4:00 PM'},
+  h:420, mh:600,
+  html: BASE + CT_BRIDGE.replace('@READYSCRIPT@','') + `
+<style>
+.card{background:linear-gradient(135deg,#0a2618,#0d3322);border:1px solid rgba(34,200,122,.15);border-radius:20px;max-width:380px;width:100%;padding:20px;animation:slideRight .5s cubic-bezier(.34,1.4,.64,1)}
+@keyframes slideRight{from{opacity:0;transform:translateX(-40px)}to{opacity:1;transform:none}}
+.top-row{display:flex;align-items:center;gap:12px;margin-bottom:16px}
+.ico{width:48px;height:48px;background:linear-gradient(135deg,rgba(34,200,122,.2),rgba(34,200,122,.06));border-radius:14px;display:flex;align-items:center;justify-content:center;font-size:22px;border:1px solid rgba(34,200,122,.2)}
+.ttl{font-size:15px;font-weight:700;color:#e4e8f5}
+.sub{font-size:11px;color:#4e5470;margin-top:2px}
+.cutoff{background:rgba(34,200,122,.08);border:1px solid rgba(34,200,122,.2);border-radius:12px;padding:14px;margin-bottom:16px;display:flex;align-items:center;gap:14px}
+.ct-val{font-size:30px;font-weight:800;color:#22c87a;font-family:monospace;line-height:1}
+.ct-lbl{font-size:9px;text-transform:uppercase;letter-spacing:.1em;color:rgba(34,200,122,.6);margin-top:2px}
+.co-info{flex:1}
+.co-h{font-size:12px;font-weight:600;color:#e4e8f5;margin-bottom:3px}
+.co-s{font-size:11px;color:#4e5470;line-height:1.4}
+.cats{display:grid;grid-template-columns:repeat(4,1fr);gap:8px;margin-bottom:16px}
+.cat{background:rgba(255,255,255,.03);border:1px solid rgba(255,255,255,.06);border-radius:10px;padding:10px 6px;text-align:center;cursor:pointer;transition:.15s}
+.cat:hover{border-color:rgba(34,200,122,.3);background:rgba(34,200,122,.06)}
+.cat-e{font-size:20px;display:block;margin-bottom:4px}
+.cat-l{font-size:10px;color:#8b92b0}
+.btn-od{width:100%;background:linear-gradient(135deg,#22c87a,#16a372);color:#064e3b;border:none;border-radius:12px;padding:13px;font-size:13px;font-weight:800;cursor:pointer;font-family:inherit;transition:.2s;display:flex;align-items:center;justify-content:center;gap:6px}
+.btn-od:hover{transform:translateY(-1px);box-shadow:0 8px 20px rgba(34,200,122,.3)}
+</style>
+<div class="card inapp-root">
+  <div class="top-row"><div class="ico">🌸</div><div><div class="ttl">Same-Day Delivery Available</div><div class="sub">Order before cutoff — delivered today</div></div></div>
+  <div class="cutoff">
+    <div><div class="ct-val" id="ctd">02:47</div><div class="ct-lbl">Time left</div></div>
+    <div class="co-info"><div class="co-h">⏰ Order by 4:00 PM today</div><div class="co-s">Delivering within your city by 8 PM</div></div>
+  </div>
+  <div class="cats">
+    <div class="cat" onclick="CT.pushEvent('Category Viewed',{cat:'Flowers'})"><span class="cat-e">💐</span><div class="cat-l">Flowers</div></div>
+    <div class="cat" onclick="CT.pushEvent('Category Viewed',{cat:'Cakes'})"><span class="cat-e">🎂</span><div class="cat-l">Cakes</div></div>
+    <div class="cat" onclick="CT.pushEvent('Category Viewed',{cat:'Gifts'})"><span class="cat-e">🧸</span><div class="cat-l">Gifts</div></div>
+    <div class="cat" onclick="CT.pushEvent('Category Viewed',{cat:'Chocolate'})"><span class="cat-e">🍫</span><div class="cat-l">Choco</div></div>
+  </div>
+  <button class="btn-od" onclick="CT.pushEvent('Same Day Order Initiated',{cutoff:'4:00 PM'});CT.dismiss()">⚡ Order for Same-Day Delivery</button>
+</div>
+<script>let t=2*3600+47*60;setInterval(()=>{t--;if(t<0)t=0;const h=Math.floor(t/3600),m=Math.floor((t%3600)/60);document.getElementById('ctd').textContent=String(h).padStart(2,'0')+':'+String(m).padStart(2,'0');},1000);<\/script>`,
+  css:`/* Same-day urgency — green palette */`,
+  js:`let t = 2*3600 + 47*60;\nsetInterval(() => {\n  t--;\n  const h = Math.floor(t/3600), m = Math.floor((t%3600)/60);\n  document.getElementById('ctd').textContent =\n    String(h).padStart(2,'0') + ':' + String(m).padStart(2,'0');\n}, 1000);`
+};
+
+/* ====================================================
+   9. GIFTING — GIFT UPSELL
+   ==================================================== */
+T['gift-upsell'] = {
+  title:'Gift Add-On Upsell',
+  desc:'Post-selection upsell for add-ons like message cards, packaging, and combo treats.',
+  tags:['Gifting','Upsell','Interactive'],
+  trigger:'Product Added to Cart',
+  ctEvent:'Add-On Added',
+  ctProps:{addon_name:'Message Card',addon_price:'₹49',parent_product:'Rose Bouquet'},
+  h:480, mh:660,
+  html: BASE + CT_BRIDGE.replace('@READYSCRIPT@','') + `
+<style>
+.card{background:#13161e;border-radius:22px;max-width:370px;width:100%;padding:20px;border:1px solid rgba(255,255,255,.07);animation:popIn .45s cubic-bezier(.34,1.6,.64,1)}
+@keyframes popIn{from{opacity:0;transform:scale(.88) translateY(20px)}to{opacity:1;transform:none}}
+.sel-item{display:flex;align-items:center;gap:11px;background:rgba(255,255,255,.03);border:1px solid rgba(255,255,255,.06);border-radius:12px;padding:12px;margin-bottom:16px}
+.si-e{font-size:28px}
+.si-name{font-size:13px;font-weight:600;color:#e4e8f5}
+.si-price{font-size:12px;color:#22c87a;margin-top:2px}
+.chk{margin-left:auto;background:rgba(34,200,122,.12);border-radius:50%;width:28px;height:28px;display:flex;align-items:center;justify-content:center;color:#22c87a;font-size:14px;border:1px solid rgba(34,200,122,.25)}
+.upsell-lbl{font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.09em;color:#4e5470;margin-bottom:10px}
+.addons{display:flex;flex-direction:column;gap:8px;margin-bottom:16px}
+.addon{display:flex;align-items:center;gap:11px;padding:11px 13px;background:rgba(255,255,255,.03);border:1px solid rgba(255,255,255,.06);border-radius:10px;cursor:pointer;transition:.15s}
+.addon:hover{border-color:rgba(236,72,153,.35);background:rgba(236,72,153,.06)}
+.addon.sel{border-color:rgba(236,72,153,.5);background:rgba(236,72,153,.08)}
+.ad-e{font-size:20px}
+.ad-name{font-size:13px;font-weight:600;color:#e4e8f5;flex:1}
+.ad-price{font-size:12px;font-weight:700;color:#ec4899}
+.ad-chk{width:18px;height:18px;border-radius:5px;background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.1);display:flex;align-items:center;justify-content:center;font-size:10px;color:#ec4899;transition:.15s}
+.addon.sel .ad-chk{background:#ec4899;border-color:#ec4899;color:#fff}
+.tot-strip{display:flex;align-items:center;justify-content:space-between;background:rgba(236,72,153,.06);border:1px solid rgba(236,72,153,.15);border-radius:10px;padding:10px 14px;margin-bottom:14px}
+.tot-lbl{font-size:12px;color:#f9a8d4}
+.tot-val{font-size:15px;font-weight:700;color:#fce7f3}
+.btn-add{width:100%;background:linear-gradient(135deg,#ec4899,#f43f5e);color:#fff;border:none;border-radius:12px;padding:13px;font-size:13px;font-weight:700;cursor:pointer;font-family:inherit;transition:.2s}
+.btn-add:hover{transform:translateY(-1px);box-shadow:0 8px 20px rgba(244,63,94,.35)}
+.btn-skip2{width:100%;background:transparent;border:none;color:#4e5470;font-size:12px;padding:8px;cursor:pointer;font-family:inherit;margin-top:6px}
+</style>
+<div class="card inapp-root">
+  <div class="sel-item"><span class="si-e">💐</span><div><div class="si-name">Premium Rose Bouquet</div><div class="si-price">₹999 added to cart</div></div><div class="chk">✓</div></div>
+  <div class="upsell-lbl">🎀 Make it extra special</div>
+  <div class="addons">
+    <div class="addon" onclick="toggleAddon(this,'Message Card',49)"><span class="ad-e">💌</span><span class="ad-name">Personalised Card</span><span class="ad-price">+₹49</span><div class="ad-chk">✓</div></div>
+    <div class="addon" onclick="toggleAddon(this,'Gift Wrapping',99)"><span class="ad-e">🎀</span><span class="ad-name">Premium Wrapping</span><span class="ad-price">+₹99</span><div class="ad-chk">✓</div></div>
+    <div class="addon" onclick="toggleAddon(this,'Chocolate Box',449)"><span class="ad-e">🍫</span><span class="ad-name">Chocolate Box (16 pc)</span><span class="ad-price">+₹449</span><div class="ad-chk">✓</div></div>
+  </div>
+  <div class="tot-strip"><span class="tot-lbl">Cart Total</span><span class="tot-val" id="tot">₹999</span></div>
+  <button class="btn-add" onclick="checkout()">Add Selected &amp; Checkout</button>
+  <button class="btn-skip2" onclick="CT.dismiss()">No thanks, skip</button>
+</div>
+<script>
+const prices=[49,99,449];
+function toggleAddon(el,name,price){
+  el.classList.toggle('sel');
+  CT.pushEvent(el.classList.contains('sel')?'Add-On Added':'Add-On Removed',{addon_name:name,addon_price:price});
+  let base=999;
+  document.querySelectorAll('.addon').forEach((a,i)=>{if(a.classList.contains('sel'))base+=prices[i];});
+  document.getElementById('tot').textContent='₹'+base;
+}
+function checkout(){CT.pushEvent('Checkout Initiated',{source:'upsell_modal'});CT.dismiss();}
+<\/script>`,
+  css:`/* Gift upsell — pink palette */`,
+  js:`const prices = [49, 99, 449];\nfunction toggleAddon(el, name, price) {\n  el.classList.toggle('sel');\n  CT.pushEvent(el.classList.contains('sel') ? 'Add-On Added' : 'Add-On Removed', {\n    addon_name: name, addon_price: price\n  });\n  recalcTotal();\n}\nfunction recalcTotal() {\n  let base = 999;\n  document.querySelectorAll('.addon').forEach((a, i) => {\n    if (a.classList.contains('sel')) base += prices[i];\n  });\n  document.getElementById('tot').textContent = '₹' + base;\n}`
+};
+
+/* ====================================================
+   10. AUTO — NEW LISTING
+   ==================================================== */
+
+/* -- Templates: Used Cars & Autos -- */
+T['auto-listing'] = {
+  title:'New Car Listing Alert',
+  desc:'Card for a new listing that matches a saved user search. Car drives into frame.',
+  tags:['Autos','Animated','Personalized'],
+  trigger:'Search Saved',
+  ctEvent:'Listing Viewed',
+  ctProps:{listing_id:'{{listing_id}}',make:'Maruti',model:'Swift',year:'2022'},
+  h:490, mh:660,
+  html: BASE + CT_BRIDGE.replace('@READYSCRIPT@','') + `
+<style>
+.card{background:#13161e;border-radius:22px;max-width:380px;width:100%;overflow:hidden;border:1px solid rgba(255,255,255,.07);animation:slideUp .5s cubic-bezier(.34,1.4,.64,1)}
+@keyframes slideUp{from{opacity:0;transform:translateY(40px)}to{opacity:1;transform:none}}
+.car-hero{height:160px;background:linear-gradient(135deg,#0a1628,#0d2040);display:flex;align-items:center;justify-content:center;position:relative;overflow:hidden}
+.car-hero::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse at 50% 80%,rgba(59,130,246,.2),transparent 60%)}
+.car-e{font-size:64px;animation:carIn .7s ease .2s both;position:relative;z-index:1}
+@keyframes carIn{from{opacity:0;transform:translateX(-80px)}to{opacity:1;transform:none}}
+.new-tag{position:absolute;top:12px;left:12px;background:#3b82f6;color:#fff;font-size:9px;font-weight:800;text-transform:uppercase;letter-spacing:.08em;padding:3px 9px;border-radius:5px}
+.match-tag{position:absolute;top:12px;right:12px;background:rgba(34,200,122,.15);color:#22c87a;font-size:10px;font-weight:700;padding:3px 9px;border-radius:20px;border:1px solid rgba(34,200,122,.25)}
+.body{padding:18px}
+.car-name{font-size:17px;font-weight:700;color:#e4e8f5;margin-bottom:4px}
+.car-sub{font-size:12px;color:#4e5470;margin-bottom:13px}
+.specs{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-bottom:13px}
+.spec{background:rgba(255,255,255,.04);border-radius:9px;padding:9px 8px;text-align:center}
+.sv{font-size:13px;font-weight:700;color:#e4e8f5;display:block}
+.sl{font-size:10px;color:#4e5470;margin-top:2px}
+.price-row{display:flex;align-items:baseline;gap:9px;margin-bottom:16px}
+.price{font-size:22px;font-weight:800;color:#e4e8f5}
+.emi{font-size:12px;color:#4e5470}
+.emi span{color:#3b82f6;font-weight:600}
+.acts{display:grid;grid-template-columns:1fr auto auto;gap:8px}
+.btn-v{background:#3b82f6;color:#fff;border:none;border-radius:10px;padding:12px;font-size:13px;font-weight:700;cursor:pointer;font-family:inherit;transition:.2s}
+.btn-v:hover{background:#2563eb}
+.btn-ico{background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.08);color:#8b92b0;border-radius:10px;padding:12px 14px;font-size:15px;cursor:pointer;transition:.2s}
+.btn-ico:hover{background:rgba(255,255,255,.12);color:#e4e8f5}
+</style>
+<div class="card inapp-root">
+  <div class="car-hero">
+    <span class="new-tag">NEW</span><span class="match-tag">✓ Matches Search</span>
+    <span class="car-e">🚙</span>
+  </div>
+  <div class="body">
+    <div class="car-name">2022 Maruti Swift ZXi+</div>
+    <div class="car-sub">30,400 km · Petrol · Delhi NCR · 1 Owner</div>
+    <div class="specs">
+      <div class="spec"><span class="sv">30.4K</span><span class="sl">KMs</span></div>
+      <div class="spec"><span class="sv">2022</span><span class="sl">Year</span></div>
+      <div class="spec"><span class="sv">9.2/10</span><span class="sl">Condition</span></div>
+    </div>
+    <div class="price-row"><span class="price">₹6.45 L</span><span class="emi">EMI <span>₹12,400/mo</span></span></div>
+    <div class="acts">
+      <button class="btn-v" onclick="CT.pushEvent('Listing Viewed',{listing_id:'{{listing_id}}',source:'inapp'});CT.dismiss()">View Details</button>
+      <button class="btn-ico" onclick="CT.pushEvent('Listing Wishlisted',{listing_id:'{{listing_id}}'})">💛</button>
+      <button class="btn-ico" onclick="CT.pushEvent('Listing Shared',{listing_id:'{{listing_id}}'})">📤</button>
+    </div>
+  </div>
+</div>`,
+  css:`@keyframes carIn {\n  from { opacity:0; transform: translateX(-80px); }\n  to   { opacity:1; transform: none; }\n}`,
+  js:`document.querySelector('.btn-v').onclick = () => {\n  CT.pushEvent('Listing Viewed', {\n    listing_id: '{{listing_id}}',\n    source: 'inapp_banner'\n  });\n  CT.dismiss();\n};`
+};
+
+/* ====================================================
+   11. AUTO — PRICE DROP
+   ==================================================== */
+T['auto-drop'] = {
+  title:'Price Drop Alert',
+  desc:'Notification when a saved car drops in price — badge animation triggers urgency.',
+  tags:['Autos','Price Drop','Animated'],
+  trigger:'Wishlist Viewed',
+  ctEvent:'Price Drop CTA Clicked',
+  ctProps:{listing_id:'{{listing_id}}',old_price:'₹7.9L',new_price:'₹7.2L',savings:'₹70K'},
+  h:440, mh:600,
+  html: BASE + CT_BRIDGE.replace('@READYSCRIPT@','') + `
+<style>
+.toast{background:#13161e;border-radius:20px;max-width:370px;width:100%;border:1px solid rgba(34,200,122,.15);padding:18px;animation:dropIn .55s cubic-bezier(.34,1.4,.64,1)}
+@keyframes dropIn{from{opacity:0;transform:translateY(-50px) scale(.9)}to{opacity:1;transform:none}}
+.top{display:flex;align-items:center;gap:10px;margin-bottom:14px}
+.drop-ico{width:40px;height:40px;background:rgba(34,200,122,.12);border-radius:12px;display:flex;align-items:center;justify-content:center;font-size:18px;border:1px solid rgba(34,200,122,.2);animation:icoIn .6s cubic-bezier(.34,1.8,.64,1) .3s both}
+@keyframes icoIn{from{transform:scale(0)}to{transform:none}}
+.at{flex:1}
+.at-title{font-size:13px;font-weight:700;color:#e4e8f5}
+.at-sub{font-size:11px;color:#4e5470;margin-top:1px}
+.saved-b{background:rgba(34,200,122,.1);color:#22c87a;border:1px solid rgba(34,200,122,.2);font-size:10px;font-weight:600;padding:3px 8px;border-radius:20px}
+.car-strip{display:flex;align-items:center;gap:12px;background:rgba(255,255,255,.03);border:1px solid rgba(255,255,255,.06);border-radius:12px;padding:12px;margin-bottom:14px}
+.car-e2{font-size:32px}
+.ci{flex:1}
+.cn{font-size:13px;font-weight:600;color:#e4e8f5;margin-bottom:2px}
+.cm{font-size:11px;color:#4e5470}
+.pc{text-align:right}
+.pnew{font-size:17px;font-weight:800;color:#22c87a}
+.pwas{font-size:11px;color:#4e5470;text-decoration:line-through}
+.psave{font-size:10px;color:#22c87a;font-weight:700}
+.urg{background:rgba(245,158,11,.07);border:1px solid rgba(245,158,11,.2);border-radius:9px;padding:9px 12px;margin-bottom:14px;font-size:11px;color:#fbbf24;display:flex;align-items:center;gap:7px}
+.acts{display:flex;gap:8px}
+.btn-vn{flex:1;background:linear-gradient(135deg,#22c87a,#16a372);color:#064e3b;border:none;border-radius:10px;padding:11px;font-size:13px;font-weight:700;cursor:pointer;font-family:inherit;transition:.2s}
+.btn-vn:hover{transform:translateY(-1px);box-shadow:0 6px 16px rgba(34,200,122,.3)}
+.btn-dis{background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.08);color:#8b92b0;border-radius:10px;padding:11px 14px;font-size:12px;cursor:pointer;font-family:inherit}
+</style>
+<div class="toast inapp-root">
+  <div class="top">
+    <div class="drop-ico">📉</div>
+    <div class="at"><div class="at-title">Price Dropped on Your Wishlist!</div><div class="at-sub">2020 i20 Sportz · Saved 3 days ago</div></div>
+    <div class="saved-b">❤ Saved</div>
+  </div>
+  <div class="car-strip">
+    <span class="car-e2">🚗</span>
+    <div class="ci"><div class="cn">2020 i20 Sportz MT</div><div class="cm">42,000 km · Petrol · Mumbai</div></div>
+    <div class="pc"><div class="pnew">₹7.2 L</div><div class="pwas">₹7.9 L</div><div class="psave">Save ₹70K</div></div>
+  </div>
+  <div class="urg">⚠️ 6 people viewed this in the last 24 hours</div>
+  <div class="acts">
+    <button class="btn-vn" onclick="CT.pushEvent('Price Drop CTA Clicked',{listing_id:'{{listing_id}}',savings:'₹70K'});CT.dismiss()">View &amp; Book Test Drive</button>
+    <button class="btn-dis" onclick="CT.pushEvent('Price Drop Dismissed');CT.dismiss()">Dismiss</button>
+  </div>
+</div>`,
+  css:`@keyframes dropIn {\n  from { opacity:0; transform: translateY(-50px) scale(.9); }\n  to   { opacity:1; transform: none; }\n}`,
+  js:`document.querySelector('.btn-vn').onclick = () => {\n  CT.pushEvent('Price Drop CTA Clicked', {\n    listing_id: '{{listing_id}}',\n    savings: '₹70K'\n  });\n  CT.dismiss();\n};`
+};
+
+/* ====================================================
+   12. AUTO — VALUATION
+   ==================================================== */
+T['auto-val'] = {
+  title:'Sell Your Car CTA',
+  desc:'Instant valuation prompt for sell-side users — drives lead generation for dealer marketplace.',
+  tags:['Autos','Lead Gen','Interactive'],
+  trigger:'App Launched',
+  ctEvent:'Valuation Requested',
+  ctProps:{reg_number:'{{reg_number}}',city:'{{city}}'},
+  h:470, mh:650,
+  html: BASE + CT_BRIDGE.replace('@READYSCRIPT@','') + `
+<style>
+.card{background:#13161e;border-radius:22px;max-width:370px;width:100%;padding:22px;border:1px solid rgba(255,255,255,.07);animation:fadeUp .45s ease}
+@keyframes fadeUp{from{opacity:0;transform:translateY(22px)}to{opacity:1;transform:none}}
+.hero-c{text-align:center;margin-bottom:20px}
+.car-big{font-size:48px;display:block;margin-bottom:10px;animation:bounce .8s ease infinite alternate}
+@keyframes bounce{from{transform:translateY(0)}to{transform:translateY(-8px)}}
+h3{font-size:17px;font-weight:700;color:#e4e8f5;margin-bottom:6px}
+.sub2{font-size:12px;color:#4e5470;line-height:1.5;margin-bottom:16px}
+.range-preview{background:linear-gradient(135deg,rgba(245,158,11,.08),rgba(245,158,11,.03));border:1px solid rgba(245,158,11,.2);border-radius:12px;padding:14px;margin-bottom:16px;display:flex;align-items:center;gap:12px}
+.range-ico{font-size:22px}
+.range-info{flex:1}
+.range-lbl{font-size:10px;color:#f59e0b;font-weight:700;text-transform:uppercase;letter-spacing:.08em;margin-bottom:3px}
+.range-val{font-size:18px;font-weight:800;color:#fbbf24}
+.range-sub{font-size:10px;color:#4e5470;margin-top:2px}
+.trust{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-bottom:16px}
+.ti{background:rgba(255,255,255,.03);border-radius:9px;padding:9px 6px;text-align:center}
+.tn{font-size:14px;font-weight:700;color:#e4e8f5;display:block}
+.tl{font-size:9px;color:#4e5470;margin-top:2px}
+.reg-row{display:flex;gap:8px;margin-bottom:14px}
+input[type=text]{flex:1;background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.1);border-radius:9px;padding:11px 14px;color:#e4e8f5;font-family:inherit;font-size:13px;outline:none;transition:.2s;letter-spacing:.04em}
+input:focus{border-color:rgba(245,158,11,.5);background:rgba(245,158,11,.05)}
+input::placeholder{color:#2e3455}
+.btn-val{background:linear-gradient(135deg,#f5a623,#fbbf24);color:#78350f;border:none;border-radius:9px;padding:11px 16px;font-size:13px;font-weight:800;cursor:pointer;font-family:inherit;transition:.2s;flex-shrink:0}
+.btn-val:hover{transform:translateY(-1px)}
+.disc{font-size:10px;color:#2e3455;text-align:center;line-height:1.5}
+</style>
+<div class="card inapp-root">
+  <div class="hero-c">
+    <span class="car-big">🚘</span>
+    <h3>Get Your Car's Best Price</h3>
+    <p class="sub2">Sell at the best price. Free inspection. Instant payment. Thousands of dealers competing for your car.</p>
+  </div>
+  <div class="range-preview">
+    <span class="range-ico">💰</span>
+    <div class="range-info">
+      <div class="range-lbl">Estimated Range (your city)</div>
+      <div class="range-val">₹3.2L – ₹4.8L</div>
+      <div class="range-sub">Based on recent similar sales</div>
+    </div>
+  </div>
+  <div class="trust">
+    <div class="ti"><span class="tn">10K+</span><span class="tl">Dealers</span></div>
+    <div class="ti"><span class="tn">48hr</span><span class="tl">Payment</span></div>
+    <div class="ti"><span class="tn">Free</span><span class="tl">Inspection</span></div>
+  </div>
+  <div class="reg-row">
+    <input type="text" id="reg-inp" placeholder="Enter Reg. No. e.g. DL01AB1234" maxlength="10">
+    <button class="btn-val" onclick="doVal()">Get Price</button>
+  </div>
+  <div class="disc">Free valuation · No obligation · Certified dealers only</div>
+</div>
+<script>
+function doVal(){
+  const r=document.getElementById('reg-inp').value;
+  CT.pushEvent('Valuation Requested',{reg_number:r,source:'inapp'});
+  CT.dismiss();
+}
+<\/script>`,
+  css:`@keyframes bounce {\n  from { transform: translateY(0); }\n  to   { transform: translateY(-8px); }\n}`,
+  js:`function doVal() {\n  const reg = document.getElementById('reg-inp').value;\n  CT.pushEvent('Valuation Requested', {\n    reg_number: reg,\n    source: 'inapp'\n  });\n  CT.dismiss();\n}`
+};
+
+/* ====================================================
+   13. E-COMM — FLASH SALE
+   ==================================================== */
+
+/* -- Templates: E-Commerce -- */
+T['ec-flash'] = {
+  title:'Flash Sale Countdown',
+  desc:'Amber urgency timer with deal cards. Live countdown drives click-through urgency.',
+  tags:['E-Commerce','Timer','Urgent'],
+  trigger:'Home Screen Viewed',
+  ctEvent:'Flash Sale CTA Clicked',
+  ctProps:{sale_id:'flash_001',discount:'70%'},
+  h:510, mh:700,
+  html: BASE + CT_BRIDGE.replace('@READYSCRIPT@','') + `
+<style>
+.sale{background:#13161e;border-radius:20px;max-width:390px;width:100%;border:1px solid rgba(245,158,11,.14);animation:slideUp .45s ease}
+@keyframes slideUp{from{opacity:0;transform:translateY(26px)}to{opacity:1;transform:none}}
+.sale-top{background:linear-gradient(135deg,#78350f,#92400e);padding:16px 18px;border-radius:20px 20px 0 0;position:relative;overflow:hidden}
+.sale-top::before{content:'⚡';position:absolute;right:-10px;top:-18px;font-size:76px;opacity:.08}
+.sl{font-size:9px;font-weight:800;text-transform:uppercase;letter-spacing:.12em;color:rgba(253,186,116,.8);margin-bottom:3px}
+.st{font-size:20px;font-weight:800;color:#fef3c7;letter-spacing:-.02em}
+.ss{font-size:11px;color:rgba(253,186,116,.6);margin-top:3px}
+.timer{display:grid;grid-template-columns:repeat(4,1fr);gap:8px;padding:14px 16px}
+.tb{background:rgba(245,158,11,.08);border:1px solid rgba(245,158,11,.2);border-radius:10px;padding:10px 6px;text-align:center}
+.tn{font-size:24px;font-weight:800;color:#fbbf24;font-family:monospace;line-height:1;display:block}
+.tl{font-size:9px;text-transform:uppercase;letter-spacing:.1em;color:#92400e;margin-top:3px;display:block;font-weight:700}
+.deals{padding:0 16px 16px}
+.deal{display:flex;align-items:center;gap:10px;padding:10px;background:rgba(255,255,255,.03);border:1px solid rgba(255,255,255,.06);border-radius:10px;margin-bottom:7px;cursor:pointer;transition:.2s}
+.deal:hover{background:rgba(245,158,11,.06);border-color:rgba(245,158,11,.2)}
+.de{width:40px;height:40px;border-radius:8px;display:flex;align-items:center;justify-content:center;font-size:20px}
+.dn{font-size:12px;font-weight:600;color:#e4e8f5;margin-bottom:2px}
+.dp{display:flex;align-items:center;gap:5px}
+.dp-new{font-size:13px;font-weight:700;color:#fbbf24}
+.dp-old{font-size:11px;color:#4e5470;text-decoration:line-through}
+.dp-d{background:rgba(34,200,122,.1);color:#22c87a;font-size:10px;font-weight:700;padding:1px 6px;border-radius:4px}
+.btn-sh{display:block;width:calc(100% - 32px);margin:0 16px 16px;background:linear-gradient(135deg,#f59e0b,#fbbf24);color:#78350f;border:none;border-radius:10px;padding:13px;font-size:13px;font-weight:800;cursor:pointer;font-family:inherit;transition:.2s;text-align:center}
+.btn-sh:hover{transform:translateY(-1px);box-shadow:0 8px 20px rgba(245,158,11,.35)}
+</style>
+<div class="sale inapp-root">
+  <div class="sale-top"><div class="sl">⚡ Limited Time</div><div class="st">Flash Sale — 70% OFF</div><div class="ss">Ends tonight at midnight</div></div>
+  <div class="timer">
+    <div class="tb"><span class="tn" id="h">08</span><span class="tl">Hrs</span></div>
+    <div class="tb"><span class="tn" id="m">43</span><span class="tl">Min</span></div>
+    <div class="tb"><span class="tn" id="s">21</span><span class="tl">Sec</span></div>
+    <div class="tb"><span class="tn">70%</span><span class="tl">Off</span></div>
+  </div>
+  <div class="deals">
+    <div class="deal" onclick="CT.pushEvent('Deal Clicked',{item:'Headphones'})"><div class="de" style="background:rgba(99,91,255,.1)">🎧</div><div><div class="dn">Wireless Headphones XM5</div><div class="dp"><span class="dp-new">₹12,999</span><span class="dp-old">₹34,990</span><span class="dp-d">-63%</span></div></div></div>
+    <div class="deal" onclick="CT.pushEvent('Deal Clicked',{item:'Tablet'})"><div class="de" style="background:rgba(59,130,246,.1)">📱</div><div><div class="dn">Galaxy Tab S9 128GB</div><div class="dp"><span class="dp-new">₹29,999</span><span class="dp-old">₹64,990</span><span class="dp-d">-54%</span></div></div></div>
+  </div>
+  <button class="btn-sh" onclick="CT.pushEvent('Flash Sale CTA Clicked',{sale_id:'flash_001'});CT.dismiss()">⚡ Shop All Flash Deals</button>
+</div>
+<script>let t=8*3600+43*60+21;setInterval(()=>{t--;document.getElementById('h').textContent=String(Math.floor(t/3600)).padStart(2,'0');document.getElementById('m').textContent=String(Math.floor((t%3600)/60)).padStart(2,'0');document.getElementById('s').textContent=String(t%60).padStart(2,'0');},1000);<\/script>`,
+  css:`/* Amber palette + countdown */`,
+  js:`let t = 8*3600+43*60+21;\nsetInterval(() => {\n  t--;\n  document.getElementById('h').textContent = String(Math.floor(t/3600)).padStart(2,'0');\n  document.getElementById('m').textContent = String(Math.floor((t%3600)/60)).padStart(2,'0');\n  document.getElementById('s').textContent = String(t%60).padStart(2,'0');\n}, 1000);`
+};
+
+/* ====================================================
+   14. E-COMM — PRODUCT
+   ==================================================== */
+T['ec-product'] = {
+  title:'Product Showcase Card',
+  desc:'Rich product card with color swatch picker, ratings, wishlist toggle, and add-to-cart.',
+  tags:['E-Commerce','Interactive','Animated'],
+  trigger:'Product Viewed',
+  ctEvent:'Add to Cart',
+  ctProps:{product_id:'{{product_id}}',product_name:'Smartwatch Series 10',price:'₹41900'},
+  h:520, mh:700,
+  html: BASE + CT_BRIDGE.replace('@READYSCRIPT@','') + `
+<style>
+.pcard{background:#13161e;border-radius:22px;max-width:360px;width:100%;overflow:hidden;border:1px solid rgba(255,255,255,.07);animation:zoomIn .45s cubic-bezier(.34,1.5,.64,1)}
+@keyframes zoomIn{from{opacity:0;transform:scale(.9)}to{opacity:1;transform:none}}
+.img-sec{height:200px;background:linear-gradient(135deg,#1e1e30,#2d2b55);position:relative;display:flex;align-items:center;justify-content:center;overflow:hidden}
+.p-e{font-size:66px;transition:.3s;cursor:pointer}
+.p-e:hover{transform:scale(1.1) rotate(5deg)}
+.img-dots{position:absolute;bottom:10px;left:50%;transform:translateX(-50%);display:flex;gap:5px}
+.idot{width:5px;height:5px;border-radius:50%;background:rgba(255,255,255,.3)}
+.idot.a{background:#635bff;width:14px;border-radius:3px}
+.wish-btn{position:absolute;top:10px;right:10px;background:rgba(0,0,0,.4);border:none;width:32px;height:32px;border-radius:50%;font-size:14px;cursor:pointer;display:flex;align-items:center;justify-content:center;transition:.2s;backdrop-filter:blur(6px)}
+.wish-btn:hover{transform:scale(1.1)}
+.ntag{position:absolute;top:10px;left:10px;background:#22c87a;color:#064e3b;font-size:9px;font-weight:800;text-transform:uppercase;letter-spacing:.06em;padding:3px 9px;border-radius:20px}
+.dets{padding:16px}
+.brand2{font-size:10px;font-weight:700;color:#635bff;text-transform:uppercase;letter-spacing:.1em;margin-bottom:3px}
+.pname2{font-size:15px;font-weight:700;color:#e4e8f5;margin-bottom:5px;line-height:1.3}
+.stars2{display:flex;align-items:center;gap:4px;margin-bottom:10px}
+.star2{color:#f59e0b;font-size:11px}
+.rtxt{font-size:10px;color:#4e5470}
+.colors2{display:flex;gap:5px;margin-bottom:12px;align-items:center}
+.clbl{font-size:10px;color:#4e5470;margin-right:3px}
+.cdot{width:17px;height:17px;border-radius:50%;cursor:pointer;border:2px solid transparent;transition:.15s}
+.cdot.sel{border-color:rgba(255,255,255,.5);transform:scale(1.2)}
+.pr2{display:flex;align-items:baseline;gap:7px;margin-bottom:14px}
+.pnew2{font-size:21px;font-weight:700;color:#e4e8f5}
+.pold2{font-size:12px;color:#4e5470;text-decoration:line-through}
+.pdisc{background:rgba(34,200,122,.1);color:#22c87a;font-size:10px;font-weight:700;padding:2px 7px;border-radius:20px;border:1px solid rgba(34,200,122,.2)}
+.acts2{display:flex;gap:7px}
+.btn-cart2{flex:1;background:#635bff;color:#fff;border:none;border-radius:10px;padding:12px;font-size:12px;font-weight:700;cursor:pointer;font-family:inherit;transition:.2s}
+.btn-cart2:hover{background:#5046e5;transform:translateY(-1px)}
+.btn-buy2{flex:1;background:rgba(255,255,255,.06);color:#e4e8f5;border:1px solid rgba(255,255,255,.1);border-radius:10px;padding:12px;font-size:12px;font-weight:600;cursor:pointer;font-family:inherit;transition:.2s}
+</style>
+<div class="pcard inapp-root">
+  <div class="img-sec">
+    <span class="ntag">New</span>
+    <button class="wish-btn" onclick="this.textContent=this.textContent=='♡'?'♥':'♡';CT.pushEvent(this.textContent=='♥'?'Wishlist Added':'Wishlist Removed',{product_id:'{{product_id}}'})">♡</button>
+    <div class="p-e">⌚</div>
+    <div class="img-dots"><div class="idot a"></div><div class="idot"></div><div class="idot"></div></div>
+  </div>
+  <div class="dets">
+    <div class="brand2">SmartWear</div>
+    <div class="pname2">Smartwatch Series 10 GPS + Cellular</div>
+    <div class="stars2"><span class="star2">★★★★</span><span class="star2" style="opacity:.25">★</span><span class="rtxt">4.2 (1,240 reviews)</span></div>
+    <div class="colors2">
+      <span class="clbl">Color:</span>
+      <div class="cdot sel" style="background:#111" onclick="selColor(this)"></div>
+      <div class="cdot" style="background:#f0ebe3" onclick="selColor(this)"></div>
+      <div class="cdot" style="background:#e8d5b7" onclick="selColor(this)"></div>
+      <div class="cdot" style="background:#2d4a7a" onclick="selColor(this)"></div>
+    </div>
+    <div class="pr2"><span class="pnew2">₹41,900</span><span class="pold2">₹55,900</span><span class="pdisc">25% OFF</span></div>
+    <div class="acts2">
+      <button class="btn-cart2" onclick="CT.pushEvent('Add to Cart',{product_id:'{{product_id}}',price:'₹41900'});CT.dismiss()">🛒 Add to Cart</button>
+      <button class="btn-buy2" onclick="CT.pushEvent('Buy Now Clicked',{product_id:'{{product_id}}'});CT.dismiss()">Buy Now</button>
+    </div>
+  </div>
+</div>
+<script>function selColor(el){document.querySelectorAll('.cdot').forEach(d=>d.classList.remove('sel'));el.classList.add('sel');CT.pushEvent('Color Selected',{color:el.style.background});}<\/script>`,
+  css:`@keyframes zoomIn {\n  from { opacity:0; transform: scale(.9); }\n  to   { opacity:1; transform: none; }\n}`,
+  js:`document.querySelector('.btn-cart2').onclick = () => {\n  CT.pushEvent('Add to Cart', {\n    product_id: '{{product_id}}',\n    price: '₹41900'\n  });\n  CT.dismiss();\n};\nfunction selColor(el) {\n  document.querySelectorAll('.cdot').forEach(d => d.classList.remove('sel'));\n  el.classList.add('sel');\n  CT.pushEvent('Color Selected', { color: el.style.background });\n}`
+};
+
+/* ====================================================
+   15. E-COMM — CART REMINDER
+   ==================================================== */
+T['ec-cart'] = {
+  title:'Abandoned Cart Reminder',
+  desc:'Recovery nudge with item preview, stock urgency badge, and direct checkout.',
+  tags:['E-Commerce','Recovery','Animated'],
+  trigger:'App Launched',
+  ctEvent:'Checkout Started',
+  ctProps:{cart_value:'₹14,198',items_count:'2',abandoned_hours:'2'},
+  h:460, mh:640,
+  html: BASE + CT_BRIDGE.replace('@READYSCRIPT@','') + `
+<style>
+.ct{background:#13161e;border-radius:18px;max-width:375px;width:100%;border:1px solid rgba(255,255,255,.07);overflow:hidden;animation:slideLeft .5s cubic-bezier(.34,1.4,.64,1)}
+@keyframes slideLeft{from{opacity:0;transform:translateX(50px)}to{opacity:1;transform:none}}
+.ct-top{background:linear-gradient(135deg,#1e1b4b,#1e3a5f);padding:13px 15px;display:flex;align-items:center;gap:10px}
+.ct-ico{width:34px;height:34px;background:rgba(99,91,255,.2);border-radius:9px;display:flex;align-items:center;justify-content:center;font-size:16px}
+.ctt{font-size:13px;font-weight:700;color:#e4e8f5}
+.cts{font-size:10px;color:#4e5470}
+.x2{margin-left:auto;background:transparent;border:none;color:#4e5470;font-size:14px;cursor:pointer;width:22px;height:22px;display:flex;align-items:center;justify-content:center;border-radius:6px;transition:.15s}
+.x2:hover{background:rgba(255,255,255,.08)}
+.items2{padding:14px}
+.ci2{display:flex;align-items:center;gap:10px;padding:9px;background:rgba(255,255,255,.03);border:1px solid rgba(255,255,255,.05);border-radius:9px;margin-bottom:7px;cursor:pointer;transition:.15s}
+.ci2:hover{background:rgba(99,91,255,.06);border-color:rgba(99,91,255,.2)}
+.ci-th{width:38px;height:38px;border-radius:7px;display:flex;align-items:center;justify-content:center;font-size:18px}
+.cin{font-size:12px;font-weight:600;color:#e4e8f5;margin-bottom:1px}
+.cim{font-size:10px;color:#4e5470}
+.cip{margin-left:auto;font-size:12px;font-weight:700;color:#e4e8f5}
+.urg2{margin:0 14px 12px;background:rgba(239,68,68,.07);border:1px solid rgba(239,68,68,.15);border-radius:8px;padding:8px 11px;display:flex;align-items:center;gap:7px;font-size:11px;color:#fca5a5}
+.tot2{display:flex;align-items:center;justify-content:space-between;padding:0 14px 12px}
+.tl2{font-size:11px;color:#4e5470}
+.tv2{font-size:14px;font-weight:700;color:#e4e8f5}
+.acts3{display:flex;gap:7px;padding:0 14px 14px}
+.btn-ch2{flex:1;background:#635bff;color:#fff;border:none;border-radius:9px;padding:11px;font-size:12px;font-weight:700;cursor:pointer;font-family:inherit;transition:.2s}
+.btn-ch2:hover{background:#5046e5;transform:translateY(-1px)}
+.btn-sv{background:rgba(255,255,255,.06);color:#8b92b0;border:1px solid rgba(255,255,255,.08);border-radius:9px;padding:11px 13px;font-size:12px;cursor:pointer;font-family:inherit}
+</style>
+<div class="ct inapp-root">
+  <div class="ct-top"><div class="ct-ico">🛒</div><div><div class="ctt">Your cart misses you!</div><div class="cts">2 items · saved for 24 hrs</div></div><button class="x2" onclick="CT.dismiss()">✕</button></div>
+  <div class="items2">
+    <div class="ci2"><div class="ci-th" style="background:rgba(99,91,255,.1)">🎧</div><div><div class="cin">Wireless Headphones XM5</div><div class="cim">Black · Qty: 1</div></div><span class="cip">₹12,999</span></div>
+    <div class="ci2"><div class="ci-th" style="background:rgba(245,158,11,.1)">📱</div><div><div class="cin">Tablet Case Pro</div><div class="cim">Clear · Qty: 2</div></div><span class="cip">₹1,199</span></div>
+  </div>
+  <div class="urg2">⏰ Only 3 left in stock for Headphones XM5</div>
+  <div class="tot2"><span class="tl2">Cart Total</span><span class="tv2">₹14,198</span></div>
+  <div class="acts3">
+    <button class="btn-ch2" onclick="CT.pushEvent('Checkout Started',{cart_value:'₹14198',items:2,source:'inapp_cart_reminder'});CT.dismiss()">Checkout Now →</button>
+    <button class="btn-sv" onclick="CT.pushEvent('Cart Saved');CT.dismiss()">Save</button>
+  </div>
+</div>`,
+  css:`@keyframes slideLeft {\n  from { opacity:0; transform: translateX(50px); }\n  to   { opacity:1; transform: none; }\n}`,
+  js:`document.querySelector('.btn-ch2').onclick = () => {\n  CT.pushEvent('Checkout Started', {\n    cart_value: '₹14198',\n    items_count: 2,\n    source: 'inapp_cart_reminder'\n  });\n  CT.dismiss();\n};`
+};
+
+/* ====================================================
+   16. ENGAGEMENT — STAR RATING
+   ==================================================== */
+
+/* -- Templates: Engagement -- */
+T['eg-rate'] = {
+  title:'Star Rating Prompt',
+  desc:'Interactive star rating with emoji mood indicator and conditional review input.',
+  tags:['Engagement','Interactive','Animated'],
+  trigger:'Order Delivered',
+  ctEvent:'Rating Submitted',
+  ctProps:{rating:'{{rating}}',feedback:'{{feedback}}'},
+  h:440, mh:600,
+  html: BASE + CT_BRIDGE.replace('@READYSCRIPT@','') + `
+<style>
+.rc{background:#13161e;border-radius:22px;max-width:345px;width:100%;padding:26px;border:1px solid rgba(255,255,255,.07);text-align:center;animation:popIn .45s cubic-bezier(.34,1.6,.64,1)}
+@keyframes popIn{from{opacity:0;transform:scale(.86)}to{opacity:1;transform:none}}
+.app-ico{width:60px;height:60px;border-radius:15px;background:linear-gradient(135deg,#635bff,#8a84ff);display:flex;align-items:center;justify-content:center;font-size:26px;margin:0 auto 14px;box-shadow:0 8px 20px rgba(99,91,255,.35)}
+h4{font-size:17px;font-weight:700;color:#e4e8f5;margin-bottom:5px}
+.rdesc{font-size:12px;color:#4e5470;line-height:1.5;margin-bottom:18px}
+.mood{font-size:38px;min-height:46px;margin-bottom:14px;transition:.3s;line-height:1}
+.stars3{display:flex;justify-content:center;gap:6px;margin-bottom:18px}
+.sb{background:transparent;border:none;font-size:30px;cursor:pointer;transition:.2s;filter:grayscale(1);opacity:.4;padding:2px}
+.sb.a{filter:none;opacity:1;transform:scale(1.15);animation:starPop .18s ease}
+@keyframes starPop{0%{transform:scale(1.5)}100%{transform:scale(1.15)}}
+.fba{display:none;margin-bottom:14px}
+.fba.show{display:block}
+textarea{width:100%;background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.1);border-radius:9px;padding:10px;color:#e4e8f5;font-family:inherit;font-size:12px;resize:none;height:68px;outline:none;transition:.2s}
+textarea:focus{border-color:rgba(99,91,255,.5)}
+textarea::placeholder{color:#2e3455}
+.btn-sub{width:100%;background:#635bff;color:#fff;border:none;border-radius:12px;padding:12px;font-size:13px;font-weight:700;cursor:pointer;font-family:inherit;margin-bottom:8px;transition:.2s}
+.btn-sub:hover{background:#5046e5}
+.btn-sub:disabled{opacity:.35;cursor:not-allowed}
+.btn-skip3{background:transparent;border:none;color:#4e5470;font-size:11px;cursor:pointer;font-family:inherit}
+.ty{display:none;padding:8px 0}
+.ty.show{display:block}
+</style>
+<div class="rc inapp-root">
+  <div class="app-ico">⭐</div>
+  <h4>How was your experience?</h4>
+  <p class="rdesc">Rate us — it takes 10 seconds and helps us improve!</p>
+  <div class="mood" id="mood">🤩</div>
+  <div class="stars3" id="srow">
+    <button class="sb" onclick="rate(1)">★</button><button class="sb" onclick="rate(2)">★</button>
+    <button class="sb" onclick="rate(3)">★</button><button class="sb" onclick="rate(4)">★</button>
+    <button class="sb a" onclick="rate(5)">★</button>
+  </div>
+  <div class="fba" id="fba"><textarea id="fb" placeholder="Tell us more... (optional)"></textarea></div>
+  <button class="btn-sub" id="sub" onclick="doSub()">Submit Rating</button>
+  <button class="btn-skip3" onclick="CT.pushEvent('Rating Skipped');CT.dismiss()">Skip for now</button>
+  <div class="ty" id="ty"><div style="font-size:40px;margin-bottom:10px">🎉</div><h4>Thanks for the feedback!</h4><p style="font-size:12px;color:#4e5470;margin-top:6px">Helping us improve your experience.</p></div>
+</div>
+<script>
+const moods=['😤','😕','😐','😊','🤩'];
+let cur=5;
+document.querySelectorAll('.sb').forEach((b,i)=>b.classList.toggle('a',i<5));
+function rate(v){
+  cur=v;
+  document.querySelectorAll('.sb').forEach((b,i)=>b.classList.toggle('a',i<v));
+  document.getElementById('mood').textContent=moods[v-1];
+  document.getElementById('fba').classList.toggle('show',v<=3);
+}
+function doSub(){
+  const fb=document.getElementById('fb').value;
+  CT.pushEvent('Rating Submitted',{rating:cur,feedback:fb,source:'inapp'});
+  ['#srow','#fba','#sub','.btn-skip3','#mood'].forEach(s=>{const e=document.querySelector(s);if(e)e.style.display='none';});
+  document.getElementById('ty').classList.add('show');
+}
+<\/script>`,
+  css:`@keyframes popIn {\n  from { opacity:0; transform: scale(.86); }\n  to   { opacity:1; transform: none; }\n}`,
+  js:`const moods = ['😤','😕','😐','😊','🤩'];\nlet cur = 5;\nfunction rate(v) {\n  cur = v;\n  document.querySelectorAll('.sb').forEach((b,i) => b.classList.toggle('a', i < v));\n  document.getElementById('mood').textContent = moods[v-1];\n}\nfunction doSub() {\n  CT.pushEvent('Rating Submitted', { rating: cur });\n  CT.dismiss();\n}`
+};
+
+/* ====================================================
+   17. ENGAGEMENT — PUSH OPT-IN
+   ==================================================== */
+T['eg-push'] = {
+  title:'Push Notification Opt-In',
+  desc:'Value-first push permission request. Uses window.CleverTap.promptPushPermission() for native Android prompt.',
+  tags:['Engagement','Push','CleverTap Native'],
+  trigger:'App Launched',
+  ctEvent:'Push Permission Granted',
+  ctProps:{source:'inapp_push_optin'},
+  h:520, mh:720,
+  html: BASE + CT_BRIDGE.replace('@READYSCRIPT@','') + `
+<style>
+.pc{background:#13161e;border-radius:22px;max-width:355px;width:100%;padding:26px;border:1px solid rgba(255,255,255,.07);text-align:center;position:relative;overflow:hidden;animation:fadeUp .4s ease}
+@keyframes fadeUp{from{opacity:0;transform:translateY(22px)}to{opacity:1;transform:none}}
+.bell-wrap{width:68px;height:68px;background:linear-gradient(135deg,rgba(99,91,255,.15),rgba(99,91,255,.05));border:1px solid rgba(99,91,255,.2);border-radius:50%;display:flex;align-items:center;justify-content:center;margin:0 auto 16px;position:relative;animation:bellRing .8s ease .5s}
+@keyframes bellRing{0%,100%{transform:rotate(0)}25%{transform:rotate(12deg)}75%{transform:rotate(-12deg)}}
+.bell-txt{font-size:26px}
+.nb2{position:absolute;top:2px;right:2px;width:17px;height:17px;background:#ef4444;border-radius:50%;border:2px solid #13161e;display:flex;align-items:center;justify-content:center;font-size:8px;color:#fff;font-weight:700}
+h4b{font-size:17px;font-weight:700;color:#e4e8f5;margin-bottom:7px;display:block}
+.pdesc{font-size:12px;color:#4e5470;line-height:1.6;margin-bottom:18px}
+.perks2{display:grid;grid-template-columns:1fr 1fr;gap:7px;margin-bottom:18px;text-align:left}
+.pk{background:rgba(255,255,255,.03);border:1px solid rgba(255,255,255,.06);border-radius:9px;padding:10px;display:flex;align-items:flex-start;gap:7px}
+.pk-e{font-size:14px}
+.pk-t{font-size:11px;font-weight:600;color:#c4cadf;display:block;margin-bottom:2px}
+.pk-s{font-size:10px;color:#4e5470;line-height:1.3}
+.notif-prev{background:#1a1d2e;border:1px solid rgba(255,255,255,.08);border-radius:9px;padding:11px;margin-bottom:18px;display:flex;align-items:center;gap:9px;text-align:left}
+.np-ico{width:30px;height:30px;background:linear-gradient(135deg,#635bff,#8a84ff);border-radius:7px;display:flex;align-items:center;justify-content:center;font-size:14px}
+.np-t{font-size:11px;font-weight:600;color:#e4e8f5;margin-bottom:1px}
+.np-b{font-size:10px;color:#4e5470}
+.np-time{margin-left:auto;font-size:9px;color:#2e3455}
+.btn-allow{width:100%;background:linear-gradient(135deg,#635bff,#8a84ff);color:#fff;border:none;border-radius:12px;padding:13px;font-size:13px;font-weight:700;cursor:pointer;font-family:inherit;margin-bottom:9px;transition:.2s}
+.btn-allow:hover{transform:translateY(-1px);box-shadow:0 8px 20px rgba(99,91,255,.4)}
+.btn-deny2{width:100%;background:transparent;color:#4e5470;border:1px solid rgba(255,255,255,.07);border-radius:12px;padding:11px;font-size:12px;cursor:pointer;font-family:inherit;transition:.2s}
+.trust2{display:flex;align-items:center;justify-content:center;gap:5px;margin-top:11px;font-size:10px;color:#2e3455}
+</style>
+<div class="pc inapp-root">
+  <div class="bell-wrap"><span class="bell-txt">🔔</span><div class="nb2">3</div></div>
+  <h4b>Stay in the Loop</h4b>
+  <p class="pdesc">Enable notifications for personalized picks, live alerts &amp; exclusive deals — always relevant, never spammy.</p>
+  <div class="perks2">
+    <div class="pk"><span class="pk-e">🎬</span><div><span class="pk-t">New Releases</span><span class="pk-s">First to know</span></div></div>
+    <div class="pk"><span class="pk-e">📡</span><div><span class="pk-t">Live Events</span><span class="pk-s">Matches &amp; premieres</span></div></div>
+    <div class="pk"><span class="pk-e">💰</span><div><span class="pk-t">Deals</span><span class="pk-s">Member-only offers</span></div></div>
+    <div class="pk"><span class="pk-e">⏸</span><div><span class="pk-t">Reminders</span><span class="pk-s">Resume watching</span></div></div>
+  </div>
+  <div class="notif-prev">
+    <div class="np-ico">⭐</div>
+    <div><div class="np-t">New arrival just for you 🔥</div><div class="np-b">Something you'll love is waiting!</div></div>
+    <span class="np-time">now</span>
+  </div>
+  <button class="btn-allow" onclick="doAllow()">🔔 Allow Notifications</button>
+  <button class="btn-deny2" onclick="CT.pushEvent('Push Permission Denied');CT.dismiss()">No thanks, I'll miss out</button>
+  <div class="trust2">🔒 No spam · Unsubscribe anytime</div>
+</div>
+<script>
+function doAllow(){
+  if(window.CleverTap){
+    window.CleverTap.promptPushPermission(true);
+  } else if(window.webkit&&window.webkit.messageHandlers&&window.webkit.messageHandlers.clevertap){
+    window.webkit.messageHandlers.clevertap.postMessage({action:'requestPushPermission'});
+  }
+  CT.pushEvent('Push Permission Granted',{source:'inapp_push_optin'});
+  CT.dismiss();
+}
+<\/script>`,
+  css:`@keyframes bellRing {\n  0%,100% { transform: rotate(0); }\n  25%     { transform: rotate(12deg); }\n  75%     { transform: rotate(-12deg); }\n}`,
+  js:`function doAllow() {\n  // Android: native push permission prompt\n  if (window.CleverTap) {\n    window.CleverTap.promptPushPermission(true);\n  }\n  // iOS: handled via webkit message handler\n  else if (window.webkit?.messageHandlers?.clevertap) {\n    window.webkit.messageHandlers.clevertap.postMessage({\n      action: 'requestPushPermission'\n    });\n  }\n  CT.pushEvent('Push Permission Granted', { source: 'inapp' });\n  CT.dismiss();\n}`
+};
+
+/* ====================================================
+   18. ENGAGEMENT — NPS SURVEY
+   ==================================================== */
+T['eg-survey'] = {
+  title:'NPS Quick Survey',
+  desc:'3-step NPS survey with progress bar, conditional follow-up, and multi-choice options.',
+  tags:['Engagement','Survey','Multi-step'],
+  trigger:'Order Delivered',
+  ctEvent:'NPS Survey Submitted',
+  ctProps:{nps_score:'{{nps}}',category:'{{category}}'},
+  h:460, mh:640,
+  html: BASE + CT_BRIDGE.replace('@READYSCRIPT@','') + `
+<style>
+.sv{background:#13161e;border-radius:22px;max-width:375px;width:100%;border:1px solid rgba(255,255,255,.07);overflow:hidden;animation:slideUp .4s ease}
+@keyframes slideUp{from{opacity:0;transform:translateY(26px)}to{opacity:1;transform:none}}
+.sv-top{padding:18px;border-bottom:1px solid rgba(255,255,255,.06);display:flex;align-items:center;gap:11px}
+.sv-ico{width:36px;height:36px;background:rgba(99,91,255,.15);border-radius:9px;display:flex;align-items:center;justify-content:center;font-size:16px}
+.sv-t{font-size:13px;font-weight:700;color:#e4e8f5}
+.sv-m{font-size:10px;color:#4e5470}
+.prog{height:2px;background:rgba(255,255,255,.06)}
+.pf{height:100%;background:#635bff;transition:.4s}
+.sv-body{padding:20px}
+.step{display:none}.step.a{display:block}
+.ql{font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.1em;color:#635bff;margin-bottom:7px}
+.qt{font-size:14px;font-weight:600;color:#e4e8f5;line-height:1.4;margin-bottom:16px}
+.nps2{display:flex;gap:4px;justify-content:center;flex-wrap:wrap;margin-bottom:7px}
+.nps2 label{cursor:pointer}
+.nps2 input{display:none}
+.nb{width:28px;height:28px;border-radius:6px;display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:700;color:#4e5470;background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.07);cursor:pointer;transition:.15s}
+.nps2 input:checked+.nb{background:#635bff;color:#fff;border-color:#635bff}
+.nps2 label:hover .nb{background:rgba(99,91,255,.2);color:#e4e8f5}
+.nls{display:flex;justify-content:space-between;font-size:9px;color:#4e5470;margin-bottom:16px}
+.choices{display:flex;flex-direction:column;gap:7px;margin-bottom:16px}
+.ch2{display:flex;align-items:center;gap:9px;padding:10px 12px;background:rgba(255,255,255,.03);border:1px solid rgba(255,255,255,.06);border-radius:9px;cursor:pointer;transition:.15s;font-size:12px;color:#8b92b0}
+.ch2:hover{background:rgba(99,91,255,.08);border-color:rgba(99,91,255,.25);color:#e4e8f5}
+.ch2 input{accent-color:#635bff}
+textarea{width:100%;background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.09);border-radius:9px;padding:10px;color:#e4e8f5;font-family:inherit;font-size:12px;resize:none;height:76px;outline:none;margin-bottom:16px}
+textarea::placeholder{color:#2e3455}
+.brow{display:flex;justify-content:flex-end;gap:7px}
+.bn{background:#635bff;color:#fff;border:none;border-radius:9px;padding:9px 20px;font-size:12px;font-weight:700;cursor:pointer;font-family:inherit;transition:.2s}
+.bn:hover{background:#5046e5}
+.bb{background:rgba(255,255,255,.06);color:#8b92b0;border:1px solid rgba(255,255,255,.08);border-radius:9px;padding:9px 14px;font-size:12px;cursor:pointer;font-family:inherit}
+.done2{text-align:center;padding:8px 0}
+.done2 .b2{font-size:42px;margin-bottom:12px}
+</style>
+<div class="sv inapp-root">
+  <div class="sv-top"><div class="sv-ico">📋</div><div><div class="sv-t">Quick Feedback</div><div class="sv-m">3 questions · 1 min</div></div></div>
+  <div class="prog"><div class="pf" id="pg" style="width:33%"></div></div>
+  <div class="sv-body">
+    <div class="step a" id="s1">
+      <div class="ql">Question 1 of 3</div>
+      <div class="qt">How likely are you to recommend us?</div>
+      <div class="nps2"><label><input type="radio" name="nps"><div class="nb">0</div></label><label><input type="radio" name="nps"><div class="nb">1</div></label><label><input type="radio" name="nps"><div class="nb">2</div></label><label><input type="radio" name="nps"><div class="nb">3</div></label><label><input type="radio" name="nps"><div class="nb">4</div></label><label><input type="radio" name="nps"><div class="nb">5</div></label><label><input type="radio" name="nps"><div class="nb">6</div></label><label><input type="radio" name="nps"><div class="nb">7</div></label><label><input type="radio" name="nps"><div class="nb">8</div></label><label><input type="radio" name="nps"><div class="nb">9</div></label><label><input type="radio" name="nps"><div class="nb">10</div></label></div>
+      <div class="nls"><span>Not likely</span><span>Very likely</span></div>
+      <div class="brow"><button class="bn" onclick="go(2)">Next →</button></div>
+    </div>
+    <div class="step" id="s2">
+      <div class="ql">Question 2 of 3</div>
+      <div class="qt">What do you use the app for most?</div>
+      <div class="choices">
+        <label class="ch2"><input type="radio" name="use">Streaming &amp; Entertainment</label>
+        <label class="ch2"><input type="radio" name="use">Shopping &amp; Deals</label>
+        <label class="ch2"><input type="radio" name="use">Tracking Orders</label>
+        <label class="ch2"><input type="radio" name="use">Discovering New Content</label>
+      </div>
+      <div class="brow"><button class="bb" onclick="go(1)">← Back</button><button class="bn" onclick="go(3)">Next →</button></div>
+    </div>
+    <div class="step" id="s3">
+      <div class="ql">Question 3 of 3</div>
+      <div class="qt">Any suggestions to improve your experience?</div>
+      <textarea id="fb2" placeholder="Type your thoughts..."></textarea>
+      <div class="brow"><button class="bb" onclick="go(2)">← Back</button><button class="bn" onclick="doSurvey()">Submit ✓</button></div>
+    </div>
+    <div class="step" id="s4">
+      <div class="done2"><div class="b2">🙌</div><div style="font-size:15px;font-weight:700;color:#e4e8f5;margin-bottom:7px">Thanks so much!</div><div style="font-size:12px;color:#4e5470;line-height:1.6">Your feedback has been submitted and will help us improve.</div></div>
+    </div>
+  </div>
+</div>
+<script>
+const pcts=[33,66,100,100];
+function go(n){document.querySelectorAll('.step').forEach(s=>s.classList.remove('a'));document.getElementById('s'+n).classList.add('a');document.getElementById('pg').style.width=pcts[n-1]+'%';}
+function doSurvey(){
+  const nps=document.querySelector('input[name=nps]:checked')?.value||'';
+  const cat=document.querySelector('input[name=use]:checked')?.nextSibling?.textContent?.trim()||'';
+  CT.pushEvent('NPS Survey Submitted',{nps_score:nps,category:cat});
+  go(4);
+}
+<\/script>`,
+  css:`/* Multi-step survey with progress bar */`,
+  js:`const pcts = [33, 66, 100, 100];\nfunction go(n) {\n  document.querySelectorAll('.step').forEach(s => s.classList.remove('a'));\n  document.getElementById('s'+n).classList.add('a');\n  document.getElementById('pg').style.width = pcts[n-1] + '%';\n}\nfunction doSurvey() {\n  const nps = document.querySelector('input[name=nps]:checked')?.value || '';\n  CT.pushEvent('NPS Survey Submitted', { nps_score: nps });\n  go(4);\n}`
+};
+
+/* -- Templates: General / Gamification -- */
+T['gen-scratch'] = {
+  title: 'Scratch Card',
+  desc: 'Gamified scratch-to-reveal reward card. Drives engagement with lottery-style interaction.',
+  tags: ['General', 'Gamification', 'Animated'],
+  trigger: 'App Launched',
+  ctEvent: 'Scratch Card Revealed',
+  ctProps: { reward: '{{reward_value}}', campaign_id: '{{campaign_id}}', revealed: 'true' },
+  h: 500, mh: 680,
+  html: `<meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+body{background:#09090f;font-family:'Segoe UI',sans-serif;display:flex;align-items:center;justify-content:center;min-height:100vh;padding:16px}
+.card{background:linear-gradient(135deg,#13161e,#1a1e2e);border:1px solid rgba(255,255,255,.08);border-radius:20px;padding:24px;max-width:340px;width:100%;text-align:center;animation:popIn .45s cubic-bezier(.34,1.5,.64,1)}
+@keyframes popIn{from{opacity:0;transform:scale(.85)}to{opacity:1;transform:none}}
+.badge{display:inline-flex;align-items:center;gap:5px;background:rgba(245,158,11,.12);color:#f59e0b;font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.1em;padding:3px 10px;border-radius:20px;border:1px solid rgba(245,158,11,.25);margin-bottom:14px}
+h3{font-size:17px;font-weight:700;color:#e4e8f5;margin-bottom:6px}
+.sub{font-size:12px;color:#4e5470;margin-bottom:20px;line-height:1.5}
+.scratch-wrap{position:relative;width:240px;height:140px;margin:0 auto 20px;border-radius:14px;overflow:hidden;cursor:crosshair}
+.scratch-reveal{position:absolute;inset:0;background:linear-gradient(135deg,#1e2a1e,#0a2a0a);display:flex;flex-direction:column;align-items:center;justify-content:center;border-radius:14px}
+.reward-emoji{font-size:40px;margin-bottom:6px}
+.reward-text{font-size:22px;font-weight:800;color:#22c87a}
+.reward-sub{font-size:11px;color:#4e5470;margin-top:4px}
+canvas{position:absolute;inset:0;border-radius:14px;touch-action:none}
+.scratch-hint{font-size:11px;color:#4e5470;margin-bottom:16px;display:flex;align-items:center;justify-content:center;gap:5px}
+.progress-bar{height:4px;background:rgba(255,255,255,.06);border-radius:4px;overflow:hidden;margin-bottom:16px}
+.progress-fill{height:100%;background:linear-gradient(90deg,#635bff,#22c87a);border-radius:4px;width:0;transition:.3s}
+.btn-claim{width:100%;background:linear-gradient(135deg,#22c87a,#16a372);color:#064e3b;border:none;border-radius:11px;padding:13px;font-size:13px;font-weight:700;cursor:pointer;font-family:inherit;transition:.2s;display:none}
+.btn-claim.show{display:block}
+.btn-claim:hover{transform:translateY(-1px);box-shadow:0 8px 20px rgba(34,200,122,.35)}
+.btn-skip{width:100%;background:transparent;border:none;color:#4e5470;font-size:11px;padding:8px;cursor:pointer;font-family:inherit;margin-top:6px}
+</style>
+<div class="card">
+  <div class="badge">🎁 Special Offer</div>
+  <h3>You have a reward!</h3>
+  <p class="sub">Scratch to reveal your exclusive prize</p>
+  <div class="scratch-wrap">
+    <div class="scratch-reveal">
+      <div class="reward-emoji">🎉</div>
+      <div class="reward-text">₹500 OFF</div>
+      <div class="reward-sub">Use code SAVE500</div>
+    </div>
+    <canvas id="sc" width="240" height="140"></canvas>
+  </div>
+  <div class="scratch-hint">✏️ Scratch the card above</div>
+  <div class="progress-bar"><div class="progress-fill" id="pf"></div></div>
+  <button class="btn-claim" id="claimBtn" onclick="CT.pushEvent('Scratch Card Revealed',{reward:'₹500 OFF',campaign_id:'sc_001'});CT.dismiss()">🎉 Claim ₹500 OFF</button>
+  <button class="btn-skip" onclick="CT.pushEvent('Scratch Card Dismissed');CT.dismiss()">Not interested</button>
+</div>
+<script>
+const canvas=document.getElementById('sc');
+const ctx=canvas.getContext('2d');
+let scratching=false,revealed=0;
+// Silver scratch surface
+const grad=ctx.createLinearGradient(0,0,240,140);
+grad.addColorStop(0,'#b8c0cc');grad.addColorStop(.5,'#d4dce8');grad.addColorStop(1,'#a8b0bc');
+ctx.fillStyle=grad;ctx.fillRect(0,0,240,140);
+// Pattern overlay
+ctx.fillStyle='rgba(0,0,0,.08)';
+for(let i=0;i<240;i+=8)for(let j=0;j<140;j+=8){if((i+j)%16===0)ctx.fillRect(i,j,4,4);}
+// Text on scratch surface
+ctx.fillStyle='rgba(80,90,110,.6)';ctx.font='bold 13px Segoe UI';ctx.textAlign='center';
+ctx.fillText('SCRATCH HERE',120,65);ctx.font='11px Segoe UI';ctx.fillText('✦  ✦  ✦',120,85);
+function getPos(e){const r=canvas.getBoundingClientRect();const t=e.touches?e.touches[0]:e;return{x:t.clientX-r.left,y:t.clientY-r.top};}
+function scratch(x,y){ctx.globalCompositeOperation='destination-out';ctx.beginPath();ctx.arc(x,y,22,0,Math.PI*2);ctx.fill();}
+function calcRevealed(){const d=ctx.getImageData(0,0,240,140).data;let t=0;for(let i=3;i<d.length;i+=4)if(d[i]<128)t++;return Math.round(t/(240*140)*100);}
+canvas.addEventListener('mousedown',e=>{scratching=true;const p=getPos(e);scratch(p.x,p.y);});
+canvas.addEventListener('mousemove',e=>{if(!scratching)return;const p=getPos(e);scratch(p.x,p.y);revealed=calcRevealed();document.getElementById('pf').style.width=Math.min(revealed,100)+'%';if(revealed>60){document.getElementById('claimBtn').classList.add('show');document.querySelector('.scratch-hint').style.display='none';}});
+canvas.addEventListener('mouseup',()=>scratching=false);
+canvas.addEventListener('touchstart',e=>{e.preventDefault();scratching=true;const p=getPos(e);scratch(p.x,p.y);},{passive:false});
+canvas.addEventListener('touchmove',e=>{e.preventDefault();if(!scratching)return;const p=getPos(e);scratch(p.x,p.y);revealed=calcRevealed();document.getElementById('pf').style.width=Math.min(revealed,100)+'%';if(revealed>60){document.getElementById('claimBtn').classList.add('show');document.querySelector('.scratch-hint').style.display='none';}},{passive:false});
+canvas.addEventListener('touchend',()=>scratching=false);
+<\/script>`,
+  css: `/* Scratch card — silver overlay cleared by canvas compositing */`,
+  js: `// Scratch card reveal tracking\ncanvas.addEventListener('mousemove', e => {\n  if (!scratching) return;\n  scratch(getPos(e));\n  if (calcRevealed() > 60) {\n    CT.pushEvent('Scratch Card Revealed', { reward: '{{reward_value}}' });\n  }\n});`
+};
+
+/* ── SPIN THE WHEEL ── */
+T['gen-spin'] = {
+  title: 'Spin the Wheel',
+  desc: 'Gamified prize wheel with CSS animation. Reward segment determined server-side via CleverTap variables.',
+  tags: ['General', 'Gamification', 'Interactive'],
+  trigger: 'Purchase Completed',
+  ctEvent: 'Spin Wheel Completed',
+  ctProps: { prize: '{{prize_label}}', segment: '{{winning_segment}}', campaign_id: 'wheel_001' },
+  h: 560, mh: 740,
+  html: `<meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+body{background:#09090f;font-family:'Segoe UI',sans-serif;display:flex;align-items:center;justify-content:center;min-height:100vh;padding:16px}
+.card{background:linear-gradient(135deg,#13161e,#1a1e2e);border:1px solid rgba(255,255,255,.08);border-radius:20px;padding:22px;max-width:350px;width:100%;text-align:center;animation:zoomIn .45s cubic-bezier(.34,1.5,.64,1)}
+@keyframes zoomIn{from{opacity:0;transform:scale(.88)}to{opacity:1;transform:none}}
+.badge{display:inline-flex;align-items:center;gap:5px;background:rgba(99,91,255,.12);color:#8a84ff;font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.1em;padding:3px 10px;border-radius:20px;border:1px solid rgba(99,91,255,.25);margin-bottom:12px}
+h3{font-size:17px;font-weight:700;color:#e4e8f5;margin-bottom:5px}
+.sub{font-size:12px;color:#4e5470;margin-bottom:18px}
+.wheel-wrap{position:relative;width:240px;height:240px;margin:0 auto 16px}
+.pointer{position:absolute;top:-14px;left:50%;transform:translateX(-50%);width:0;height:0;border-left:12px solid transparent;border-right:12px solid transparent;border-top:28px solid #635bff;z-index:10;filter:drop-shadow(0 2px 6px rgba(99,91,255,.6))}
+canvas#wheel{border-radius:50%;display:block;box-shadow:0 0 0 4px rgba(99,91,255,.25),0 0 30px rgba(99,91,255,.15)}
+.center-dot{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);width:22px;height:22px;background:linear-gradient(135deg,#635bff,#8a84ff);border-radius:50%;border:3px solid #13161e;z-index:5}
+.result-msg{min-height:36px;font-size:14px;font-weight:600;color:#22c87a;margin-bottom:14px;display:flex;align-items:center;justify-content:center;gap:6px}
+.btn-spin{width:100%;background:linear-gradient(135deg,#635bff,#8a84ff);color:#fff;border:none;border-radius:11px;padding:13px;font-size:14px;font-weight:700;cursor:pointer;font-family:inherit;transition:.2s;letter-spacing:.02em}
+.btn-spin:hover{transform:translateY(-1px);box-shadow:0 8px 20px rgba(99,91,255,.4)}
+.btn-spin:disabled{opacity:.45;cursor:not-allowed;transform:none}
+.btn-claim2{width:100%;background:linear-gradient(135deg,#22c87a,#16a372);color:#064e3b;border:none;border-radius:11px;padding:13px;font-size:14px;font-weight:700;cursor:pointer;font-family:inherit;transition:.2s;display:none;margin-top:8px}
+.btn-claim2.show{display:block}
+.btn-claim2:hover{transform:translateY(-1px);box-shadow:0 8px 20px rgba(34,200,122,.35)}
+</style>
+<div class="card">
+  <div class="badge">🎡 Lucky Spin</div>
+  <h3>Spin &amp; Win!</h3>
+  <p class="sub">One free spin — see what prize awaits you!</p>
+  <div class="wheel-wrap">
+    <div class="pointer"></div>
+    <canvas id="wheel" width="240" height="240"></canvas>
+    <div class="center-dot"></div>
+  </div>
+  <div class="result-msg" id="result-msg">🎯 Tap spin to try your luck!</div>
+  <button class="btn-spin" id="spinBtn" onclick="spinWheel()">🎡 SPIN NOW</button>
+  <button class="btn-claim2" id="claimBtn2" onclick="claimPrize()">🎉 Claim Prize</button>
+</div>
+<script>
+const segments=[
+  {label:'₹100 OFF',color:'#635bff'},{label:'Try Again',color:'#2d2b55'},
+  {label:'₹500 OFF',color:'#22c87a'},{label:'Free Ship',color:'#1a3a2a'},
+  {label:'₹250 OFF',color:'#8b85ff'},{label:'2x Points',color:'#1e3a5f'},
+  {label:'₹50 OFF',color:'#4a2d7a'},{label:'Mystery',color:'#0a2a1a'}
+];
+const canvas=document.getElementById('wheel');
+const ctx=canvas.getContext('2d');
+const arc=2*Math.PI/segments.length;
+let spinning=false,curAngle=0,prize='';
+function drawWheel(angle){
+  ctx.clearRect(0,0,240,240);
+  segments.forEach((seg,i)=>{
+    const start=angle+i*arc,end=start+arc;
+    ctx.beginPath();ctx.moveTo(120,120);ctx.arc(120,120,115,start,end);ctx.closePath();
+    ctx.fillStyle=seg.color;ctx.fill();
+    ctx.strokeStyle='rgba(255,255,255,.08)';ctx.lineWidth=1;ctx.stroke();
+    ctx.save();ctx.translate(120,120);ctx.rotate(start+arc/2);
+    ctx.textAlign='right';ctx.fillStyle='#e4e8f5';ctx.font='bold 11px Segoe UI';
+    ctx.fillText(seg.label,105,4);ctx.restore();
+  });
+}
+drawWheel(0);
+function spinWheel(){
+  if(spinning)return;
+  spinning=true;
+  document.getElementById('spinBtn').disabled=true;
+  document.getElementById('result-msg').textContent='🌀 Spinning...';
+  const extra=Math.random()*2*Math.PI;
+  const totalSpin=4*2*Math.PI+extra;
+  const duration=3500;
+  const start=performance.now();
+  const startAngle=curAngle;
+  function anim(now){
+    const elapsed=now-start;
+    const progress=Math.min(elapsed/duration,1);
+    const ease=1-Math.pow(1-progress,4);
+    curAngle=startAngle+totalSpin*ease;
+    drawWheel(curAngle);
+    if(progress<1){requestAnimationFrame(anim);}
+    else{
+      const finalAngle=((curAngle%(2*Math.PI))+2*Math.PI)%(2*Math.PI);
+      const ptr=(2*Math.PI-finalAngle+2*Math.PI)%(2*Math.PI);
+      const idx=Math.floor(ptr/arc)%segments.length;
+      prize=segments[idx].label;
+      spinning=false;
+      document.getElementById('result-msg').innerHTML='🎉 You won: <strong style="color:#22c87a">'+prize+'</strong>!';
+      if(prize!=='Try Again'){document.getElementById('claimBtn2').classList.add('show');}
+      else{document.getElementById('spinBtn').disabled=false;document.getElementById('spinBtn').textContent='Try Again';}
+      CT.pushEvent('Spin Wheel Completed',{prize:prize,campaign_id:'wheel_001'});
+    }
+  }
+  requestAnimationFrame(anim);
+}
+function claimPrize(){CT.pushEvent('Spin Prize Claimed',{prize:prize});CT.dismiss();}
+<\/script>`,
+  css: `/* Spin wheel uses canvas arc drawing */`,
+  js: `function spinWheel() {\n  // ... animate wheel ...\n  CT.pushEvent('Spin Wheel Completed', { prize: winningSegment, campaign_id: '{{campaign_id}}' });\n}\nfunction claimPrize() {\n  CT.pushEvent('Spin Prize Claimed', { prize: winningSegment });\n  CT.dismiss();\n}`
+};
+
+/* ── PIP LANDSCAPE ── */
+T['gen-pip-land'] = {
+  title: 'PiP Banner — Landscape',
+  desc: 'Wide horizontal PiP overlay for tablet / landscape orientation. Video thumbnail + CTA.',
+  tags: ['General', 'PiP', 'Landscape'],
+  trigger: 'Content Viewed',
+  ctEvent: 'PiP CTA Clicked',
+  ctProps: { orientation: 'landscape', content_id: '{{content_id}}', cta: 'Watch Now' },
+  h: 380, mh: 500,
+  html: `<meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+body{background:#09090f;font-family:'Segoe UI',sans-serif;display:flex;align-items:center;justify-content:center;min-height:100vh;padding:20px}
+.pip-land{background:linear-gradient(135deg,#12141f,#1a1c2e);border:1px solid rgba(255,255,255,.08);border-radius:16px;display:flex;gap:0;overflow:hidden;max-width:520px;width:100%;animation:slideUp .45s cubic-bezier(.34,1.4,.64,1);position:relative}
+@keyframes slideUp{from{opacity:0;transform:translateY(40px)}to{opacity:1;transform:none}}
+.video-side{width:180px;flex-shrink:0;background:linear-gradient(135deg,#1e1b4b,#2d2060);display:flex;align-items:center;justify-content:center;position:relative;overflow:hidden;min-height:130px}
+.video-side video{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+.play-overlay2{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;background:rgba(0,0,0,.3);z-index:1}
+.play-btn2{width:40px;height:40px;background:rgba(255,255,255,.92);border-radius:50%;display:flex;align-items:center;justify-content:center}
+.play-btn2::after{content:'';border-left:14px solid #1a1a2e;border-top:8px solid transparent;border-bottom:8px solid transparent;margin-left:3px}
+.content-side{flex:1;padding:16px 16px 16px 18px;display:flex;flex-direction:column;justify-content:center}
+.live-tag2{display:inline-flex;align-items:center;gap:4px;background:rgba(239,68,68,.14);color:#ef4444;font-size:9px;font-weight:700;text-transform:uppercase;letter-spacing:.08em;padding:2px 7px;border-radius:20px;margin-bottom:7px;border:1px solid rgba(239,68,68,.28);width:fit-content}
+.live-tag2::before{content:'';width:5px;height:5px;border-radius:50%;background:#ef4444;animation:blink 1.2s infinite}
+@keyframes blink{0%,100%{opacity:1}50%{opacity:.25}}
+.show-title{font-size:15px;font-weight:700;color:#e4e8f5;margin-bottom:3px;line-height:1.3}
+.show-meta{font-size:11px;color:#4e5470;margin-bottom:10px}
+.prog-bar{height:3px;background:rgba(255,255,255,.1);border-radius:3px;margin-bottom:12px}
+.prog-fill2{height:100%;width:38%;background:linear-gradient(90deg,#635bff,#8a84ff);border-radius:3px}
+.btns{display:flex;gap:8px}
+.btn-watch2{background:#635bff;color:#fff;border:none;border-radius:8px;padding:8px 16px;font-size:12px;font-weight:600;cursor:pointer;font-family:inherit;transition:.2s}
+.btn-watch2:hover{background:#5046e5}
+.btn-dismiss2{background:transparent;border:1px solid rgba(255,255,255,.12);color:#8b92b0;border-radius:8px;padding:8px 12px;font-size:12px;cursor:pointer;font-family:inherit}
+.x3{position:absolute;top:8px;right:8px;background:rgba(255,255,255,.06);border:none;color:#4e5470;width:20px;height:20px;border-radius:50%;cursor:pointer;font-size:11px;display:flex;align-items:center;justify-content:center}
+</style>
+<div class="pip-land">
+  <button class="x3" onclick="CT.dismiss()">✕</button>
+  <div class="video-side">
+    <video autoplay muted loop playsinline style="width:100%;height:100%;object-fit:cover">
+      <source src="https://www.w3schools.com/html/mov_bbb.mp4" type="video/mp4">
+    </video>
+    <div class="play-overlay2"><div class="play-btn2"></div></div>
+  </div>
+  <div class="content-side">
+    <div class="live-tag2">Watching</div>
+    <div class="show-title">The Adventures — S2·E5</div>
+    <div class="show-meta">38 min remaining · HD</div>
+    <div class="prog-bar"><div class="prog-fill2"></div></div>
+    <div class="btns">
+      <button class="btn-watch2" onclick="CT.pushEvent('PiP CTA Clicked',{orientation:'landscape',cta:'Resume'});CT.dismiss()">▶ Resume</button>
+      <button class="btn-dismiss2" onclick="CT.dismiss()">Dismiss</button>
+    </div>
+  </div>
+</div>`,
+  css: `/* Landscape PiP — flex row layout */`,
+  js: `document.querySelector('.btn-watch2').onclick = () => {\n  CT.pushEvent('PiP CTA Clicked', { orientation: 'landscape', content_id: '{{content_id}}', cta: 'Resume' });\n  CT.dismiss();\n};`
+};
+
+/* ── PIP PORTRAIT ── */
+T['gen-pip-port'] = {
+  title: 'PiP Banner — Portrait',
+  desc: 'Compact vertical PiP card for mobile portrait mode. Minimal footprint, max impact.',
+  tags: ['General', 'PiP', 'Portrait'],
+  trigger: 'App Launched',
+  ctEvent: 'PiP CTA Clicked',
+  ctProps: { orientation: 'portrait', content_id: '{{content_id}}', position: 'bottom' },
+  h: 420, mh: 580,
+  html: `<meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+body{background:#09090f;font-family:'Segoe UI',sans-serif;display:flex;align-items:flex-end;justify-content:center;min-height:100vh;padding:16px}
+.pip-port{background:linear-gradient(135deg,#12141f,#1c1e30);border:1px solid rgba(255,255,255,.08);border-radius:20px;max-width:360px;width:100%;overflow:hidden;animation:slideFromBottom .45s cubic-bezier(.34,1.4,.64,1);position:relative}
+@keyframes slideFromBottom{from{opacity:0;transform:translateY(80px)}to{opacity:1;transform:none}}
+.thumb-port{height:160px;background:linear-gradient(135deg,#1e1b4b,#1e3060);position:relative;display:flex;align-items:center;justify-content:center;overflow:hidden}
+.thumb-port video{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+.thumb-overlay{position:absolute;inset:0;background:linear-gradient(to bottom,transparent 40%,rgba(0,0,0,.7) 100%)}
+.thumb-play{position:absolute;bottom:14px;left:16px;display:flex;align-items:center;gap:8px;z-index:1}
+.play-circle{width:34px;height:34px;background:rgba(255,255,255,.9);border-radius:50%;display:flex;align-items:center;justify-content:center;flex-shrink:0}
+.play-circle::after{content:'';border-left:11px solid #1a1a2e;border-top:6px solid transparent;border-bottom:6px solid transparent;margin-left:2px}
+.thumb-title{font-size:12px;font-weight:600;color:#fff;line-height:1.3}
+.thumb-meta{font-size:10px;color:rgba(255,255,255,.6);margin-top:1px}
+.prog-port{height:2px;background:rgba(255,255,255,.1)}
+.prog-port-fill{height:100%;width:45%;background:#635bff}
+.body-port{padding:14px 16px 16px}
+.ep-badge{font-size:9px;font-weight:700;text-transform:uppercase;letter-spacing:.08em;color:#8a84ff;margin-bottom:4px}
+.series-name{font-size:14px;font-weight:700;color:#e4e8f5;margin-bottom:2px}
+.series-meta{font-size:11px;color:#4e5470;margin-bottom:12px}
+.port-acts{display:flex;gap:8px}
+.btn-port-main{flex:1;background:#635bff;color:#fff;border:none;border-radius:9px;padding:11px;font-size:13px;font-weight:700;cursor:pointer;font-family:inherit;transition:.2s}
+.btn-port-main:hover{background:#5046e5;transform:translateY(-1px)}
+.btn-port-dismiss{background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.1);color:#8b92b0;border-radius:9px;padding:11px 14px;font-size:12px;cursor:pointer;font-family:inherit}
+.x4{position:absolute;top:8px;right:8px;background:rgba(0,0,0,.4);border:none;color:rgba(255,255,255,.7);width:22px;height:22px;border-radius:50%;cursor:pointer;font-size:11px;display:flex;align-items:center;justify-content:center;z-index:2;backdrop-filter:blur(4px)}
+</style>
+<div class="pip-port">
+  <button class="x4" onclick="CT.dismiss()">✕</button>
+  <div class="thumb-port">
+    <video autoplay muted loop playsinline>
+      <source src="https://www.w3schools.com/html/mov_bbb.mp4" type="video/mp4">
+    </video>
+    <div class="thumb-overlay"></div>
+    <div class="thumb-play">
+      <div class="play-circle"></div>
+      <div><div class="thumb-title">The Lost City</div><div class="thumb-meta">38 min remaining</div></div>
+    </div>
+  </div>
+  <div class="prog-port"><div class="prog-port-fill"></div></div>
+  <div class="body-port">
+    <div class="ep-badge">Continue Watching</div>
+    <div class="series-name">The Lost City</div>
+    <div class="series-meta">Season 1 · Episode 4 · HD</div>
+    <div class="port-acts">
+      <button class="btn-port-main" onclick="CT.pushEvent('PiP CTA Clicked',{orientation:'portrait',cta:'Resume'});CT.dismiss()">▶ Resume</button>
+      <button class="btn-port-dismiss" onclick="CT.dismiss()">✕</button>
+    </div>
+  </div>
+</div>`,
+  css: `@keyframes slideFromBottom {\n  from { opacity:0; transform: translateY(80px); }\n  to   { opacity:1; transform: none; }\n}`,
+  js: `document.querySelector('.btn-port-main').onclick = () => {\n  CT.pushEvent('PiP CTA Clicked', { orientation: 'portrait', content_id: '{{content_id}}' });\n  CT.dismiss();\n};`
+};
+
+/* ── CAROUSEL ── */
+T['gen-carousel'] = {
+  title: 'Carousel Banner',
+  desc: 'Multi-slide swipeable carousel InApp. Each slide has its own CTA and tracks individual clicks.',
+  tags: ['General', 'Carousel', 'Interactive'],
+  trigger: 'Home Screen Viewed',
+  ctEvent: 'Carousel Slide Clicked',
+  ctProps: { slide_index: '{{slide_index}}', slide_title: '{{slide_title}}', campaign_id: 'carousel_001' },
+  h: 460, mh: 620,
+  html: `<meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+body{background:#09090f;font-family:'Segoe UI',sans-serif;display:flex;align-items:center;justify-content:center;min-height:100vh;padding:16px}
+.carousel-wrap{background:#13161e;border:1px solid rgba(255,255,255,.08);border-radius:20px;max-width:370px;width:100%;overflow:hidden;animation:slideUp .45s cubic-bezier(.34,1.4,.64,1)}
+@keyframes slideUp{from{opacity:0;transform:translateY(30px)}to{opacity:1;transform:none}}
+.header{padding:14px 16px 0;display:flex;align-items:center;justify-content:space-between}
+.header-title{font-size:13px;font-weight:700;color:#e4e8f5}
+.header-dots{display:flex;gap:4px}
+.hdot{width:6px;height:6px;border-radius:50%;background:rgba(255,255,255,.2);transition:.3s;cursor:pointer}
+.hdot.on{background:#635bff;width:16px;border-radius:3px}
+.x5{background:rgba(255,255,255,.06);border:none;color:#4e5470;width:22px;height:22px;border-radius:50%;cursor:pointer;font-size:11px;display:flex;align-items:center;justify-content:center}
+.slides-viewport{overflow:hidden}
+.slides-track{display:flex;transition:transform .4s cubic-bezier(.4,0,.2,1)}
+.slide{min-width:100%;padding:14px 16px 18px}
+.slide-hero{height:140px;border-radius:12px;display:flex;align-items:center;justify-content:center;font-size:48px;margin-bottom:12px;position:relative;overflow:hidden}
+.slide-badge{position:absolute;top:8px;left:8px;font-size:9px;font-weight:700;text-transform:uppercase;letter-spacing:.08em;padding:2px 8px;border-radius:20px}
+.slide-title{font-size:15px;font-weight:700;color:#e4e8f5;margin-bottom:4px}
+.slide-desc{font-size:12px;color:#4e5470;line-height:1.5;margin-bottom:12px}
+.slide-btn{width:100%;border:none;border-radius:10px;padding:12px;font-size:13px;font-weight:700;cursor:pointer;font-family:inherit;transition:.2s}
+.slide-btn:hover{transform:translateY(-1px)}
+.nav-row{display:flex;align-items:center;justify-content:space-between;padding:0 16px 14px}
+.nav-btn2{background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.08);color:#8b92b0;border-radius:8px;padding:7px 14px;font-size:12px;cursor:pointer;font-family:inherit;transition:.2s}
+.nav-btn2:hover{background:rgba(255,255,255,.1);color:#e4e8f5}
+.nav-btn2:disabled{opacity:.3;cursor:not-allowed}
+.slide-count{font-size:11px;color:#4e5470}
+</style>
+<div class="carousel-wrap">
+  <div class="header">
+    <div class="header-title">✨ For You</div>
+    <div style="display:flex;align-items:center;gap:8px">
+      <div class="header-dots" id="hdots">
+        <div class="hdot on"></div><div class="hdot"></div><div class="hdot"></div>
+      </div>
+      <button class="x5" onclick="CT.dismiss()">✕</button>
+    </div>
+  </div>
+  <div class="slides-viewport">
+    <div class="slides-track" id="track">
+      <div class="slide">
+        <div class="slide-hero" style="background:linear-gradient(135deg,#1e1b4b,#312e81)">
+          🎬<div class="slide-badge" style="background:rgba(239,68,68,.2);color:#ef4444">LIVE</div>
+        </div>
+        <div class="slide-title">Watch Live Events</div>
+        <div class="slide-desc">Stream live sports, concerts and exclusive shows in HD. Never miss a moment.</div>
+        <button class="slide-btn" style="background:#635bff;color:#fff" onclick="ctaClick(0,'Watch Live Events','Watch Now')">▶ Watch Now</button>
+      </div>
+      <div class="slide">
+        <div class="slide-hero" style="background:linear-gradient(135deg,#064e3b,#065f46)">
+          💰<div class="slide-badge" style="background:rgba(34,200,122,.15);color:#22c87a">50% OFF</div>
+        </div>
+        <div class="slide-title">Exclusive Member Deals</div>
+        <div class="slide-desc">Premium members unlock deals up to 50% off on top categories. Limited time only.</div>
+        <button class="slide-btn" style="background:#22c87a;color:#064e3b" onclick="ctaClick(1,'Exclusive Member Deals','Shop Now')">🛒 Shop Now</button>
+      </div>
+      <div class="slide">
+        <div class="slide-hero" style="background:linear-gradient(135deg,#7c2d12,#92400e)">
+          🔔<div class="slide-badge" style="background:rgba(245,158,11,.15);color:#f59e0b">NEW</div>
+        </div>
+        <div class="slide-title">Enable Notifications</div>
+        <div class="slide-desc">Get personalised alerts for content you love. Stay ahead with real-time updates.</div>
+        <button class="slide-btn" style="background:#f59e0b;color:#78350f" onclick="ctaClick(2,'Enable Notifications','Allow')">🔔 Allow Notifications</button>
+      </div>
+    </div>
+  </div>
+  <div class="nav-row">
+    <button class="nav-btn2" id="prevBtn" onclick="goSlide(-1)" disabled>← Prev</button>
+    <span class="slide-count" id="sc">1 / 3</span>
+    <button class="nav-btn2" id="nextBtn" onclick="goSlide(1)">Next →</button>
+  </div>
+</div>
+<script>
+let cur2=0;const total=3;
+function goSlide(d){
+  cur2=Math.max(0,Math.min(total-1,cur2+d));
+  document.getElementById('track').style.transform=\`translateX(\${-cur2*100}%)\`;
+  document.getElementById('sc').textContent=(cur2+1)+' / '+total;
+  document.getElementById('prevBtn').disabled=cur2===0;
+  document.getElementById('nextBtn').disabled=cur2===total-1;
+  document.querySelectorAll('.hdot').forEach((d,i)=>d.classList.toggle('on',i===cur2));
+  CT.pushEvent('Carousel Slide Viewed',{slide_index:cur2,campaign_id:'carousel_001'});
+}
+function ctaClick(idx,title,cta){
+  CT.pushEvent('Carousel Slide Clicked',{slide_index:idx,slide_title:title,cta:cta,campaign_id:'carousel_001'});
+  CT.dismiss();
+}
+// touch swipe
+let tx=0;
+const vp=document.querySelector('.slides-viewport');
+vp.addEventListener('touchstart',e=>tx=e.touches[0].clientX,{passive:true});
+vp.addEventListener('touchend',e=>{const diff=tx-e.changedTouches[0].clientX;if(Math.abs(diff)>40)goSlide(diff>0?1:-1);},{passive:true});
+<\/script>`,
+  css: `/* Carousel — transform translateX for slide movement */`,
+  js: `function goSlide(direction) {\n  currentSlide = Math.max(0, Math.min(total-1, currentSlide + direction));\n  track.style.transform = \`translateX(\${-currentSlide * 100}%)\`;\n  CT.pushEvent('Carousel Slide Viewed', { slide_index: currentSlide });\n}\nfunction ctaClick(idx, title, cta) {\n  CT.pushEvent('Carousel Slide Clicked', { slide_index: idx, slide_title: title, cta });\n  CT.dismiss();\n}`
+};
+
+/* ── BANNER FORM FILL ── */
+T['gen-form'] = {
+  title: 'Banner Form Fill',
+  desc: 'Lead capture form inside an InApp banner. Collects name, phone and submits to CleverTap profile.',
+  tags: ['General', 'Form', 'Lead Gen'],
+  trigger: 'App Launched',
+  ctEvent: 'Form Submitted',
+  ctProps: { form_name: 'InApp Lead Form', name: '{{input_name}}', phone: '{{input_phone}}', source: 'inapp_banner' },
+  h: 500, mh: 680,
+  html: `<meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+body{background:#09090f;font-family:'Segoe UI',sans-serif;display:flex;align-items:center;justify-content:center;min-height:100vh;padding:16px}
+.form-card{background:#13161e;border:1px solid rgba(255,255,255,.08);border-radius:20px;max-width:360px;width:100%;overflow:hidden;animation:zoomIn .45s cubic-bezier(.34,1.5,.64,1)}
+@keyframes zoomIn{from{opacity:0;transform:scale(.88)}to{opacity:1;transform:none}}
+.form-hero{height:100px;background:linear-gradient(135deg,#1e1b4b,#312e81,#1e3a5f);display:flex;align-items:center;justify-content:center;gap:14px;position:relative}
+.hero-icon{font-size:36px;animation:bounce .8s ease infinite alternate}
+@keyframes bounce{from{transform:translateY(0)}to{transform:translateY(-8px)}}
+.hero-text{text-align:left}
+.hero-title{font-size:16px;font-weight:700;color:#fff;margin-bottom:3px}
+.hero-sub{font-size:11px;color:rgba(255,255,255,.6)}
+.form-body{padding:20px}
+.offer-strip{background:rgba(245,158,11,.08);border:1px solid rgba(245,158,11,.2);border-radius:10px;padding:10px 14px;margin-bottom:16px;display:flex;align-items:center;gap:8px;font-size:12px;color:#fbbf24}
+.form-group{margin-bottom:12px}
+label{font-size:11px;font-weight:600;color:#8b92b0;display:block;margin-bottom:5px;letter-spacing:.03em}
+input[type=text],input[type=tel],select{width:100%;background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.1);border-radius:9px;padding:11px 14px;color:#e4e8f5;font-family:inherit;font-size:13px;outline:none;transition:.2s;appearance:none}
+input:focus,select:focus{border-color:rgba(99,91,255,.5);background:rgba(99,91,255,.06)}
+input::placeholder{color:#2e3455}
+select{color:#8b92b0;cursor:pointer}
+select option{background:#13161e;color:#e4e8f5}
+.consent-row{display:flex;align-items:flex-start;gap:9px;margin-bottom:16px}
+.consent-row input[type=checkbox]{width:14px;height:14px;margin-top:1px;accent-color:#635bff;flex-shrink:0;cursor:pointer}
+.consent-row label{font-size:11px;color:#4e5470;line-height:1.4;cursor:pointer}
+.consent-row label span{color:#8a84ff}
+.btn-submit2{width:100%;background:linear-gradient(135deg,#635bff,#8a84ff);color:#fff;border:none;border-radius:11px;padding:13px;font-size:13px;font-weight:700;cursor:pointer;font-family:inherit;transition:.2s;margin-bottom:9px;letter-spacing:.02em}
+.btn-submit2:hover{transform:translateY(-1px);box-shadow:0 8px 20px rgba(99,91,255,.4)}
+.btn-submit2:disabled{opacity:.4;cursor:not-allowed;transform:none}
+.btn-close2{width:100%;background:transparent;border:none;color:#4e5470;font-size:11px;padding:6px;cursor:pointer;font-family:inherit}
+.success-msg{display:none;text-align:center;padding:16px 0}
+.success-msg .big{font-size:44px;margin-bottom:12px}
+</style>
+<div class="form-card">
+  <div class="form-hero">
+    <div class="hero-icon">🎯</div>
+    <div class="hero-text"><div class="hero-title">Unlock Exclusive Access</div><div class="hero-sub">Fill in details to claim your offer</div></div>
+  </div>
+  <div class="form-body" id="formBody">
+    <div class="offer-strip">🎁 Complete this form and get <strong style="color:#fbbf24;margin-left:4px">₹500 cashback</strong></div>
+    <div class="form-group">
+      <label>Full Name</label>
+      <input type="text" id="inp-name" placeholder="Enter your full name">
+    </div>
+    <div class="form-group">
+      <label>Mobile Number</label>
+      <input type="tel" id="inp-phone" placeholder="+91 98765 43210" maxlength="15">
+    </div>
+    <div class="form-group">
+      <label>Interested In</label>
+      <select id="inp-interest">
+        <option value="">Select category</option>
+        <option>Premium Streaming</option>
+        <option>Shopping Deals</option>
+        <option>Food Delivery</option>
+        <option>Travel Booking</option>
+      </select>
+    </div>
+    <div class="consent-row">
+      <input type="checkbox" id="consent" checked>
+      <label for="consent">I agree to receive promotional communications. <span>Privacy Policy</span></label>
+    </div>
+    <button class="btn-submit2" id="subBtn2" onclick="submitForm()">Submit &amp; Claim Offer →</button>
+    <button class="btn-close2" onclick="CT.pushEvent('Form Dismissed');CT.dismiss()">Maybe later</button>
+  </div>
+  <div class="success-msg" id="successMsg">
+    <div class="big">🎉</div>
+    <div style="font-size:16px;font-weight:700;color:#e4e8f5;margin-bottom:8px">You're all set!</div>
+    <div style="font-size:12px;color:#4e5470;line-height:1.6;padding:0 8px">Your cashback has been credited. Check your account within 24 hours.</div>
+  </div>
+</div>
+<script>
+function submitForm(){
+  const name=document.getElementById('inp-name').value.trim();
+  const phone=document.getElementById('inp-phone').value.trim();
+  const interest=document.getElementById('inp-interest').value;
+  if(!name||!phone){alert('Please fill in your name and phone number.');return;}
+  // Push profile update + event to CleverTap
+  CT.pushProfile({'Name':name,'Phone':phone,'Interest':interest});
+  CT.pushEvent('Form Submitted',{form_name:'InApp Lead Form',name:name,phone:phone,interest:interest,source:'inapp_banner'});
+  document.getElementById('formBody').style.display='none';
+  document.getElementById('successMsg').style.display='block';
+  setTimeout(()=>CT.dismiss(),2500);
+}
+<\/script>`,
+  css: `/* Form banner — standard input styling */`,
+  js: `function submitForm() {\n  const name = document.getElementById('inp-name').value;\n  const phone = document.getElementById('inp-phone').value;\n  // Push profile update to CleverTap\n  CT.pushProfile({ Name: name, Phone: phone });\n  CT.pushEvent('Form Submitted', {\n    form_name: 'InApp Lead Form',\n    name, phone, source: 'inapp_banner'\n  });\n  CT.dismiss();\n}`
+};
+
+/* -- App: registry, state, render functions, controls, init -- */
+const CATS = [
+  { id:'ott',     label:'OTT & Streaming',     icon:'🎬', items:[{id:'ott-pip'},{id:'ott-unlock'},{id:'ott-live'}] },
+  { id:'qc',      label:'Quick Commerce',       icon:'⚡', items:[{id:'qc-track'},{id:'qc-slot'},{id:'qc-reorder'}] },
+  { id:'gift',    label:'Gifting & Occasions',  icon:'🎁', items:[{id:'gift-remind'},{id:'gift-sameday'},{id:'gift-upsell'}] },
+  { id:'auto',    label:'Used Cars & Autos',    icon:'🚗', items:[{id:'auto-listing'},{id:'auto-drop'},{id:'auto-val'}] },
+  { id:'ecomm',   label:'E-Commerce',           icon:'🛒', items:[{id:'ec-flash'},{id:'ec-product'},{id:'ec-cart'}] },
+  { id:'engage',  label:'Engagement',           icon:'💬', items:[{id:'eg-rate'},{id:'eg-push'},{id:'eg-survey'}] },
+  { id:'general', label:'General',              icon:'🎮', items:[{id:'gen-scratch'},{id:'gen-spin'},{id:'gen-pip-land'},{id:'gen-pip-port'},{id:'gen-carousel'},{id:'gen-form'}] },
+];
+
+
+/* ── HIGHLIGHT ── */
+function highlight(code, lang) {
+  const esc = s => s.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');
+  let s = esc(code);
+  if (lang === 'html') {
+    s = s.replace(/(&lt;\/?)([\w-]+)/g,'<span class="tk">$1$2</span>')
+         .replace(/\s([\w-]+)=/g,' <span class="ta">$1</span>=')
+         .replace(/=(['"])([^'"]*?)\1/g,'=<span class="tv">$1$2$1</span>')
+         .replace(/(&lt;!--[\s\S]*?--&gt;)/g,'<span class="tc">$1</span>');
+  } else if (lang === 'css') {
+    s = s.replace(/(\/\*[\s\S]*?\*\/)/g,'<span class="tc">$1</span>')
+         .replace(/([a-z-]+)\s*:/g,'<span class="tp">$1</span>:')
+         .replace(/:\s*([^;{}\n]+)/g,(_,v)=>': <span class="tv">'+v+'</span>');
+  } else {
+    s = s.replace(/(\/\/[^\n]*)/g,'<span class="tc">$1</span>')
+         .replace(/(\/\*[\s\S]*?\*\/)/g,'<span class="tc">$1</span>')
+         .replace(/\b(func|fun|override|class|struct|var|let|val|const|function|return|if|else|for|when|switch|case|import|true|false|null|nil)\b/g,'<span class="tk">$1</span>')
+         .replace(/'([^']*)'/g,'<span class="ts">\'$1\'</span>')
+         .replace(/"([^"]*)"/g,'<span class="ts">"$1"</span>')
+         .replace(/\b(\d+)\b/g,'<span class="tn">$1</span>');
+  }
+  return s;
+}
+
+/* ── STATE ── */
+let curId    = 'ott-pip';
+let curDev   = 'web';
+let curTab   = 'html';
+let curRTab  = 'code';
+let curCat   = 'all';   // active category filter
+
+/* ── BUILD SIDEBAR ──
+   Two-level sidebar:
+   • Top: category filter pills (All + one per CATS entry)
+   • Below: template list filtered to selected category
+─────────────────────────────────────────────────────────── */
+function buildSidebar() {
+  const sb = document.getElementById('sb');
+  let totalTemplates = 0;
+  CATS.forEach(c => totalTemplates += c.items.length);
+  document.getElementById('nav-count').textContent = totalTemplates + ' Templates';
+
+  sb.innerHTML = `
+    <!-- Category filter pills -->
+    <div id="cat-pills">
+      <div class="cat-pill-label">Categories</div>
+      <div class="cat-pills-wrap">
+        <button class="cat-pill on" data-cat="all" onclick="setCat('all',this)">
+          All <span class="cat-pill-count">${totalTemplates}</span>
+        </button>
+        ${CATS.map(cat => {
+          const count = cat.items.filter(i => T[i.id]).length;
+          return `<button class="cat-pill" data-cat="${cat.id}" onclick="setCat('${cat.id}',this)">
+            <span>${cat.icon}</span> ${cat.label}
+            <span class="cat-pill-count">${count}</span>
+          </button>`;
+        }).join('')}
+      </div>
+    </div>
+    <div class="sb-div" style="margin-top:4px"></div>
+    <!-- Template list -->
+    <div id="tpl-list"></div>
+  `;
+
+  renderTplList();
+}
+
+function setCat(catId, el) {
+  curCat = catId;
+  document.querySelectorAll('.cat-pill').forEach(p => p.classList.remove('on'));
+  el.classList.add('on');
+  renderTplList();
+}
+
+function renderTplList() {
+  const container = document.getElementById('tpl-list');
+  if (!container) return;
+  const activeCats = curCat === 'all' ? CATS : CATS.filter(c => c.id === curCat);
+
+  let html = '';
+  activeCats.forEach(cat => {
+    const validItems = cat.items.filter(i => T[i.id]);
+    if (!validItems.length) return;
+    html += `<div class="sb-sec">
+      <div class="sb-head"><span>${cat.icon}</span>${cat.label}</div>
+      ${validItems.map(item => {
+        const tpl = T[item.id];
+        return `<div class="sb-item${item.id === curId ? ' on' : ''}" onclick="load('${item.id}',this)">
+          <span class="sb-ico">${cat.icon}</span>
+          <span class="sb-lbl">${tpl.title}</span>
+          <span class="sb-tag">${tpl.tags[0] || ''}</span>
+        </div>`;
+      }).join('')}
+    </div>
+    <div class="sb-div"></div>`;
+  });
+
+  container.innerHTML = html || '<div style="padding:16px 12px;font-size:12px;color:var(--t3)">No templates in this category.</div>';
+}
+
+/* ── LOAD ── */
+function load(id, el) {
+  curId = id;
+  const tpl = T[id]; if (!tpl) return;
+  document.querySelectorAll('.sb-item').forEach(i => i.classList.remove('on'));
+  if (el) el.classList.add('on');
+  // Scroll sidebar item into view
+  if (el) el.scrollIntoView({ block: 'nearest', behavior: 'smooth' });
+  document.getElementById('hdr-title').textContent = tpl.title;
+  document.getElementById('hdr-desc').textContent  = tpl.desc;
+  document.getElementById('hdr-tags').innerHTML = tpl.tags.map(t => {
+    const cls = t.includes('CT') || t.includes('CleverTap') ? 'ct'
+              : t.includes('Timer') || t.includes('Urgent') ? 'amb' : 'grn';
+    return `<span class="htag ${cls}">${t}</span>`;
+  }).join('');
+  renderPreview();
+  renderCode();
+  renderEvents();
+}
+
+/* ── RENDER PREVIEW ── */
+function renderPreview() {
+  const tpl = T[curId]; if (!tpl) return;
+  const ldr  = document.getElementById('ldr');   ldr.classList.remove('gone');
+  const webF = document.getElementById('dev-web');
+  const iosF = document.getElementById('dev-ios');
+  const andF = document.getElementById('dev-android');
+  const stage = document.getElementById('pv-stage');
+  const label = document.getElementById('pv-label');
+
+  if (curDev === 'web') {
+    webF.style.display = 'flex';
+    iosF.style.display = 'none'; andF.style.display = 'none';
+    iosF.style.transform = ''; iosF.style.margin = '';
+    andF.style.transform = ''; andF.style.margin = '';
+    stage.style.background = '';
+    label.textContent = 'web · preview';
+    const ifr = document.getElementById('ifr-web');
+    ifr.style.height = ''; ifr.style.minHeight = '100%';
+    ifr.srcdoc = tpl.html;
+    ifr.onload = () => ldr.classList.add('gone');
+
+  } else if (curDev === 'ios') {
+    webF.style.display = 'none'; andF.style.display = 'none';
+    iosF.style.display = 'flex'; iosF.style.flexDirection = 'column';
+    stage.style.background = 'radial-gradient(ellipse at 50% 40%,#1e1e28 0%,#090b12 70%)';
+    label.textContent = 'iOS · iPhone 17 Pro Max · 393px';
+    const ifr = document.getElementById('ifr-ios');
+    ifr.style.height = '759px'; ifr.style.minHeight = '759px';
+    ifr.srcdoc = tpl.html;
+    ifr.onload = () => ldr.classList.add('gone');
+    requestAnimationFrame(() => scaleDevice(iosF, 393, 852));
+
+  } else {
+    webF.style.display = 'none'; iosF.style.display = 'none';
+    andF.style.display = 'flex'; andF.style.flexDirection = 'column';
+    stage.style.background = 'radial-gradient(ellipse at 50% 40%,#0e1a1e 0%,#090b12 70%)';
+    label.textContent = 'Android · Pixel 8 Pro · 393px';
+    const ifr = document.getElementById('ifr-android');
+    ifr.style.height = '820px'; ifr.style.minHeight = '820px';
+    ifr.srcdoc = tpl.html;
+    ifr.onload = () => ldr.classList.add('gone');
+    requestAnimationFrame(() => scaleDevice(andF, 393, 896));
+  }
+}
+
+function scaleDevice(el, devW, devH) {
+  const s   = document.getElementById('pv-stage');
+  const pad = 28;
+  const scale = Math.min((s.clientWidth - pad * 2) / devW, (s.clientHeight - pad * 2) / devH, 1);
+  el.style.transform   = `scale(${scale})`;
+  const dW = devW * scale, dH = devH * scale;
+  el.style.marginLeft   = `${(dW - devW) / 2}px`;
+  el.style.marginRight  = `${(dW - devW) / 2}px`;
+  el.style.marginTop    = `${(dH - devH) / 2}px`;
+  el.style.marginBottom = `${(dH - devH) / 2}px`;
+}
+
+/* ── RENDER CODE ── */
+function renderCode() {
+  const tpl = T[curId]; if (!tpl) return;
+  const src = curTab === 'html' ? tpl.html
+            : curTab === 'css'  ? (tpl.css  || '/* styles are inline in the HTML template */')
+            : curTab === 'js'   ? (tpl.js   || '// no separate JS file')
+            : curTab === 'ios'  ? iosCode(tpl)
+            : androidCode(tpl);
+  document.getElementById('cpre').innerHTML = highlight(src, curTab);
+}
+
+/* ── RENDER EVENTS ── */
+function renderEvents() {
+  const tpl = T[curId]; if (!tpl) return;
+  const props = Object.entries(tpl.ctProps || {})
+    .map(([k, v]) => `<div class="ev-row"><span class="ev-key">${k}</span><span class="ev-val">"${v}"</span></div>`)
+    .join('');
+  document.getElementById('event-pane').innerHTML = `
+    <div class="ev-label">Trigger Event</div>
+    <div class="ev-trigger">🎯&nbsp;App raises <strong>${tpl.trigger || 'App Launched'}</strong> → InApp shown</div>
+    <div class="ev-label">Primary CTA Event</div>
+    <div class="ev-card">
+      <div class="ev-name">${tpl.ctEvent || 'CTA Clicked'}</div>
+      <div class="ev-props">${props}</div>
+    </div>
+    <div class="ev-label">CleverTap JS Call</div>
+    <div class="ev-card" style="background:var(--bg)">
+      <pre style="font-family:var(--fm);font-size:11px;color:var(--t2);white-space:pre-wrap;line-height:1.7"><span class="tk">CT</span>.<span class="ta">pushEvent</span>(<span class="ts">"${tpl.ctEvent || 'CTA Clicked'}"</span>, ${JSON.stringify(tpl.ctProps || {}, null, 2)});</pre>
+    </div>`;
+}
+
+/* ── CONTROLS ── */
+function setDev(d) {
+  curDev = d;
+  const map = { web: 'web', ios: 'ios', android: 'and' };
+  ['web','ios','and'].forEach(x => document.getElementById('dpill-' + x).classList.toggle('on', map[d] === x));
+  renderPreview();
+}
+
+function setRTab(t) {
+  curRTab = t;
+  ['code','events','howto'].forEach(x => document.getElementById('rtab-' + x).classList.toggle('on', x === t));
+  ['code','event','howto'].forEach(x => document.getElementById(x + '-pane').classList.toggle('show', x === t.replace('events','event')));
+  document.getElementById('lang-row').classList.toggle('show', t === 'code');
+}
+
+function setTab(t) {
+  curTab = t;
+  ['html','css','js','ios','and'].forEach(x => document.getElementById('ct-' + x).classList.toggle('on', x === t));
+  renderCode();
+}
+
+function doCopy() {
+  const tpl  = T[curId];
+  const text = curRTab === 'code'
+    ? (curTab === 'ios' ? iosCode(tpl) : curTab === 'and' ? androidCode(tpl) : (tpl[curTab] || tpl.html))
+    : tpl.html;
+  navigator.clipboard.writeText(text).then(() => {
+    const btn = document.getElementById('copy-btn');
+    btn.classList.add('ok');
+    btn.textContent = '✓ Copied!';
+    setTimeout(() => {
+      btn.classList.remove('ok');
+      btn.innerHTML = `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="width:11px;height:11px"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>Copy`;
+    }, 2000);
+  });
+}
+
+function closeGuide() { document.getElementById('ag').classList.remove('show'); }
+
+let isLight = false;
+function toggleTheme() {
+  isLight = !isLight;
+  document.body.classList.toggle('light', isLight);
+  document.getElementById('thlbl').textContent = isLight ? 'Dark' : 'Light';
+}
+
+/* ── INIT ── */
+buildSidebar();
+load('ott-pip', null);
+window.addEventListener('resize', () => {
+  if      (curDev === 'ios')     scaleDevice(document.getElementById('dev-ios'),     393, 852);
+  else if (curDev === 'android') scaleDevice(document.getElementById('dev-android'), 393, 896);
+});
+
+</script>
+</body>
+</html>
